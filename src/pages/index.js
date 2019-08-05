@@ -14,6 +14,8 @@ import demoImage1 from '../assets/images/demo-image-01.jpg';
 import demoImage2 from '../assets/images/demo-image-02.jpg';
 import bgMaster from '../assets/images/bg-masthead.jpg';
 
+import { Link } from 'gatsby';
+
 const IndexPage = () => (
   <Layout>
     <Header />

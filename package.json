@@ -11,6 +11,8 @@
     "email": "anubhav.srivastava00@gmail.com"
   },
   "dependencies": {
+    "@reach/router": "^1.2.1",
+    "auth0-js": "^9.11.3",
     "gatsby": "^2.4.3",
     "gatsby-plugin-manifest": "^2.1.1",
     "gatsby-plugin-offline": "^2.1.0",
