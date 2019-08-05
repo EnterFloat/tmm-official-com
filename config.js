@@ -7,7 +7,7 @@ module.exports = {
   manifestThemeColor: '#663399',
   manifestDisplay: 'standalone',
   manifestIcon: 'src/assets/img/TMM_logo_circle_512.png',
-  pathPrefix: `/gatsby-starter-grayscale/`, // This path is subpath of your hosting https://domain/portfolio
+  pathPrefix: `/tmm-official/`, // This path is subpath of your hosting https://domain/portfolio
   heading: 'The Masculine Mentality',
   subHeading: 'A meaningful subHeading',
 

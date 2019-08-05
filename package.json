@@ -1,14 +1,14 @@
 {
-  "name": "gatsby-starter-grayscale",
+  "name": "tmm-official-com",
   "version": "0.0.1",
   "description": "Gatsby.js V2 starter template based on Grayscale by startbootstrap",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anubhavsrivastava/gatsby-starter-grayscale.git"
+    "url": "git+https://github.com/enterfloat/tmm-official-com.git"
   },
   "author": {
-    "name": "Anubhav Srivastava",
-    "email": "anubhav.srivastava00@gmail.com"
+    "name": "Kasper Skov Hansen - EnterFloat",
+    "email": "enterfloatsoftware@gmail.com"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
@@ -47,7 +47,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anubhavsrivastava/gatsby-starter-grayscale/issues"
+    "url": "https://github.com/enterfloat/tmm-official-com/issues"
   },
-  "homepage": "https://github.com/anubhavsrivastava/gatsby-starter-grayscale#readme"
+  "homepage": "https://github.com/enterfloat/tmm-official-com#readme"
 }
