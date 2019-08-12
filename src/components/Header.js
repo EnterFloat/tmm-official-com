@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Scroll from './Scroll';
 import config from '../../config';
 import { Link } from 'gatsby'
+import { login, logout, isAuthenticated, getProfile } from "../utils/auth"
+
+
 export default class Header extends Component {
   constructor(props) {
     super(props);
@@ -118,26 +121,31 @@ export default class Header extends Component {
                 </Scroll>
               </li>
               <li className="nav-item">
-                {/* <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="login"
-                >
-                <Link className="nav-link" to="/account">
-                  Login
-                </Link>
-                  <a className="nav-link" href="account">
-                    Login
-                  </a>
-                </Scroll> */}
-                <Link className="nav-link" to="/account">
-                  Login
-                </Link>
+                <LoginLogout />
               </li>
             </ul>
           </div>
         </div>
       </nav>
     );
+  }
+}
+
+const LoginLogout = () => {
+  
+  if (!isAuthenticated()) {
+    return <Link className="nav-link" to="#logout" onClick={e => {
+      login()
+    }
+    }>
+      Login
+    </Link>
+  } else {
+    return <Link className="nav-link" onClick={e => {
+      logout()
+      e.preventDefault()
+    }}>
+      Logout
+  </Link>
   }
 }
