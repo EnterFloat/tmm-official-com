@@ -38,6 +38,10 @@ export default class Header extends Component {
 
   render() {
     const { openMenu, visibilityClass } = this.state;
+
+    const buttonStyle = {
+      cursor:'pointer'
+    }
     return (
       <nav
         className={`navbar navbar-expand-lg navbar-light fixed-top ${visibilityClass}`}
@@ -56,8 +60,8 @@ export default class Header extends Component {
             aria-controls="navbarResponsive"
             aria-expanded={openMenu}
             aria-label="Toggle navigation"
-            style="cursor:'pointer'"
-          >
+            style={buttonStyle}
+                      >
             Menu {" "}
             <i className="fas fa-bars"></i>
           </button>
