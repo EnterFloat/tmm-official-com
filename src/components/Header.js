@@ -56,6 +56,7 @@ export default class Header extends Component {
             aria-controls="navbarResponsive"
             aria-expanded={openMenu}
             aria-label="Toggle navigation"
+            style="cursor:'pointer'"
           >
             Menu {" "}
             <i className="fas fa-bars"></i>
