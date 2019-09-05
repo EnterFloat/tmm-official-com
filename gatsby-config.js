@@ -20,12 +20,12 @@ module.exports = {
     },
     'gatsby-plugin-sass',
     'gatsby-plugin-offline',
-    // {
-    //   resolve: `gatsby-plugin-tidio`,
-    //   options: {
-    //     tidioId: "vv2oq2qqfs3mootqschueozmngslk6b8",
-    //     // get this from the tidio script widget
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-tidio`,
+      options: {
+        tidioId: "96gezvcqnybvie6yok0tcb7tjhvq8gva",
+        // get this from the tidio script widget
+      },
+    },
   ],
 };
