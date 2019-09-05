@@ -19,7 +19,7 @@ import { Link } from 'gatsby';
 const IndexPage = () => (
   <Layout>
     <Header />
-{/* 
+
     <header className="masthead">
       <div className="container d-flex h-100 align-items-center">
         <div className="mx-auto text-center">
@@ -35,7 +35,7 @@ const IndexPage = () => (
         </div>
       </div>
     </header>
-
+{/* 
     <section id="about" className="about-section text-center">
       <div className="container">
         <div className="row">
@@ -115,10 +115,10 @@ const IndexPage = () => (
         </div>
       </div>
     </section> */}
-
+{/* 
     <Subscribe />
 
-    <SocialLinks />
+    <SocialLinks /> */}
     <Footer />
   </Layout>
 );
