@@ -119,6 +119,7 @@ const IndexPage = () => (
     <Subscribe />
 
     <SocialLinks /> */}
+
     <Footer />
   </Layout>
 );

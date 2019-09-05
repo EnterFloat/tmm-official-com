@@ -32,7 +32,6 @@ class Layout extends Component {
             </Helmet>
             <div className={'page-top'}>
               {children}
-              <script src="//code.tidio.co/96gezvcqnybvie6yok0tcb7tjhvq8gva.js"></script>
             </div>
           </>
         )}
