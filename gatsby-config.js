@@ -21,11 +21,13 @@ module.exports = {
     'gatsby-plugin-sass',
     'gatsby-plugin-offline',
     {
-      resolve: `gatsby-plugin-tidio`,
+      resolve: 'gatsby-plugin-crisp-chat',
       options: {
-        tidioId: "vv2oq2qqfs3mootqschueozmngslk6b8",
-        // get this from the tidio script widget
+        websiteId: '79658bac-b2ca-457d-b409-3c7883702b75',
+        enableDuringDevelop: true, // Optional. Disables Crisp Chat during gatsby develop. Defaults to true.
+        defer: true, // Optional. Sets the Crisp loading script to defer instead of async. Defaults to false.
+        enableImprovedAccessibility: false // Optional. Sets aria-label attribute on pop-up icon for screen readers. Defaults to true.
       },
-    },
+    }
   ],
 };
