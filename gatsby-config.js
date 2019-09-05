@@ -23,7 +23,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-tidio`,
       options: {
-        tidioId: "96gezvcqnybvie6yok0tcb7tjhvq8gva",
+        tidioId: "vv2oq2qqfs3mootqschueozmngslk6b8",
         // get this from the tidio script widget
       },
     },
