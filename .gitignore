@@ -12,3 +12,6 @@ yarn.lock
 # Environment variables
 .env.development
 .env.production
+
+# Local Netlify folder
+.netlify

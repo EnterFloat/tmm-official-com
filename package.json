@@ -13,7 +13,9 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "auth0-js": "^9.11.3",
+    "axios": "^0.19.0",
     "dotenv": "^8.0.0",
+    "faunadb": "^2.9.4",
     "fs": "0.0.1-security",
     "gatsby": "^2.4.3",
     "gatsby-plugin-crisp-chat": "^3.2.1",
@@ -24,6 +26,7 @@
     "gatsby-plugin-tidio": "^1.0.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
+    "react-cookies": "^0.1.1",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-images": "^0.5.19",
@@ -32,15 +35,21 @@
   },
   "scripts": {
     "develop": "gatsby develop",
-    "build": "npm run clean && gatsby build",
-    "deploy": "npm run clean && gatsby build --prefix-paths && gh-pages -d public",
+    "start": "run-p start:**",
+    "start:app": "npm run develop",
+    "start:lambda": "netlify-lambda serve functions",
+    "build": "gatsby build && netlify-lambda build functions",
+    "build:app": "gatsby build",
+    "build:lambda": "netlify-lambda build functions",
     "serve": "gatsby serve",
     "clean": "rimraf .cache public",
-    "format": "prettier --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write '**/*.js'"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1",
+    "http-proxy-middleware": "^0.20.0",
+    "netlify-lambda": "^1.6.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.17.0",
     "rimraf": "^2.6.3"
   },

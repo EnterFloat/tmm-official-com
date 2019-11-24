@@ -146,7 +146,7 @@ const LoginLogout = () => {
       Login
     </Link>
   } else {
-    return <Link className="nav-link" onClick={e => {
+    return <Link to="" className="nav-link" onClick={e => {
       logout()
       e.preventDefault()
     }}>
