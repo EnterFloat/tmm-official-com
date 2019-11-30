@@ -1,3 +1,5 @@
+// Load products
+
 import { StaticQuery, graphql } from 'gatsby';
 import React from "react"
 import ProductCard from './ProductCard.js'
