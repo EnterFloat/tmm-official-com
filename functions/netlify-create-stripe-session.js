@@ -17,8 +17,8 @@ exports.handler = (event, context, callback) => {
                 quantity: 1
             }]
         },
-        success_url: `http://localhost:8000/success/`,
-        cancel_url: `http://localhost:8000/canceled`,
+        success_url: process.env.GATSBY_STRIPE_CALLBACK_SUCCESS,
+        cancel_url: process.env.GATSBY_STRIPE_CALLBACK_ERROR,
         payment_method_types: ["card"]
     })
         .then((response) => {
