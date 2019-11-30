@@ -1,3 +1,5 @@
+// Netlify function to create a new FaunaDB user saving auth0_id and Stripe customer id
+
 import faunadb from 'faunadb'
 
 const q = faunadb.query
@@ -6,9 +8,11 @@ const client = new faunadb.Client({
 })
 
 exports.handler = (event, context, callback) => {
-    const params = JSON.parse(event.body)
-    const auth0_id = params.auth0_id
-  return client.query(q.Get(q.Match(q.Index(`user_by_auth0_id`), `${auth0_id}`)))
+    const data = JSON.parse(event.body)
+    const userItem = {
+      data: data
+    }
+  return client.query(q.Create(q.Ref('classes/users'), userItem))
     .then((response) => {
       console.log('success', response)
       return callback(null, {

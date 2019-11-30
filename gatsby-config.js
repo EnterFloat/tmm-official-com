@@ -1,4 +1,10 @@
 const config = require('./config');
+const path = require('path');
+
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 var proxy = require("http-proxy-middleware")
 module.exports = {
   developMiddleware: app => {
@@ -28,6 +34,15 @@ module.exports = {
         theme_color: config.manifestThemeColor,
         display: config.manifestDisplay,
         icon: config.manifestIcon, // This path is relative to the root of the site.
+      },
+    },
+    "gatsby-plugin-stripe",
+    {
+      resolve: `gatsby-source-stripe`,
+      options: {
+        objects: ["Sku", "Product"],
+        secretKey: process.env.STRIPE_SECRET_KEY,
+        downloadFiles: true,
       },
     },
     'gatsby-plugin-sass',

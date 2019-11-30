@@ -1,5 +1,8 @@
 import auth0 from "auth0-js"
 import { navigate } from "gatsby"
+import getUser from '../components/common/get-faunadb-user.js'
+import handleCustomer from '../components/common/handle-customer.js'
+
 
 const isBrowser = typeof window !== "undefined"
 
@@ -51,6 +54,7 @@ const setSession = (cb = () => {}) => (err, authResult) => {
     tokens.expiresAt = expiresAt
     user = authResult.idTokenPayload
     localStorage.setItem("isLoggedIn", true)
+    handleCustomer()
     navigate("/")
     cb()
   }
@@ -75,5 +79,6 @@ export const getProfile = () => {
 
 export const logout = () => {
   localStorage.setItem("isLoggedIn", false)
+  localStorage.removeItem("customer_subscriptions")
   auth.logout()
 }

@@ -1,3 +1,5 @@
+// Netlify function to get FaunaDB user by auth0_id
+
 import faunadb from 'faunadb'
 
 const q = faunadb.query
@@ -6,11 +8,9 @@ const client = new faunadb.Client({
 })
 
 exports.handler = (event, context, callback) => {
-    const data = JSON.parse(event.body)
-    const userItem = {
-      data: data
-    }
-  return client.query(q.Create(q.Ref('classes/users'), userItem))
+    const params = JSON.parse(event.body)
+    const auth0_id = params.auth0_id
+  return client.query(q.Get(q.Match(q.Index(`user_by_auth0_id`), `${auth0_id}`)))
     .then((response) => {
       console.log('success', response)
       return callback(null, {

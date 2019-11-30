@@ -9,7 +9,7 @@ module.exports = {
   manifestIcon: 'src/assets/img/TMM_logo_circle_512.png',
   pathPrefix: `/tmm-official/`, // This path is subpath of your hosting https://domain/portfolio
   heading: 'The Masculine Mentality',
-  subHeading: 'A meaningful subHeading',
+  subHeading: 'Development. No purchases will be fulfilled',
 
   // social
   socialLinks: [

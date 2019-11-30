@@ -3,6 +3,8 @@ import Scroll from './Scroll';
 import config from '../../config';
 import { Link } from 'gatsby'
 import { login, logout, isAuthenticated, getProfile } from "../utils/auth"
+import { StaticRouter as Router, Route } from 'react-router-dom';
+
 
 
 export default class Header extends Component {
@@ -43,14 +45,23 @@ export default class Header extends Component {
       cursor:'pointer'
     }
     return (
+      
+      <div>
+      {/* {console.log(this.props.topMargin)} */}
       <nav
         className={`navbar navbar-expand-lg navbar-light fixed-top ${visibilityClass}`}
         id="mainNav"
       >
+      
         <div className="container">
-          <a className="navbar-brand" href="#page-top">
+          <Link 
+            to={"/"} 
+            className="navbar-brand">
             {config.siteTitle}
-          </a>
+          </Link>
+          {/* <a className="navbar-brand" href="#page-top">
+            {config.siteTitle}
+          </a> */}
           <button
             onClick={_ => this.toggleMenu(!openMenu)}
             className={`navbar-toggler navbar-toggler-right ${
@@ -82,15 +93,11 @@ export default class Header extends Component {
                 </Scroll>
               </li> */}
               <li className="nav-item">
-                <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="marketplace"
-                >
-                  <a className="nav-link" href="/marketplace">
-                    Marketplace
-                  </a>
-                </Scroll>
+                <Link 
+                to={"/marketplace"} 
+                className="nav-link">
+                Marketplace
+                </Link>
               </li>
               <li className="nav-item">
                 <Scroll
@@ -131,7 +138,15 @@ export default class Header extends Component {
             </ul>
           </div>
         </div>
+        <div>
+          <Router>
+              <Route path="/marketplace" exact component={Component.Marketplace} />
+              <Route path="/" exact component={Component.IndexPage} />
+
+            </Router>
+        </div>
       </nav>
+      </div>
     );
   }
 }

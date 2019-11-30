@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import getAuth0User from '../components/common/get-auth0-user.js'
 
 
 import Layout from '../components/Layout';
@@ -7,67 +8,22 @@ import Scroll from '../components/Scroll';
 
 import config from '../../config';
 import Footer from '../components/Footer';
-import SocialLinks from '../components/SocialLinks';
-import Subscribe from '../components/Subscribe';
+
 import Header from '../components/Header';
+// import SocialLinks from '../components/SocialLinks';
+// import Subscribe from '../components/Subscribe';
+// import ipad from '../assets/images/ipad.png';
+// import demoImage1 from '../assets/images/demo-image-01.jpg';
+// import demoImage2 from '../assets/images/demo-image-02.jpg';
+// import bgMaster from '../assets/images/bg-masthead.jpg';
 
-import ipad from '../assets/images/ipad.png';
-import demoImage1 from '../assets/images/demo-image-01.jpg';
-import demoImage2 from '../assets/images/demo-image-02.jpg';
-import bgMaster from '../assets/images/bg-masthead.jpg';
-
-import axios from 'axios'
 
 import { Link } from 'gatsby';
 // import { isAuthenticated } from '../utils/auth';
 import { isAuthenticated, getProfile } from "../utils/auth"
 
-function createUser(auth0_id) {
-  console.log("Creating new user")
 
-  axios.post("/.netlify/functions/create-user", {auth0_id: `${auth0_id}`})
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        getUser(auth0_id)
-      })
-      .catch(error => {
-        console.log(error);
-      });
-}
 
-function getUser() {
-
-  var auth0_id = getUserSub()
-  if (auth0_id == false) {
-    return
-  }
-  console.log("Get user with id " + auth0_id)
-
-  axios.post("/.netlify/functions/get-user", {auth0_id: `${auth0_id}`})
-      .then(res => {
-        console.log("User exists with data:")
-        console.log(res.data);
-      })
-      .catch(error => {
-        console.log(error.response.status)
-        if (error.response.data.requestResult.statusCode == "404")
-          console.log("No existing user was found")
-          createUser(auth0_id)
-      });
-}
-
-function getUserSub() {
-  console.log("Get user sub")
-  if (isAuthenticated()) {
-    const user = getProfile()
-    console.log(user.name + ": " + user.sub)
-    return(user.sub)
-  } else {
-    console.log("Not authenticated")
-    return(false)
-  }
-}
 
 // const IndexPage = () => (
 //   <Layout>
@@ -189,16 +145,15 @@ function getUserSub() {
 export default class IndexPage extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
-      <Layout>
+      <Layout marginTop="0" BGColor="white">
         <Header />
         <header className="masthead">
         {/* <button onClick={getUser}>Hej</button> */}
-        {getUser()}
+        {/* {getUser()} */}
 
           <div className="container d-flex h-100 align-items-center">
             <div className="mx-auto text-center">
@@ -216,6 +171,7 @@ export default class IndexPage extends Component {
         </header>
         <Footer />
     </Layout>
+    
     );
   }
 }
