@@ -14,7 +14,9 @@ const Checkout = class extends React.Component {
   
   componentDidMount() {
     const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLIC_KEY)
-    this.setState({ stripe })
+    const cus_subs = localStorage.getItem("customer_subscriptions")
+
+    this.setState({ stripe, cus_subs})
   }
 
   render() {
@@ -26,17 +28,18 @@ const Checkout = class extends React.Component {
       products[node.id] = node
     }
 
-
-    var cus_subs = localStorage.getItem("customer_subscriptions")
-    if (cus_subs !== null) {
-        cus_subs = JSON.parse(cus_subs).data
-    }
+    var cus_subs = this.state.cus_subs
     var plans_subbed = []
-    for (const i in cus_subs) {
-        console.log(cus_subs[i].plan.id)
-        plans_subbed.push(cus_subs[i].plan.id)
+
+    if (cus_subs !== null && cus_subs !== undefined) {
+        cus_subs = JSON.parse(cus_subs).data
+        for (const i in cus_subs) {
+          console.log(cus_subs[i].plan.id)
+          plans_subbed.push(cus_subs[i].plan.id)
+      }
+      console.log(plans_subbed)
     }
-    console.log(plans_subbed)
+    
     return (
       <>
         <Row>
