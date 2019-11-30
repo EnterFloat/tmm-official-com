@@ -2,7 +2,7 @@ import { graphql, StaticQuery } from 'gatsby';
 // import React from 'react';
 import React, { Component } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import Checkout from '../components/Checkout'
+import Products from '../components/Products'
 
 class Marketplace extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Marketplace extends Component {
 
   render() {
     return (
-        <Checkout></Checkout>
+        <Products></Products>
     );
   }
 }

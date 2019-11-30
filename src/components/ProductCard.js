@@ -1,7 +1,10 @@
+// Load individual product
+
 import React from "react"
 import handleCustomer from './common/handle-customer.js'
 import createStripeSession from './common/create-stripe-session.js'
-
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import {Link} from 'gatsby'
 
 
 const buttonStyles = {
@@ -17,14 +20,8 @@ const buttonStyles = {
   letterSpacing: "1.5px",
 }
 
-const Checkout = class extends React.Component {
-  // Initialise Stripe.js with your publishable key.
-  // You can find your key in the Dashboard:
-  // https://dashboard.stripe.com/account/apikeys
-
+const ProductCard = class extends React.Component {
   constructor(props) {
-    // this.redirectToCheckout = this.redirectToCheckout.bind(this)
-
     super(props);
 
     this.handlePurchase = this.handlePurchase.bind(this)
@@ -32,26 +29,14 @@ const Checkout = class extends React.Component {
 
   }
 
-  componentDidMount() {
-    this.stripe = window.Stripe("pk_test_BtQvvH7PXmplDerVfYSQsmu500mjrA3cSK")
-  }
-
-  redirectToCheckout(stripe_cus_id) {
+  redirectToCheckout(stripe_cus_id, stripe_plan_id) {
     console.log("redirectToCheckout with stripe_cus_id: " + stripe_cus_id)
-    // this.stripe.checkout.create({
-    //   items: [{plan: 'plan_GFHHCeBJ8rrPun', quantity: 1}],
-    //   successUrl: `http://localhost:8000/success/`,
-    //   cancelUrl: `http://localhost:8000/canceled`,
-    // }, function(err, session) {
-    //   console.log(err)
-    //   console.log(session)
-    // })
-    createStripeSession(stripe_cus_id, "plan_GFHHCeBJ8rrPun")
+    createStripeSession(stripe_cus_id, stripe_plan_id)
       .then(result => {
         return result
       })
       .then(result => {
-        this.stripe.redirectToCheckout({
+        this.props.stripe.redirectToCheckout({
           sessionId: result
         }).then(function(result) {
           console.log(result.error.message)
@@ -62,16 +47,14 @@ const Checkout = class extends React.Component {
       })
   }
   
-
-  handlePurchase(event) {
+  handlePurchase(stripe_plan_id) {
     // Get Stripe customer id
-    event.preventDefault()
     handleCustomer(true)
       .then(result => {
         var stripe_cus_id = result
         console.log(stripe_cus_id)
         // Redirect to checkout. Should create session first
-          this.redirectToCheckout(stripe_cus_id)
+          this.redirectToCheckout(stripe_cus_id, stripe_plan_id)
       })
       .catch(err => {
         if (err == "signed_out") {
@@ -82,17 +65,34 @@ const Checkout = class extends React.Component {
         }
       })
   }
+
+
   render() {
+    var plan = this.props.plan
+    var products = this.props.products
+    var product = products[plan.product]
+
+    var isDisabled = false
+    var buttonText = plan.nickname
+
+    if (this.props.prevPurchases.includes(plan.id)) {
+        isDisabled = true
+        buttonText += " (You own this product)"
+    }
     return (
-      <>
-        <button
-          style={buttonStyles}
-          onClick={this.handlePurchase}
+        <Card
+        style={{backgroundColor: "transparent"}}
         >
-          Buy
-        </button>
-      </>
+            <h4 style={{color: "white", opacity: "0.7"}}>{product.name}</h4>
+            <Button 
+            style={buttonStyles}
+            onClick={()=>this.handlePurchase(plan.id)}
+            disabled={isDisabled}>        
+                {buttonText}
+            </Button>
+        </Card>
     )
   }
 }
-export default Checkout
+
+export default ProductCard
