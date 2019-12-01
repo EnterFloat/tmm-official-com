@@ -31,9 +31,10 @@ const Checkout = class extends React.Component {
     }
 
     var cus_subs = this.state.cus_subs
+    console.log("cus_subs " + cus_subs)
     var plans_subbed = []
 
-    if (cus_subs !== null && cus_subs !== undefined) {
+    if (cus_subs !== null && cus_subs !== undefined && cus_subs !== "none") {
         cus_subs = JSON.parse(cus_subs).data
         for (const i in cus_subs) {
           console.log(cus_subs[i].plan.id)
