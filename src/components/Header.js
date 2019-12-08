@@ -76,6 +76,7 @@ export default class Header extends Component {
               <Route path="/faq" exact component={Component.Faq} />
               <Route path="/about" exact component={Component.About} />
               <Route path="/test" exact component={Component.Test} />
+              <Route component={Component.ErrorPage} />
           </Router>
         </div>
       </div>
