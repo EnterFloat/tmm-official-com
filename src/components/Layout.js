@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import CookieConsent, { Cookies } from "react-cookie-consent";
 import { Container, Row, Col, Card } from 'react-bootstrap';
-
+import '../assets/sass/_layout.scss'
 
 import '../assets/sass/grayscale.scss';
 
@@ -14,7 +14,9 @@ class Layout extends Component {
   }
   componentDidMount() {
     document.body.style.backgroundColor = this.props.BGColor
-    document.body.style.marginTop = this.props.marginTop + "px"
+    // document.body.style.marginTop = this.props.marginTop + "px"
+    document.body.style.height = "100%"
+    // document.body.style.marginBottom = "60px"
   }
   render() {
     const { children } = this.props;
@@ -30,7 +32,8 @@ class Layout extends Component {
           }
         `}
         render={data => (
-          <>
+          <div className={'page-top'} style={{backgroundColor: this.props.BGColor, paddingTop: this.props.paddingTop + "px"}}>
+
             <Helmet
               title={data.site.siteMetadata.title}
               meta={[
@@ -40,9 +43,9 @@ class Layout extends Component {
             >
               <html lang="da" />
             </Helmet>
-            <div className={'page-top'} style={{backgroundColor: this.props.BGColor}}>
+            {/* <div style={{}}> */}
               {children}
-            </div>
+              {/* </div> */}
             <CookieConsent
               location="bottom"
               buttonText="Accept"
@@ -57,8 +60,7 @@ class Layout extends Component {
               This bit of text is smaller :O
               </span> */}
           </CookieConsent>
-            
-          </>
+          </div>
         )}
       />
     );

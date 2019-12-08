@@ -1,0 +1,16 @@
+.openedCollapsible {
+    background: green;
+}
+
+.action-button {
+    background:rgb(255, 178, 56);
+    width: 100%;
+}
+
+.action-container {
+    position:fixed;
+    height:70px;
+    bottom:20px;
+    width: 100%;
+    z-index: 1000000;
+}

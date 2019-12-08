@@ -1,0 +1,10 @@
+.page-top {
+    position: relative;
+    min-height: 100%;
+}
+
+html, body, #___gatsby, div#gatsby-focus-wrapper, #root, #app {
+    margin:0;
+   padding:0;
+   height:100%;
+}

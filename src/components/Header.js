@@ -3,9 +3,12 @@ import Scroll from './Scroll';
 import config from '../../config';
 import { Link } from 'gatsby'
 import { login, logout, isAuthenticated, getProfile } from "../utils/auth"
-import { StaticRouter as Router, Route } from 'react-router-dom';
+// import { StaticRouter as Router, Route } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import logo from '../assets/images/TMM_logo_circle_512.png'
 
-
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import '../assets/sass/_header.scss'
 
 export default class Header extends Component {
   constructor(props) {
@@ -40,112 +43,43 @@ export default class Header extends Component {
 
   render() {
     const { openMenu, visibilityClass } = this.state;
-
-    const buttonStyle = {
-      cursor:'pointer'
-    }
+    const { data } = this.props;
+    
     return (
-      
       <div>
-      {/* {console.log(this.props.topMargin)} */}
-      <nav
-        className={`navbar navbar-expand-lg navbar-light fixed-top ${visibilityClass}`}
-        id="mainNav"
-      >
-      
-        <div className="container">
-          <Link 
-            to={"/"} 
-            className="navbar-brand">
-            {config.siteTitle}
-          </Link>
-          {/* <a className="navbar-brand" href="#page-top">
-            {config.siteTitle}
-          </a> */}
-          <button
-            onClick={_ => this.toggleMenu(!openMenu)}
-            className={`navbar-toggler navbar-toggler-right ${
-              openMenu ? '' : 'collapsed'
-            }`}
-            type="button"
-            aria-controls="navbarResponsive"
-            aria-expanded={openMenu}
-            aria-label="Toggle navigation"
-            style={buttonStyle}
-                      >
-            Menu {" "}
-            <i className="fas fa-bars"></i>
-          </button>
-          <div
-            className={`collapse navbar-collapse ${openMenu ? 'show' : ''}`}
-            id="navbarResponsive"
-          >
-            <ul className="navbar-nav ml-auto">
-            {/* <li className="nav-item">
-                <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="home"
-                >
-                  <a className="nav-link" href="/">
-                    Home
-                  </a>
-                </Scroll>
-              </li> */}
-              <li className="nav-item">
-                <Link 
-                to={"/marketplace"} 
-                className="nav-link">
-                Marketplace
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="maskuline-society"
-                >
-                  <a className="nav-link" href="/maskuline-society">
-                    Maskuline Society
-                  </a>
-                </Scroll>
-              </li>
-              <li className="nav-item">
-                <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="faq"
-                >
-                  <a className="nav-link" href="/faq">
-                    FAQ
-                  </a>
-                </Scroll>
-              </li>
-              <li className="nav-item">
-                <Scroll
-                  onClick={_ => this.toggleMenu(!openMenu)}
-                  type="id"
-                  element="about-me"
-                >
-                  <a className="nav-link" href="/about-me">
-                    About
-                  </a>
-                </Scroll>
-              </li>
-              <li className="nav-item">
-                <LoginLogout />
-              </li>
-            </ul>
-          </div>
-        </div>
+          <Navbar key="Navbar" expand="lg" fixed="top" className={"navbar-style"}>
+            <div className="container-fluid" style={{padding: "0px", margin: "0px"}}>
+              <Link
+                to={''}
+                className={'nav-link navbar-right'}
+                activeClassName={'active'}
+              >
+                <img style={{maxHeight: "80px", width: "auto"}} src={logo}></img>                  
+              </Link>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse className="justify-content-end">
+                <Nav className="justify-content-end" style={{padding: "0px"}}>
+                  <NavElement text={"Marketplace"} to={"/marketplace"}/>
+                  <NavElement text={"Masculine Society"} to={"/masculine-society"}/>
+                  <NavElement text={"FAQ"} to={"/faq"}/>
+                  <NavElement text={"About"} to={"/about"}/>
+                  <LoginLogout />
+                </Nav>
+              </Navbar.Collapse>
+            </div>
+          </Navbar>
         <div>
-          <Router>
-              <Route path="/marketplace" exact component={Component.Marketplace} />
+          <BrowserRouter>
+            <Switch>
               <Route path="/" exact component={Component.IndexPage} />
-
-            </Router>
+              <Route path="/marketplace" exact component={Component.Marketplace} />
+              <Route path="/masculine-society" exact component={Component.MasculineSociety} />
+              <Route path="/faq" exact component={Component.Faq} />
+              <Route path="/about" exact component={Component.About} />
+              <Route path="/test" exact component={Component.Test} />
+            </Switch>
+          </BrowserRouter>
         </div>
-      </nav>
       </div>
     );
   }
@@ -154,18 +88,37 @@ export default class Header extends Component {
 const LoginLogout = () => {
   
   if (!isAuthenticated()) {
-    return <Link className="nav-link" to="#logout" onClick={e => {
-      login()
-    }
-    }>
-      Login
-    </Link>
+    return <Link
+              to="/login"
+              className={'navbar-right nav-text'}
+              activeClassName={'active'}
+              onClick={e => {
+                login()
+              }}
+            >
+            Login
+            </Link>
   } else {
-    return <Link to="" className="nav-link" onClick={e => {
+    return <Link
+    to="/logout"
+    className={'navbar-right nav-text'}
+    activeClassName={'active'}
+    onClick={e => {
       logout()
       e.preventDefault()
-    }}>
-      Logout
+    }}
+  >
+  Logout
   </Link>
   }
+}
+
+function NavElement(props) {
+  return <Link
+  to={props.to}
+  className={'navbar-right nav-text'}
+  activeClassName={'active'}
+>
+  {props.text}
+</Link>
 }

@@ -1,0 +1,10 @@
+.page-container {
+    background-color: darker(white, 12%);
+}
+
+
+.carousel-container {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}

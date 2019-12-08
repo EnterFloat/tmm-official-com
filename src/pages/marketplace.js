@@ -19,7 +19,7 @@ export default class MarketplacePage extends Component {
 
   render() {
     return (
-      <Layout BGColor="black" marginTop="100">
+      <Layout BGColor="black" paddingTop="100">
         <Header/>
         <Marketplace/>
         <Footer />

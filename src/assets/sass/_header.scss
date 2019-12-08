@@ -1,0 +1,42 @@
+.nav-text {
+    // display: block;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px; 
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #760000;
+    transition: color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+    &:hover {
+        transition: color 0s ease-in-out;
+        transition: background-color 0s ease-in-out;
+        background: darken(white, 9%);
+        color: #760000;
+      }
+      &:active {
+        transition: color 0.3s ease-in-out;
+        transition: background-color 0.3s ease-in-out;
+        background: #760000;
+        color: darken(white, 12%);
+      }
+}
+
+.nav-text.active {
+    transition: color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+    background: #760000;
+    color: darken(white, 12%);
+}
+
+
+.nav-div {
+    height: 100px;
+}
+
+.navbar-style {
+    padding: 0px 10%;
+    background-color: #FFFFFF;
+}

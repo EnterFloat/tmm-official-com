@@ -2,10 +2,17 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="bg-black small text-center text-white-50">
-      <div className="container">
+    <div className="bg-black small text-center text-white-50" style={{
+      position: "absolute",
+      bottom:"0",
+      width:"100%",
+      height:"60px",   /* Height of the footer */
+      background:"#6cf",
+      zIndex: 1}}>
+      <div className="container" style={{height: "100%"}}>
+        <br/>
         Copyright &copy; The Masculine Mentality 2019
       </div>
-    </footer>
+    </div>
   );
 }
