@@ -4,7 +4,7 @@ import config from '../../config';
 import { Link } from 'gatsby'
 import { login, logout, isAuthenticated, getProfile } from "../utils/auth"
 // import { StaticRouter as Router, Route } from 'react-router-dom';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { StaticRouter as Router, Route } from 'react-router-dom';
 import logo from '../assets/images/TMM_logo_circle_512.png'
 
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
@@ -69,16 +69,14 @@ export default class Header extends Component {
             </div>
           </Navbar>
         <div>
-          <BrowserRouter>
-            <Switch>
+          <Router>
               <Route path="/" exact component={Component.IndexPage} />
               <Route path="/marketplace" exact component={Component.Marketplace} />
               <Route path="/masculine-society" exact component={Component.MasculineSociety} />
               <Route path="/faq" exact component={Component.Faq} />
               <Route path="/about" exact component={Component.About} />
               <Route path="/test" exact component={Component.Test} />
-            </Switch>
-          </BrowserRouter>
+          </Router>
         </div>
       </div>
     );
