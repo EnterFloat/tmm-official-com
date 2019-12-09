@@ -7,4 +7,13 @@
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1000000;
+}
+
+hr {
+    position: fixed;
+    margin-top: 225px;
+    color: white;
+    background-color: white;
+    width: 100%;
 }

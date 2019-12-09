@@ -83,7 +83,7 @@ const ProductCard = class extends React.Component {
         <Card
         style={{backgroundColor: "transparent"}}
         >
-            <h4 style={{color: "white", opacity: "0.7"}}>{product.name}</h4>
+            <h4 style={{color: "white", opacity: "0.95"}}>{product.name}</h4>
             <Button 
             style={buttonStyles}
             onClick={()=>this.handlePurchase(plan.id)}

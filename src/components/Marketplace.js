@@ -11,7 +11,10 @@ class Marketplace extends Component {
 
   render() {
     return (
-        <Products></Products>
+        <>
+          <br></br>
+          <Products></Products>
+        </>
     );
   }
 }

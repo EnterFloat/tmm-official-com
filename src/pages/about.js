@@ -11,7 +11,7 @@ export default class AboutPage extends Component {
   }
   render() {
     return (
-      <Layout BGColor="white" paddingTop="100">
+      <Layout BGColor="#760000" paddingTop="100">
         <Header/>
         <About/>
         <Footer />

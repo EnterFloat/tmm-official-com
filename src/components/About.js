@@ -13,14 +13,14 @@ const About = class extends React.Component {
   }
 
   render() {
-    
+    var carouselHeight = 225
     return (
       <>
           <Container className={"carousel-container"}>
-            <Carousel indicators={true} style={{height: "300px"}}>
+            <Carousel indicators={true} style={{height: carouselHeight + "px"}}>
       <Carousel.Item>
         <img 
-          style={{width: "auto", height: "auto", maxHeight: "300px", objectFit: "cover"}}
+          style={{width: "auto", height: "auto", maxHeight: carouselHeight + "px", objectFit: "cover"}}
           className="d-block w-100"
           src={demoImage1}
           alt="First slide"
@@ -32,7 +32,7 @@ const About = class extends React.Component {
       </Carousel.Item>
       <Carousel.Item>
         <img
-        style={{width: "auto", height: "auto", maxHeight: "300px", objectFit: "cover"}}
+        style={{width: "auto", height: "auto", maxHeight: carouselHeight + "px", objectFit: "cover"}}
           className="d-block w-100"
           src={demoImage1}
           alt="Third slide"
@@ -45,7 +45,7 @@ const About = class extends React.Component {
       </Carousel.Item>
       <Carousel.Item>
         <img
-        style={{width: "auto", height: "auto", maxHeight: "300px", objectFit: "cover"}}
+        style={{width: "auto", height: "auto", maxHeight: carouselHeight + "px", objectFit: "cover"}}
           className="d-block w-100"
           src={demoImage1}
           alt="Third slide"
@@ -58,9 +58,17 @@ const About = class extends React.Component {
       </Carousel.Item>
     </Carousel>
     </Container>
-      <Container style={{marginTop: "300px"}}>
+    <hr/>
+
+      <Container style={{marginTop: carouselHeight + "px", paddingBottom: "60px", color: "white", opacity: "0.95"}}>
         <br></br>
         <h2>What is the Masculine Mentality?</h2>
+        <p>Let me tell you.</p>
+        <br></br>
+        <h2>About me</h2>
+        <p>Let me tell you.</p>
+        <br></br>
+        <h2>About me</h2>
         <p>Let me tell you.</p>
         <br></br>
         <h2>About me</h2>
