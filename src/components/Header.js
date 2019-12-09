@@ -53,8 +53,9 @@ export default class Header extends Component {
                 to={''}
                 className={'nav-link navbar-right'}
                 activeClassName={'active'}
+                style={{padding: "4px"}}
               >
-                <img style={{maxHeight: "80px", width: "auto"}} src={logo}></img>                  
+                <img style={{maxHeight: "52px", width: "auto"}} src={logo}></img>                  
               </Link>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse className="justify-content-end">

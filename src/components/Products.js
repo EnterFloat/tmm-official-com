@@ -3,7 +3,7 @@
 import { StaticQuery, graphql } from 'gatsby';
 import React from "react"
 import ProductCard from './ProductCard.js'
-import { Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const Checkout = class extends React.Component {
 
@@ -44,22 +44,22 @@ const Checkout = class extends React.Component {
     }
     
     return (
-      <>
+      <Container>
         <Row>
         {data.allStripePlan.edges.map(({ node }) => (
           <Col
-            xs={{ span: 8, offset: 2 }}
+            xs={{ span: 10, offset: 1 }}
             sm={{ span: 10, offset: 1 }}
-            md={{ span: 4, offset: 1 }}
-            lg={{ span: 4, offset: 1 }}
-            xl={{ span: 4, offset: 1 }}
+            md={{ span: 6, offset: 0 }}
+            lg={{ span: 4, offset: 0 }}
+            xl={{ span: 4, offset: 0 }}
             style={{ marginBottom: 30}}
           >
               <ProductCard key={node.id} plan={node} products={products} stripe={this.state.stripe} prevPurchases={plans_subbed}></ProductCard>
           </Col>
         ))}
       </Row>
-      </>
+      </Container>
     )
   }
 }
