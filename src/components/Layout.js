@@ -71,4 +71,9 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+Layout.defaultProps = {
+  BGColor: "#F3F3F3",
+  paddingTop: "100"
+}
+
 export default Layout;

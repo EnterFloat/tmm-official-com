@@ -13,7 +13,7 @@ const MasculineSociety = class extends React.Component {
   render() {
     
     return (
-      <Container style={{color: "white", opacity: "0.95"}}>
+      <Container>
         <br></br>
         <h1>MasculineSociety</h1>
         <p>Masculine Society page</p>

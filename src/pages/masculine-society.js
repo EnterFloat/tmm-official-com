@@ -11,7 +11,7 @@ export default class MasculineSocietyPage extends Component {
   }
   render() {
     return (
-      <Layout BGColor="#760000" paddingTop="100">
+      <Layout>
         <Header/>
         <MasculineSociety/>
         <Footer />

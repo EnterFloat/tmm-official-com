@@ -149,7 +149,7 @@ export default class IndexPage extends Component {
 
   render() {
     return (
-      <Layout paddingTop="0" BGColor="white">
+      <Layout paddingTop="0">
         <Header />
         <header className="masthead">
         {/* <button onClick={getUser}>Hej</button> */}

@@ -12,7 +12,7 @@ export default class TestPage extends Component {
   }
   render() {
     return (
-      <Layout BGColor="white" paddingTop="0">
+      <Layout>
         <Test/>
     </Layout>
     );

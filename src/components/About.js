@@ -60,7 +60,7 @@ const About = class extends React.Component {
     </Container>
     <hr/>
 
-      <Container style={{marginTop: carouselHeight + "px", paddingBottom: "60px", color: "white", opacity: "0.95"}}>
+      <Container style={{marginTop: carouselHeight + "px", paddingBottom: "60px"}}>
         <br></br>
         <h2>What is the Masculine Mentality?</h2>
         <p>Let me tell you.</p>
