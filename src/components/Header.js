@@ -72,7 +72,7 @@ export default class Header extends Component {
         <div>
           <Router>
               <Route path="/" exact component={Component.IndexPage} />
-              <Route path="/marketplace" exact component={Component.Marketplace} />
+              <Route path="/marketplace" strict component={Component.Marketplace} />
               <Route path="/masculine-society" exact component={Component.MasculineSociety} />
               <Route path="/faq" exact component={Component.Faq} />
               <Route path="/about" exact component={Component.About} />
@@ -90,6 +90,7 @@ const LoginLogout = () => {
   if (!isAuthenticated()) {
     return <Link
               to="/login"
+              partiallyActive={true}
               className={'navbar-right nav-text'}
               activeClassName={'active'}
               onClick={e => {
@@ -101,6 +102,7 @@ const LoginLogout = () => {
   } else {
     return <Link
     to="/logout"
+    partiallyActive={true}
     className={'navbar-right nav-text'}
     activeClassName={'active'}
     onClick={e => {
@@ -116,6 +118,7 @@ const LoginLogout = () => {
 function NavElement(props) {
   return <Link
   to={props.to}
+  partiallyActive={true}
   className={'navbar-right nav-text'}
   activeClassName={'active'}
 >

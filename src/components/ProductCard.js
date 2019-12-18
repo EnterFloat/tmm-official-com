@@ -1,8 +1,6 @@
 // Load individual product
 
 import React from "react"
-import handleCustomer from './common/handle-customer.js'
-import createStripeSession from './common/create-stripe-session.js'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import {Link} from 'gatsby'
 import '../assets/sass/_page.scss'
@@ -25,62 +23,12 @@ const buttonStyles = {
 const ProductCard = class extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handlePurchase = this.handlePurchase.bind(this)
-    this.redirectToCheckout = this.redirectToCheckout.bind(this)
-
   }
-
-  redirectToCheckout(stripe_cus_id, stripe_plan_id) {
-    console.log("redirectToCheckout with stripe_cus_id: " + stripe_cus_id)
-    createStripeSession(stripe_cus_id, stripe_plan_id)
-      .then(result => {
-        return result
-      })
-      .then(result => {
-        this.props.stripe.redirectToCheckout({
-          sessionId: result
-        }).then(function(result) {
-          console.log(result.error.message)
-        })
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-  
-  handlePurchase(stripe_plan_id) {
-    // Get Stripe customer id
-    handleCustomer(true)
-      .then(result => {
-        var stripe_cus_id = result
-        console.log(stripe_cus_id)
-        // Redirect to checkout. Should create session first
-          this.redirectToCheckout(stripe_cus_id, stripe_plan_id)
-      })
-      .catch(err => {
-        if (err == "signed_out") {
-          console.log("Sign in to continue")
-          window.alert("Sign in to buy a product")
-        } else {
-          console.log("Could not create user: " + err)
-        }
-      })
-  }
-
-
   render() {
     var plan = this.props.plan
     var products = this.props.products
     var product = products[plan.product]
 
-    var isDisabled = false
-    var buttonText = plan.nickname
-
-    if (this.props.prevPurchases.includes(plan.id)) {
-        isDisabled = true
-        buttonText += " (You own this product)"
-    }
     return (
         <Card
         style={{backgroundColor: "white"}}
@@ -94,13 +42,13 @@ const ProductCard = class extends React.Component {
               lg={{ span: 10, offset: 1 }}
               xl={{ span: 10, offset: 1 }}
               >
+              <Link to={"/marketplace/" + product.fields.slug}>
                 <Button             
                 style={buttonStyles}
-                
-                onClick={()=>this.handlePurchase(plan.id)}
-                disabled={isDisabled}>        
-                    {buttonText}
+                >        
+                  Read more
                 </Button>
+                </Link>
               </Col>        
             </Row>
             <br></br>

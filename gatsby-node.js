@@ -1,10 +1,20 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path')
+const slug = require('slug')
 
-// You can delete this file if you're not using it
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
+
+  // Add slug for page generation.
+  if (node.internal.type === 'StripeProduct') {
+    const value = slug(node.id, slug.defaults.modes['rfc3986'])
+    createNodeField({
+      node,
+      name: 'slug',
+      value
+    })
+  }
+}
 
 // Implement the Gatsby API “onCreatePage”. This is
 // called after every page is created.
@@ -20,6 +30,53 @@ exports.onCreatePage = async ({ page, actions }) => {
       createPage(page)
     }
   }
+
+
+
+
+  exports.createPages = async ({ graphql, actions, page }) => {
+    const { createPage } = actions
+  
+    return graphql(`
+      {
+        allStripeProduct {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              name
+              livemode
+              id
+            }
+          }
+        } 
+      }
+    `).then(result => {
+      if (result.errors) {
+        Promise.reject(result.errors)
+      }
+  
+      // Create product pages
+      const products = {}
+  
+      result.data.allStripeProduct.edges.forEach(({ node }) => {
+        products[node.id] = [node.fields.slug, node.name]
+      })
+  
+      const productTemplate = path.resolve('src/templates/ProductTemplate.js')
+      Object.entries(products).forEach(([id, data]) => {
+        createPage({
+          path: 'marketplace/' + data[0],
+          component: productTemplate,
+          context: { id, data }
+        })
+      })
+    })
+  }
+  
+
+
 
   exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     if (stage === "build-html") {

@@ -4,9 +4,9 @@ require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`,
   });
 var stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
 exports.handler = (event, context, callback) => {
     const params = JSON.parse(event.body)
+    console.log(params.id)
     return stripe.customers.retrieve(params.id)
         .then((response) => {
         console.log('success', response)

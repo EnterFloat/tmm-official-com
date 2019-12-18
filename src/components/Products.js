@@ -29,15 +29,13 @@ const Checkout = class extends React.Component {
       var node = data.allStripeProduct.edges[i].node
       products[node.id] = node
     }
-
+    console.log(products)
     var cus_subs = this.state.cus_subs
-    console.log("cus_subs " + cus_subs)
     var plans_subbed = []
 
     if (cus_subs !== null && cus_subs !== undefined && cus_subs !== "none") {
         cus_subs = JSON.parse(cus_subs).data
         for (const i in cus_subs) {
-          console.log(cus_subs[i].plan.id)
           plans_subbed.push(cus_subs[i].plan.id)
       }
       console.log(plans_subbed)
@@ -86,6 +84,9 @@ export default props => (
               id
               name
               livemode
+              fields {
+                slug
+              }
             }
           }
         }

@@ -31,7 +31,6 @@ export default function handleCustomer(purchase) {
                     } else {               
                         if (result.data.stripe_cus_id != undefined) {
                             var stripe_cus_id = result.data.stripe_cus_id
-                            console.log(stripe_cus_id)
                             // Use the Stripe customer id found in the FaunaDB to get the Stripe customer
                             return(getStripeCustomer(stripe_cus_id))
                         } else {
