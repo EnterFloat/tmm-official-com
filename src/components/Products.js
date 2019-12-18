@@ -40,21 +40,14 @@ const Checkout = class extends React.Component {
       }
       console.log(plans_subbed)
     }
+
+    const stripeProducts = [].concat(data.allStripeProduct.edges).sort((a, b) => a.name > b.name)
     
     return (
       <Container>
         <Row>
-        {data.allStripePlan.edges.map(({ node }) => (
-          <Col
-            xs={{ span: 10, offset: 1 }}
-            sm={{ span: 10, offset: 1 }}
-            md={{ span: 6, offset: 0 }}
-            lg={{ span: 4, offset: 0 }}
-            xl={{ span: 4, offset: 0 }}
-            style={{ marginBottom: 30}}
-          >
-              <ProductCard key={node.id} plan={node} products={products} stripe={this.state.stripe} prevPurchases={plans_subbed}></ProductCard>
-          </Col>
+        {stripeProducts.map(({ node }) => (
+          <Product key={node.id} product={node} products={products} stripe={this.state.stripe} prevPurchases={plans_subbed}/>
         ))}
       </Row>
       </Container>
@@ -82,6 +75,7 @@ export default props => (
           edges {
             node {
               id
+              type
               name
               livemode
               fields {
@@ -95,3 +89,20 @@ export default props => (
     render={data => <Checkout data={data} {...props} />}
   />
 );
+
+function Product(props) {
+  console.log(props.product)
+  if (props.product.type == "service") {
+    return (<Col
+      xs={{ span: 10, offset: 1 }}
+      sm={{ span: 10, offset: 1 }}
+      md={{ span: 6, offset: 0 }}
+      lg={{ span: 4, offset: 0 }}
+      xl={{ span: 4, offset: 0 }}
+      style={{ marginBottom: 30}}
+    >
+     <ProductCard key={props.key} product={props.product} products={props.products} stripe={props.stripe} prevPurchases={props.prevPurchases}></ProductCard> 
+    </Col>)
+  }
+  return ("")
+}

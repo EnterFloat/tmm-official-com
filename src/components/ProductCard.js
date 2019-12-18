@@ -25,9 +25,7 @@ const ProductCard = class extends React.Component {
     super(props);
   }
   render() {
-    var plan = this.props.plan
-    var products = this.props.products
-    var product = products[plan.product]
+    var product = this.props.product
 
     return (
         <Card
