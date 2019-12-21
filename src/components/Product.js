@@ -430,6 +430,7 @@ export default props => (
         allSanityProduct {
           edges {
             node {
+              id
               stripeId
               description
               banner {
@@ -443,6 +444,7 @@ export default props => (
                 }
               }
               reviews {
+                id
                 title
                 details
                 author
