@@ -12,10 +12,10 @@ export default class FaqPage extends Component {
   render() {
     return (
       <Layout>
-        <Header/>
-        <Faq/>
+        <Header />
+        <Faq />
         <Footer />
-    </Layout>
+      </Layout>
     );
   }
 }

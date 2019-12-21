@@ -12,10 +12,10 @@ export default class MasculineSocietyPage extends Component {
   render() {
     return (
       <Layout>
-        <Header/>
-        <MasculineSociety/>
+        <Header />
+        <MasculineSociety />
         <Footer />
-    </Layout>
+      </Layout>
     );
   }
 }

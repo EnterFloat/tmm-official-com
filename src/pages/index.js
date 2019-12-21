@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import getAuth0User from '../components/common/get-auth0-user.js'
-
+import getAuth0User from '../components/common/get-auth0-user.js';
 
 import Layout from '../components/Layout';
 import Scroll from '../components/Scroll';
@@ -18,13 +17,9 @@ import demoImage2 from '../assets/images/demo-image-02.jpg';
 import bgMaster from '../assets/images/bg-masthead.jpg';
 import bgMaster2 from '../assets/images/TMM_COVER.jpg';
 
-
 import { Link } from 'gatsby';
 // import { isAuthenticated } from '../utils/auth';
-import { isAuthenticated, getProfile } from "../utils/auth"
-
-
-
+import { isAuthenticated, getProfile } from '../utils/auth';
 
 // const IndexPage = () => (
 //   <Layout>
@@ -48,7 +43,8 @@ import { isAuthenticated, getProfile } from "../utils/auth"
 //       </div>
 //     </header>
 
-    {/* <section id="about" className="about-section text-center">
+{
+  /* <section id="about" className="about-section text-center">
       <div className="container">
         <div className="row">
           <div className="col-lg-8 mx-auto">
@@ -126,8 +122,9 @@ import { isAuthenticated, getProfile } from "../utils/auth"
           </div>
         </div>
       </div>
-    </section> */}
-// {/* 
+    </section> */
+}
+// {/*
 //     <Subscribe />
 
 //     <SocialLinks /> */}
@@ -137,10 +134,6 @@ import { isAuthenticated, getProfile } from "../utils/auth"
 // );
 
 // export default IndexPage;
-
-
-
-
 
 export default class IndexPage extends Component {
   constructor(props) {
@@ -152,8 +145,8 @@ export default class IndexPage extends Component {
       <Layout paddingTop="0">
         <Header />
         <header className="masthead">
-        {/* <button onClick={getUser}>Hej</button> */}
-        {/* {getUser()} */}
+          {/* <button onClick={getUser}>Hej</button> */}
+          {/* {getUser()} */}
 
           {/* <div className="container d-flex h-100 align-items-center">
             <div className="mx-auto text-center">
@@ -171,88 +164,88 @@ export default class IndexPage extends Component {
         </header>
 
         <section id="about" className="about-section text-center">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-8 mx-auto">
-            <h2 className="text-white mb-4">Built with Bootstrap 4</h2>
-            <p className="text-white-50">
-              Grayscale is a free Bootstrap theme created by Start Bootstrap. It
-              can be yours right now, simply download the starter on
-              <a href="https://github.com/anubhavsrivastava/gatsby-starter-grayscale">
-                the github repo
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-        <img src={ipad} className="img-fluid" alt="" />
-      </div>
-    </section>
-
-    <section id="projects" className="projects-section bg-light">
-      <div className="container">
-        <div className="row align-items-center no-gutters mb-4 mb-lg-5">
-          <div className="col-xl-8 col-lg-7">
-            <img className="img-fluid mb-3 mb-lg-0" src={bgMaster} alt="" />
-          </div>
-          <div className="col-xl-4 col-lg-5">
-            <div className="featured-text text-center text-lg-left">
-              <h4>Shoreline</h4>
-              <p className="text-black-50 mb-0">
-                Grayscale is open source and MIT licensed. This means you can
-                use it for any project - even commercial projects! Download it,
-                customize it, and publish your website!
-              </p>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 mx-auto">
+                <h2 className="text-white mb-4">Built with Bootstrap 4</h2>
+                <p className="text-white-50">
+                  Grayscale is a free Bootstrap theme created by Start
+                  Bootstrap. It can be yours right now, simply download the
+                  starter on
+                  <a href="https://github.com/anubhavsrivastava/gatsby-starter-grayscale">
+                    the github repo
+                  </a>
+                  .
+                </p>
+              </div>
             </div>
+            <img src={ipad} className="img-fluid" alt="" />
           </div>
-        </div>
+        </section>
 
-        <div className="row justify-content-center no-gutters mb-5 mb-lg-0">
-          <div className="col-lg-6">
-            <img className="img-fluid" src={demoImage1} alt="" />
-          </div>
-          <div className="col-lg-6">
-            <div className="bg-black text-center h-100 project">
-              <div className="d-flex h-100">
-                <div className="project-text w-100 my-auto text-center text-lg-left">
-                  <h4 className="text-white">Misty</h4>
-                  <p className="mb-0 text-white-50">
-                    An example of where you can put an image of a project, or
-                    anything else, along with a description.
+        <section id="projects" className="projects-section bg-light">
+          <div className="container">
+            <div className="row align-items-center no-gutters mb-4 mb-lg-5">
+              <div className="col-xl-8 col-lg-7">
+                <img className="img-fluid mb-3 mb-lg-0" src={bgMaster} alt="" />
+              </div>
+              <div className="col-xl-4 col-lg-5">
+                <div className="featured-text text-center text-lg-left">
+                  <h4>Shoreline</h4>
+                  <p className="text-black-50 mb-0">
+                    Grayscale is open source and MIT licensed. This means you
+                    can use it for any project - even commercial projects!
+                    Download it, customize it, and publish your website!
                   </p>
-                  <hr className="d-none d-lg-block mb-0 ml-0" />
+                </div>
+              </div>
+            </div>
+
+            <div className="row justify-content-center no-gutters mb-5 mb-lg-0">
+              <div className="col-lg-6">
+                <img className="img-fluid" src={demoImage1} alt="" />
+              </div>
+              <div className="col-lg-6">
+                <div className="bg-black text-center h-100 project">
+                  <div className="d-flex h-100">
+                    <div className="project-text w-100 my-auto text-center text-lg-left">
+                      <h4 className="text-white">Misty</h4>
+                      <p className="mb-0 text-white-50">
+                        An example of where you can put an image of a project,
+                        or anything else, along with a description.
+                      </p>
+                      <hr className="d-none d-lg-block mb-0 ml-0" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row justify-content-center no-gutters">
+              <div className="col-lg-6">
+                <img className="img-fluid" src={demoImage2} alt="" />
+              </div>
+              <div className="col-lg-6 order-lg-first">
+                <div className="bg-black text-center h-100 project">
+                  <div className="d-flex h-100">
+                    <div className="project-text w-100 my-auto text-center text-lg-right">
+                      <h4 className="text-white">Mountains</h4>
+                      <p className="mb-0 text-white-50">
+                        Another example of a project with its respective
+                        description. These sections work well responsively as
+                        well, try this theme on a small screen!
+                      </p>
+                      <hr className="d-none d-lg-block mb-0 mr-0" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="row justify-content-center no-gutters">
-          <div className="col-lg-6">
-            <img className="img-fluid" src={demoImage2} alt="" />
-          </div>
-          <div className="col-lg-6 order-lg-first">
-            <div className="bg-black text-center h-100 project">
-              <div className="d-flex h-100">
-                <div className="project-text w-100 my-auto text-center text-lg-right">
-                  <h4 className="text-white">Mountains</h4>
-                  <p className="mb-0 text-white-50">
-                    Another example of a project with its respective
-                    description. These sections work well responsively as well,
-                    try this theme on a small screen!
-                  </p>
-                  <hr className="d-none d-lg-block mb-0 mr-0" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
         <Footer />
-    </Layout>
-    
+      </Layout>
     );
   }
 }

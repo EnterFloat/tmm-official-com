@@ -12,10 +12,10 @@ export default class AboutPage extends Component {
   render() {
     return (
       <Layout>
-        <Header/>
-        <About/>
+        <Header />
+        <About />
         <Footer />
-    </Layout>
+      </Layout>
     );
   }
 }

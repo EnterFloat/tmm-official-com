@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Test from '../components/Test';
 
-
 export default class TestPage extends Component {
   constructor(props) {
     super(props);
@@ -13,8 +12,8 @@ export default class TestPage extends Component {
   render() {
     return (
       <Layout>
-        <Test/>
-    </Layout>
+        <Test />
+      </Layout>
     );
   }
 }

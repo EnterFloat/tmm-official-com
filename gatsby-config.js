@@ -5,18 +5,18 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-var proxy = require("http-proxy-middleware")
+var proxy = require('http-proxy-middleware');
 module.exports = {
   developMiddleware: app => {
     app.use(
-      "/.netlify/functions/",
+      '/.netlify/functions/',
       proxy({
-        target: "http://localhost:9000",
+        target: 'http://localhost:9000',
         pathRewrite: {
-          "/.netlify/functions/": "",
+          '/.netlify/functions/': '',
         },
       })
-    )
+    );
   },
   pathPrefix: config.pathPrefix,
   siteMetadata: {
@@ -50,11 +50,11 @@ module.exports = {
         icon: config.manifestIcon, // This path is relative to the root of the site.
       },
     },
-    "gatsby-plugin-stripe",
+    'gatsby-plugin-stripe',
     {
       resolve: `gatsby-source-stripe`,
       options: {
-        objects: ["Plan", "Product"],
+        objects: ['Plan', 'Product'],
         secretKey: process.env.STRIPE_SECRET_KEY,
         downloadFiles: true,
       },
@@ -67,8 +67,8 @@ module.exports = {
         websiteId: '79658bac-b2ca-457d-b409-3c7883702b75',
         enableDuringDevelop: true, // Optional. Disables Crisp Chat during gatsby develop. Defaults to true.
         defer: true, // Optional. Sets the Crisp loading script to defer instead of async. Defaults to false.
-        enableImprovedAccessibility: false // Optional. Sets aria-label attribute on pop-up icon for screen readers. Defaults to true.
+        enableImprovedAccessibility: false, // Optional. Sets aria-label attribute on pop-up icon for screen readers. Defaults to true.
       },
-    }
+    },
   ],
 };

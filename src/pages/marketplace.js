@@ -7,10 +7,10 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Marketplace from '../components/Marketplace';
 
-import axios from 'axios'
+import axios from 'axios';
 
 import { Link } from 'gatsby';
-import { isAuthenticated, getProfile } from "../utils/auth"
+import { isAuthenticated, getProfile } from '../utils/auth';
 
 export default class MarketplacePage extends Component {
   constructor(props) {
@@ -20,10 +20,10 @@ export default class MarketplacePage extends Component {
   render() {
     return (
       <Layout>
-        <Header/>
-        <Marketplace/>
+        <Header />
+        <Marketplace />
         <Footer />
-    </Layout>
+      </Layout>
     );
   }
 }

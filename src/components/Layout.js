@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
-import CookieConsent, { Cookies } from "react-cookie-consent";
+import CookieConsent, { Cookies } from 'react-cookie-consent';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import '../assets/sass/_layout.scss'
+import '../assets/sass/_layout.scss';
 
 import '../assets/sass/grayscale.scss';
 
@@ -13,9 +13,9 @@ class Layout extends Component {
     super(props);
   }
   componentDidMount() {
-    document.body.style.backgroundColor = this.props.BGColor
+    document.body.style.backgroundColor = this.props.BGColor;
     // document.body.style.marginTop = this.props.marginTop + "px"
-    document.body.style.height = "100%"
+    document.body.style.height = '100%';
     // document.body.style.marginBottom = "60px"
   }
   render() {
@@ -32,8 +32,13 @@ class Layout extends Component {
           }
         `}
         render={data => (
-          <div className={'page-top'} style={{backgroundColor: this.props.BGColor, paddingTop: this.props.paddingTop + "px"}}>
-
+          <div
+            className={'page-top'}
+            style={{
+              backgroundColor: this.props.BGColor,
+              paddingTop: this.props.paddingTop + 'px',
+            }}
+          >
             <Helmet
               title={data.site.siteMetadata.title}
               meta={[
@@ -44,22 +49,22 @@ class Layout extends Component {
               <html lang="da" />
             </Helmet>
             {/* <div style={{}}> */}
-              {children}
-              {/* </div> */}
+            {children}
+            {/* </div> */}
             <CookieConsent
               location="bottom"
               buttonText="Accept"
               cookieName="myAwesomeCookieName2"
-              style={{ background: "#2B373B", zIndex: 1000001, opacity: 0.8 }}
-              buttonStyle={{ color: "#4e503b" }}
+              style={{ background: '#2B373B', zIndex: 1000001, opacity: 0.8 }}
+              buttonStyle={{ color: '#4e503b' }}
               enableDeclineButton
               expires={150}
-          >
-              This website uses cookies to enhance the user experience.{" "}
+            >
+              This website uses cookies to enhance the user experience.{' '}
               {/* <span style={{ fontSize: "10px" }}>
               This bit of text is smaller :O
               </span> */}
-          </CookieConsent>
+            </CookieConsent>
           </div>
         )}
       />
@@ -72,8 +77,8 @@ Layout.propTypes = {
 };
 
 Layout.defaultProps = {
-  BGColor: "#F3F3F3",
-  paddingTop: "100"
-}
+  BGColor: '#F3F3F3',
+  paddingTop: '100',
+};
 
 export default Layout;

@@ -1,14 +1,14 @@
 // Get the Auth0 id if authenticated
 
-import { isAuthenticated, getProfile } from "../../utils/auth"
+import { isAuthenticated, getProfile } from '../../utils/auth';
 
 export default function getAuth0User() {
-  console.log("getAuth0User")
+  console.log('getAuth0User');
   return new Promise((resolve, reject) => {
     if (isAuthenticated()) {
-      resolve(getProfile())
+      resolve(getProfile());
     } else {
-      resolve("not_authenticated")
+      resolve('not_authenticated');
     }
-  })
-  }
+  });
+}
