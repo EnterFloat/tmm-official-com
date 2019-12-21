@@ -32,8 +32,8 @@ module.exports = {
         // a token with read permissions is required
         // if you have a private dataset
         token: process.env.MY_SANITY_TOKEN,
-        watchMode: false,
-        overlayDrafts: false,
+        watchMode: true,
+        overlayDrafts: true,
       },
     },
     `gatsby-transformer-sharp`,
