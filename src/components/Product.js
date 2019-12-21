@@ -435,16 +435,19 @@ export default props => (
               description
               banner {
                 asset {
-                  url
+                  fluid(maxWidth: 700) {
+                    ...GatsbySanityImageFluid
+                  }
                 }
               }
               images {
                 asset {
-                  url
+                  fluid(maxWidth: 700) {
+                    ...GatsbySanityImageFluid
+                  }
                 }
               }
               reviews {
-                id
                 title
                 details
                 author
