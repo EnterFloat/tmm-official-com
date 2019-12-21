@@ -9,7 +9,7 @@ import Product from '../components/Product';
 
 const ProductPage = ({ pageContext: { id, data } }) => {
   return (
-    <Layout>
+    <Layout paddingTop="56">
         <Header/>
         <Product id={id}/>
         <Footer/>

@@ -33,7 +33,6 @@ exports.onCreatePage = async ({ page, actions }) => {
 
 
 
-
   exports.createPages = async ({ graphql, actions, page }) => {
     const { createPage } = actions
   

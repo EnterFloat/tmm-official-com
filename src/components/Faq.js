@@ -25,6 +25,8 @@ const Faq = class extends React.Component {
   }
 
   render() {
+    const { data } = this.props;
+
 
     const CollapseContainer = styled.div`
       background-color: red;
@@ -33,70 +35,20 @@ const Faq = class extends React.Component {
     
     return (
       <div style={{paddingBottom: "60px"}}>
-        <br></br>
         <Container>
-          <Card>
-            <Card.Header as="h5">Question 1</Card.Header>
+          {data.allSanityFaq.edges.map(({ node }) => (
+            <>
+            <Card>
+            <Card.Header as="h5">{node.question}</Card.Header>
             <Card.Body>
               <Card.Text>
-                Answer to question 1. Collapsible coming soon...
+                {node.answer}
               </Card.Text>
             </Card.Body>
           </Card>
           <br></br>
-          <Card>
-            <Card.Header as="h5">Question 2</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                Answer to question 2. Collapsible coming soon...
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <br></br>
-          <Card>
-            <Card.Header as="h5">Question 3</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                Answer to question 3. Collapsible coming soon...
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <br></br>
-          <Card>
-            <Card.Header as="h5">Question 4</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                Answer to question 4. Collapsible coming soon...
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <br></br>
-          <Card>
-            <Card.Header as="h5">Question 5</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                Answer to question 5
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <br></br>
-          <Card>
-            <Card.Header as="h5">Question 6</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                Answer to question 6
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <br></br>
-          <Card>
-            <Card.Header as="h5">Question 7</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                Answer to question 7
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          </>
+          ))}
         </Container>
         <br></br>
         <ActionButton>Take me to the Marketplace!</ActionButton>
@@ -104,7 +56,24 @@ const Faq = class extends React.Component {
     )
   }
 }
-export default Faq;
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query FaqQuery {
+        allSanityFaq {
+          edges {
+            node {
+              question
+              answer
+              id
+            }
+          }
+        }
+      }
+    `}
+    render={data => <Faq data={data} {...props} />}
+  />
+);
 
 function ActionButton(props) {
   return <div className={"action-container"}>
