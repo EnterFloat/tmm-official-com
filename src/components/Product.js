@@ -219,7 +219,11 @@ const Product = class extends React.Component {
                   <Link
                     to={'marketplace/' + product.id.toLowerCase() + '/#plans'}
                   >
-                    <Button style={buttonStyles}>Purchase now</Button>
+                    <Button style={buttonStyles}
+                    disabled={isDisabled}
+                        >
+                          {isDisabled ? 'You are subscribed' : 'Purchase now'}
+                    </Button>
                   </Link>
                 </p>
               </Container>
@@ -488,46 +492,3 @@ export default props => (
     render={data => <Product data={data} {...props} />}
   />
 );
-
-// allSanityProduct {
-//   edges {
-//     node {
-//       title
-//     description
-//     visible
-//     banner {
-//       asset {
-//         url
-//       }
-//     }
-//     willExpire
-//     deactivationDate
-//     slug {
-//       current
-//     }
-//     images {
-//       asset {
-//         url
-//       }
-//     }
-//     reviews {
-//       title
-//       details
-//       author
-//     }
-//     plans {
-//       nickname
-//       active
-//       interval
-//       intervalCount
-//       trial
-//       trialInterval
-//       trialLength
-//       price
-//     }
-//     tags
-//     details
-//     advantages
-//     }
-//   }
-// }
