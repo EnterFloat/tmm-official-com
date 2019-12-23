@@ -244,8 +244,7 @@ const Product = class extends React.Component {
                     <Carousel.Item>
                       <Img style={{
                           width: 'auto',
-                          height: 'auto',
-                          maxHeight: carouselHeight + 'px',
+                          height: carouselHeight + "px",                          
                           objectFit: 'cover',
                         }}
                         key={i}
