@@ -6,7 +6,30 @@
   transform: translate(-50%, -50%);
 }
 
-.col-centered{
+.col-centered {
     float: none;
     margin: 0 auto;
+}
+
+.plan-container {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+
+
+@media only screen and (max-width: 991px){
+    .plan-container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .title-col {
+      height: 200px;
+    }
+  }
+
+@media only screen and (max-width: 575px){
+  .title-col {
+    padding-right: 40px;
+  }
 }

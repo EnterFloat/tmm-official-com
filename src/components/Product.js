@@ -199,18 +199,17 @@ const Product = class extends React.Component {
       <>
         <Jumbotron
           style={{
-            paddingBottom: '0px',
-            paddingTop: '0px',
-            paddingRight: '0px',
+            padding: "0px"
           }}
         >
           <Row>
             <Col
               xs={{ span: 12 }}
               sm={{ span: 12 }}
-              md={{ span: 4 }}
-              lg={{ span: 4 }}
+              md={{ span: 12 }}
+              lg={{ span: 5 }}
               xl={{ span: 4 }}
+              className="title-col"            
             >
               <Container className={'title-box'} style={{ textAlign: 'right' }}>
                 <h1>{product.name}</h1>
@@ -231,67 +230,31 @@ const Product = class extends React.Component {
             <Col
               xs={{ span: 12 }}
               sm={{ span: 12 }}
-              md={{ span: 8 }}
-              lg={{ span: 8 }}
+              md={{ span: 12 }}
+              lg={{ span: 7 }}
               xl={{ span: 8 }}
             >
               <Carousel
                 indicators={true}
                 style={{ width: '100%', height: carouselHeight + 'px' }}
               >
-                <Carousel.Item>
-                  <img
-                    style={{
-                      width: 'auto',
-                      height: 'auto',
-                      maxHeight: carouselHeight + 'px',
-                      objectFit: 'cover',
-                    }}
-                    className="d-block w-100"
-                    src={demoImage1}
-                    alt="First slide"
-                  />
-                  {/* <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption> */}
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    style={{
-                      width: 'auto',
-                      height: 'auto',
-                      maxHeight: carouselHeight + 'px',
-                      objectFit: 'cover',
-                    }}
-                    className="d-block w-100"
-                    src={demoImage1}
-                    alt="Third slide"
-                  />
-
-                  {/* <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption> */}
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    style={{
-                      width: 'auto',
-                      height: 'auto',
-                      maxHeight: carouselHeight + 'px',
-                      objectFit: 'cover',
-                    }}
-                    className="d-block w-100"
-                    src={demoImage1}
-                    alt="Third slide"
-                  />
-
-                  {/* <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption> */}
-                </Carousel.Item>
+                {sanityProduct.images.map(function(image, i) {
+                  console.log(image);
+                  return (
+                    <Carousel.Item>
+                      <Img style={{
+                          width: 'auto',
+                          height: 'auto',
+                          maxHeight: carouselHeight + 'px',
+                          objectFit: 'cover',
+                        }}
+                        key={i}
+                        fluid={image.asset.fluid}
+                        className="d-block w-100"
+                        />                    
+                    </Carousel.Item>                    
+                  );
+                })}                
               </Carousel>
             </Col>
           </Row>
@@ -305,7 +268,7 @@ const Product = class extends React.Component {
               &larr; Back
             </Button>
           </Link>
-          <Row>
+          <Row style={{margin: "40px 0px"}}>
             <Col>
               <h2>Details</h2>
               <p style={{ whiteSpace: 'pre-wrap' }}>{sanityProduct.details}</p>
@@ -356,7 +319,7 @@ const Product = class extends React.Component {
           </Row>
         </Jumbotron>
         <Container style={{ paddingBottom: '60px' }}>
-          <Row>
+          <Row style={{marginTop: "40px"}}>
             <Col>
               <h2>Advantages</h2>
               <p style={{ whiteSpace: 'pre-wrap' }}>
@@ -372,7 +335,7 @@ const Product = class extends React.Component {
               <br></br>
             </Col>
           </Row>
-          <Container style={{ paddingLeft: '100px', paddingRight: '100px' }}>
+          <Container className="plan-container">
             <Row style={{ textAlign: 'center' }}>
               {associatedPlans.map(plan => (
                 <>
@@ -416,8 +379,9 @@ const Product = class extends React.Component {
             </Row>
           </Container>
           <br></br>
-          <br></br>
+          <br></br>                  
         </Container>
+        
       </>
     );
   }
@@ -446,7 +410,7 @@ export default props => (
               }
               images {
                 asset {
-                  fluid(maxWidth: 700) {
+                  fluid(maxWidth: 900) {
                     ...GatsbySanityImageFluid
                   }
                 }
