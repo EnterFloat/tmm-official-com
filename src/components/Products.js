@@ -4,10 +4,12 @@ import { StaticQuery, graphql } from 'gatsby';
 import React from 'react';
 import ProductCard from './ProductCard.js';
 import { Container, Row, Col } from 'react-bootstrap';
+import Img from 'gatsby-image';
 
 const Checkout = class extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       stripe: null,
     };
@@ -28,6 +30,8 @@ const Checkout = class extends React.Component {
       var node = data.allStripeProduct.edges[i].node;
       products[node.id] = node;
     }
+
+
     console.log(products);
     var cus_subs = this.state.cus_subs;
     var plans_subbed = [];
@@ -44,17 +48,29 @@ const Checkout = class extends React.Component {
       .concat(data.allStripeProduct.edges)
       .sort((a, b) => a.name > b.name);
 
+    console.log(data.allSanityProduct.edges[0].node.stripeId)
+
+    var sanityProducts = {}
+    for (const i in data.allSanityProduct.edges) {
+      var node = data.allSanityProduct.edges[i].node;
+      sanityProducts[node.stripeId] = node
+    }
+ 
+
     return (
-      <Container>
+      <Container style={{ paddingBottom: '60px' }}>
         <Row>
           {stripeProducts.map(({ node }) => (
+            <>            
             <Product
+              sanityProducts={sanityProducts}
               key={node.id}
               product={node}
               products={products}
               stripe={this.state.stripe}
               prevPurchases={plans_subbed}
             />
+            </>
           ))}
         </Row>
       </Container>
@@ -65,6 +81,37 @@ export default props => (
   <StaticQuery
     query={graphql`
       query CheckoutQuery {
+        allSanityProduct {
+          edges {
+            node {
+              id
+              stripeId
+              description
+              banner {
+                asset {
+                  fluid(maxWidth: 700) {
+                    ...GatsbySanityImageFluid
+                  }
+                }
+              }
+              images {
+                asset {
+                  fluid(maxWidth: 900) {
+                    ...GatsbySanityImageFluid
+                  }
+                }
+              }
+              reviews {
+                title
+                details
+                author
+              }
+              tags
+              details
+              advantages
+            }
+          }
+        }
         allStripePlan {
           edges {
             node {
@@ -100,6 +147,10 @@ export default props => (
 function Product(props) {
   console.log(props.product);
   if (props.product.type == 'service') {
+    console.log(props.sanityProducts[props.product.id])
+    if (props.sanityProducts[props.product.id] === undefined) {
+      return
+    }
     return (
       <Col
         xs={{ span: 10, offset: 1 }}
@@ -109,6 +160,7 @@ function Product(props) {
         xl={{ span: 4, offset: 0 }}
         style={{ marginBottom: 30 }}
       >
+        <Img style={{height: "200px"}} fluid={props.sanityProducts[props.product.id].banner.asset.fluid}></Img>
         <ProductCard
           key={props.key}
           product={props.product}
