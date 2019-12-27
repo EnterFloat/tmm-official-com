@@ -1,10 +1,11 @@
 // Load products
 
-import { StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import ProductCard from './ProductCard.js';
 import { Container, Row, Col } from 'react-bootstrap';
 import Img from 'gatsby-image';
+
 
 const Checkout = class extends React.Component {
   constructor(props) {
@@ -152,23 +153,27 @@ function Product(props) {
       return
     }
     return (
-      <Col
-        xs={{ span: 10, offset: 1 }}
-        sm={{ span: 10, offset: 1 }}
-        md={{ span: 6, offset: 0 }}
-        lg={{ span: 4, offset: 0 }}
-        xl={{ span: 4, offset: 0 }}
-        style={{ marginBottom: 30 }}
-      >
-        <Img style={{height: "200px"}} fluid={props.sanityProducts[props.product.id].banner.asset.fluid}></Img>
-        <ProductCard
-          key={props.key}
-          product={props.product}
-          products={props.products}
-          stripe={props.stripe}
-          prevPurchases={props.prevPurchases}
-        ></ProductCard>
-      </Col>
+        <Col
+          xs={{ span: 10, offset: 1 }}
+          sm={{ span: 10, offset: 1 }}
+          md={{ span: 6, offset: 0 }}
+          lg={{ span: 4, offset: 0 }}
+          xl={{ span: 4, offset: 0 }}
+          style={{ marginBottom: 30 }}
+        >
+        <Link to={'/marketplace/' + props.product.fields.slug}>
+
+          <Img style={{height: "200px"}} fluid={props.sanityProducts[props.product.id].banner.asset.fluid}></Img>
+          <ProductCard
+            key={props.key}
+            product={props.product}
+            products={props.products}
+            stripe={props.stripe}
+            prevPurchases={props.prevPurchases}
+          ></ProductCard>
+          </Link>
+        </Col>
+
     );
   }
   return '';

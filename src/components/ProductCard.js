@@ -28,7 +28,7 @@ const ProductCard = class extends React.Component {
 
     return (
       <Card style={{ backgroundColor: 'white' }}>
-        <h4 style={{ color: 'black', opacity: '0.95' }}>{product.name}</h4>
+        <h4 style={{ color: 'black', opacity: '0.95', margin: "8px" }}>{product.name}</h4>
         <Row>
           <Col
             xs={{ span: 10, offset: 1 }}
