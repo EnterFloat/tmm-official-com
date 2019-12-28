@@ -4,6 +4,7 @@ import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'gatsby';
 import '../assets/sass/_page.scss';
+import Img from 'gatsby-image';
 
 const buttonStyles = {
   fontSize: '13px',
@@ -25,9 +26,10 @@ const ProductCard = class extends React.Component {
   }
   render() {
     var product = this.props.product;
-
+    console.log(this.props.imageFluid)
     return (
-      <Card style={{ backgroundColor: 'white' }}>
+      <Card className="product-card shadow-box">
+        <Img style={{height: "200px"}} fluid={this.props.imageFluid}></Img>
         <h4 style={{ color: 'black', opacity: '0.95', margin: "8px" }}>{product.name}</h4>
         <Row>
           <Col

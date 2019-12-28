@@ -39,9 +39,10 @@ const Faq = class extends React.Component {
     return (
       <div style={{ paddingBottom: '60px' }}>
         <Container>
+          <h2 style={{marginBottom: "20px"}}>FAQ</h2>
           {data.allSanityFaq.edges.map(({ node }) => (
             <>
-              <Card>
+              <Card className="shadow-box">
                 <Card.Header as="h5">{node.question}</Card.Header>
                 <Card.Body>
                   <Card.Text>{node.answer}</Card.Text>

@@ -11,7 +11,7 @@ export default class AboutPage extends Component {
   }
   render() {
     return (
-      <Layout>
+      <Layout paddingTop="56">
         <Header />
         <About />
         <Footer />

@@ -162,7 +162,7 @@ export default class IndexPage extends Component {
             </div>
           </div> */}
         </header>
-
+{/* 
         <section id="about" className="about-section text-center">
           <div className="container">
             <div className="row">
@@ -242,7 +242,7 @@ export default class IndexPage extends Component {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <Footer />
       </Layout>

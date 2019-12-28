@@ -284,7 +284,7 @@ const Product = class extends React.Component {
                   marginRight: '100px',
                 }}
               >
-                Recommendations
+                Reviews
               </h2>
               <Row>
                 {sanityProduct.reviews.map(function(review, i) {

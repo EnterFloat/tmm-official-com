@@ -163,13 +163,14 @@ function Product(props) {
         >
         <Link to={'/marketplace/' + props.product.fields.slug}>
 
-          <Img style={{height: "200px"}} fluid={props.sanityProducts[props.product.id].banner.asset.fluid}></Img>
+          {/* <Img style={{height: "200px"}} fluid={props.sanityProducts[props.product.id].banner.asset.fluid}></Img> */}
           <ProductCard
             key={props.key}
             product={props.product}
             products={props.products}
             stripe={props.stripe}
             prevPurchases={props.prevPurchases}
+            imageFluid={props.sanityProducts[props.product.id].banner.asset.fluid}
           ></ProductCard>
           </Link>
         </Col>
