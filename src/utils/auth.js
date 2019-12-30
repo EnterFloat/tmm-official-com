@@ -68,12 +68,11 @@ export const handleAuthentication = () => {
   if (!isBrowser) {
     return;
   }
-
+  console.log("ParseHash")
   auth.parseHash(setSession());
 };
 
 export const getProfile = () => {
-  console.log(user)
   return user;
 };
 
