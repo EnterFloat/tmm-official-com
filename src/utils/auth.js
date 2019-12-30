@@ -40,6 +40,7 @@ export const login = () => {
 };
 
 const setSession = (cb = () => {}) => (err, authResult) => {
+  console.log("set session")
   if (err) {
     navigate('/');
     cb();
