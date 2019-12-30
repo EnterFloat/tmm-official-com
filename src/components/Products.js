@@ -150,7 +150,7 @@ function Product(props) {
   if (props.product.type == 'service') {
     console.log(props.sanityProducts[props.product.id])
     if (props.sanityProducts[props.product.id] === undefined) {
-      return
+      return null
     }
     return (
         <Col
@@ -177,5 +177,5 @@ function Product(props) {
 
     );
   }
-  return '';
+  return null;
 }
