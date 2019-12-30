@@ -47,7 +47,7 @@ export default class Header extends Component {
 
     return (
       <div>
-        <Navbar key="Navbar" expand="lg" fixed="top" className={'navbar-style'}>
+        <Navbar key="Navbar" expand="lg" fixed="top" className={`${this.props.animation} navbar-style`}>
           <div
             className="container-fluid"
             style={{ padding: '0px', margin: '0px' }}
@@ -101,6 +101,10 @@ export default class Header extends Component {
     );
   }
 }
+
+Header.defaultProps = {
+  animation: '',
+};
 
 const LoginLogout = () => {
   if (!isAuthenticated()) {

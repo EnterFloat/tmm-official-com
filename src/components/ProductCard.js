@@ -29,22 +29,7 @@ const ProductCard = class extends React.Component {
     console.log(this.props.imageFluid)
     return (
       <Card className="product-card shadow-box">
-        <Img style={{height: "200px"}} fluid={this.props.imageFluid}></Img>
-        <h4 style={{ color: 'black', opacity: '0.95', margin: "8px" }}>{product.name}</h4>
-        <Row>
-          <Col
-            xs={{ span: 10, offset: 1 }}
-            sm={{ span: 8, offset: 2 }}
-            md={{ span: 10, offset: 1 }}
-            lg={{ span: 10, offset: 1 }}
-            xl={{ span: 10, offset: 1 }}
-          >
-            <Link to={'/marketplace/' + product.fields.slug}>
-              <Button style={buttonStyles}>Read more</Button>
-            </Link>
-          </Col>
-        </Row>
-        <br></br>
+        <Img style={{width: "100%", height: "auto"}} fluid={this.props.imageFluid}></Img>
       </Card>
     );
   }
