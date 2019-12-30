@@ -1,13 +1,18 @@
 import { StaticQuery, graphql } from 'gatsby';
 import React from 'react';
+import ReactDOM from 'react-dom'
+import ModalVideo from 'react-modal-video'
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
 import '../assets/sass/_tms.scss';
+import '../../node_modules/react-modal-video/scss/modal-video.scss';
+
 import Background from '../assets/images/TMS.jpg';
 import PlayIcon from '../assets/images/play-icon.png';
 
 import {Link} from 'gatsby';
 import scrollTo from 'gatsby-plugin-smoothscroll';
+
 
 
 const MasculineSociety = class extends React.Component {
@@ -16,7 +21,12 @@ const MasculineSociety = class extends React.Component {
     this.state = {
       buttonOpacity: 1,
       buttonVisibility: "visible",
+      isOpen: false,
     }
+    this.openModal = this.openModal.bind(this)
+  }
+  openModal () {
+    this.setState({isOpen: true, buttonVisibility: "hidden"})
   }
   componentDidMount() {
     this.listenToScroll()
@@ -53,7 +63,7 @@ const MasculineSociety = class extends React.Component {
     if (scrolled > 0.6) {
       opacity = 0
     }
-    if (opacity == 0 || height < 200) {
+    if (opacity == 0 || height < 200 || this.state.isOpen) {
       visibility = "hidden";
     } else {
       visibility = "visible";
@@ -68,15 +78,18 @@ const MasculineSociety = class extends React.Component {
   render() {
     return (
       <>
+      <div style={{zIndex: "10000000"}}>
+        <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId='G1wsCworwWk' onClose={() => this.setState({isOpen: false, buttonVisibility: "visible"})} />
+      </div>
       <div className="tms-image-container">
         <img className="tms-image" src={Background}></img>
-        <div className="play-button"><img src={PlayIcon} className="play-image"></img></div>
+        <div onClick={this.openModal} className="play-button"><img src={PlayIcon} className="play-image"></img></div>
       </div>
       <div style={{paddingBottom: '60px'}}>
         <Container style={{padding: "50px 0px"}}>
           <br id="aboutTMS"></br>
           <h1>The Masculine Society</h1>
-          <p>Video here</p>
+          <p>Purchase button and info about TMS here</p>
         </Container>
       </div>
       <ActionButton buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more &darr;</ActionButton>
@@ -94,8 +107,8 @@ function ActionButton(props) {
       <Row>
         <Col
           id={'Col1'}
-          xs={{ span: 3, offset: 1 }}
-          sm={{ span: 3, offset: 1 }}
+          xs={{ span: 4, offset: 1 }}
+          sm={{ span: 4, offset: 1 }}
           md={{ span: 3, offset: 1 }}
           lg={{ span: 3, offset: 1 }}
           xl={{ span: 3, offset: 1 }}

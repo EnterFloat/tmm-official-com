@@ -38,6 +38,7 @@
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-images": "^0.5.19",
+    "react-modal-video": "^1.2.3",
     "react-router-dom": "^5.1.2",
     "react-scrollspy": "^3.4.0",
     "slug": "^1.1.0",
