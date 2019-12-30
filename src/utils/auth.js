@@ -48,6 +48,10 @@ const setSession = (cb = () => {}) => (err, authResult) => {
     return;
   }
   console.log("Auth result: " + authResult)
+  if (authResult === null) {
+    console.log("Could not set session")
+    navigate('/')
+  }
 
   if (authResult && authResult.accessToken && authResult.idToken) {
     console.log("If statement")
