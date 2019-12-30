@@ -15,6 +15,7 @@ import {
 import Img from 'gatsby-image';
 import demoImage1 from '../assets/images/demo-image-01.jpg';
 import '../assets/sass/_product.scss';
+import scrollTo from 'gatsby-plugin-smoothscroll';
 
 const buttonStyles = {
   fontSize: '13px',
@@ -215,15 +216,17 @@ const Product = class extends React.Component {
                 <h1>{product.name}</h1>
                 <p>{sanityProduct.description}</p>
                 <p>
-                  <Link
+                  {/* <Link
                     to={'marketplace/' + product.id.toLowerCase() + '/#plans'}
-                  >
+                  > */}
                     <Button style={buttonStyles}
                     disabled={isDisabled}
+                    onClick={() => scrollTo('#plans')}
                         >
                           {isDisabled ? 'You are subscribed' : 'Purchase now'}
                     </Button>
-                  </Link>
+                  {/* </Link> */}
+                  {/* 'marketplace/' + product.id.toLowerCase() + '/ */}
                 </p>
               </Container>
             </Col>

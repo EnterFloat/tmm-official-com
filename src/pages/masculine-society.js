@@ -11,7 +11,7 @@ export default class MasculineSocietyPage extends Component {
   }
   render() {
     return (
-      <Layout>
+      <Layout paddingTop="0">
         <Header />
         <MasculineSociety />
         <Footer />
