@@ -1,0 +1,98 @@
+.background-div {
+    width: 100%;    
+    height: 100vh;
+    background-color: #740000;
+    position: relative;
+}
+
+.centered-div {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 50%;
+   visibility: "visible";
+   text-align: center;
+}
+
+.centered-text {
+    background-color: white;
+}
+
+.logo-text {
+    width: 100%;
+    height: auto;
+    animation: text-animation 3s 1;
+    opacity: 100;
+}
+
+.logo {
+    width: 0%;
+    height: auto;
+    margin-bottom: 30px;
+    animation: logo-animation 3s 1;
+    opacity: 0;
+}
+
+.text-div {
+    // position: absolute;
+    // animation-duration: 3s;
+    // animation-name: my-animation;
+    // animation-iteration-count: infinite;
+    // animation-direction: alternate;
+}
+
+
+@media only screen and (max-width: 700px){
+    .centered-div {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 850px){
+    .centered-div {
+        width: 40%;
+    }
+}
+
+
+@keyframes text-animation {
+    0% {
+        width: 0%;
+        opacity: 0%;
+    }
+    51% {
+        width: 20%;
+        opacity: 0%;
+    }
+    75% {
+        width: 100%;
+    }
+  }
+
+  @keyframes logo-animation {
+    0% {
+        width: 10%;
+
+    }
+    10% {
+        width: 30%;
+        opacity: 100%;
+    }
+    40% {
+        width: 30%;
+        opacity: 100%;
+    }
+    50% {
+        width: 30%;
+        opacity: 0%;
+    }
+    51% {
+        width: 0%;
+        opacity: 0%;
+    }
+    100% {
+        width: 0%;
+        opacity: 0%;
+    }
+  }
