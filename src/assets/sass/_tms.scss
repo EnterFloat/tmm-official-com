@@ -23,16 +23,23 @@
    transform: translate(-50%, -50%);   /* 4 */
    height: 100px;
    width: 100px;
+   visibility: "visible";
 }
 
 .play-image {
     width: 100%; 
     height: 100%;
 }
+.tms-button {
+    visibility: "visible";
+}
 
 
 @media only screen and (max-width: 991px){
     .tms-image-container {
         max-height: 400px;
+    }
+    .tms-button {
+        visibility: "hidden";
     }
     }

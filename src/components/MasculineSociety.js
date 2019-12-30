@@ -22,11 +22,12 @@ const MasculineSociety = class extends React.Component {
       buttonOpacity: 1,
       buttonVisibility: "visible",
       isOpen: false,
+      oldButtonVisibility: "visible",
     }
     this.openModal = this.openModal.bind(this)
   }
   openModal () {
-    this.setState({isOpen: true, buttonVisibility: "hidden"})
+    this.setState({isOpen: true, oldButtonVisibility: this.state.buttonVisibility, buttonVisibility: "hidden"})
   }
   componentDidMount() {
     this.listenToScroll()
@@ -71,6 +72,7 @@ const MasculineSociety = class extends React.Component {
   
     this.setState({
       buttonVisibility: visibility,
+      oldButtonVisibility: visibility,
       buttonOpacity: opacity,
     })
   }
@@ -79,20 +81,20 @@ const MasculineSociety = class extends React.Component {
     return (
       <>
       <div style={{zIndex: "10000000"}}>
-        <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId='G1wsCworwWk' onClose={() => this.setState({isOpen: false, buttonVisibility: "visible"})} />
+        <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId='G1wsCworwWk' onClose={() => this.setState({isOpen: false, buttonVisibility: this.state.oldButtonVisibility})} />
       </div>
       <div className="tms-image-container">
         <img className="tms-image" src={Background}></img>
         <div onClick={this.openModal} className="play-button"><img src={PlayIcon} className="play-image"></img></div>
       </div>
       <div style={{paddingBottom: '60px'}}>
-        <Container style={{padding: "50px 0px"}}>
+        <Container style={{paddingTop: "50px", paddingBottom: "50px"}}>
           <br id="aboutTMS"></br>
           <h1>The Masculine Society</h1>
           <p>Purchase button and info about TMS here</p>
         </Container>
       </div>
-      <ActionButton buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more &darr;</ActionButton>
+      <ActionButton className="tms-button" buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more &darr;</ActionButton>
       </>
     );
   }
@@ -109,7 +111,7 @@ function ActionButton(props) {
           id={'Col1'}
           xs={{ span: 4, offset: 1 }}
           sm={{ span: 4, offset: 1 }}
-          md={{ span: 3, offset: 1 }}
+          md={{ span: 4, offset: 1 }}
           lg={{ span: 3, offset: 1 }}
           xl={{ span: 3, offset: 1 }}
         >
