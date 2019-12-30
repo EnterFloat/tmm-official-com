@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
 import '../assets/sass/_tms.scss';
-import Background from '../assets/images/tms.jpg';
+import Background from '../assets/images/TMS.jpg';
 import {Link} from 'gatsby';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
