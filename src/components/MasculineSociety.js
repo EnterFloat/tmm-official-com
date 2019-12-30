@@ -4,6 +4,8 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
 import '../assets/sass/_tms.scss';
 import Background from '../assets/images/TMS.jpg';
+import PlayIcon from '../assets/images/play-icon.png';
+
 import {Link} from 'gatsby';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
@@ -17,10 +19,15 @@ const MasculineSociety = class extends React.Component {
     }
   }
   componentDidMount() {
+    this.listenToScroll()
     window.addEventListener('scroll', this.listenToScroll)
+    window.addEventListener("resize", this.listenToScroll);
+
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.listenToScroll)
+    window.removeEventListener("resize", this.listenToScroll);
+
   }
 
   listenToScroll = () => {
@@ -34,6 +41,10 @@ const MasculineSociety = class extends React.Component {
     const scrolled = winScroll / height
     var opacity = 1
     var visibility = "visible";
+    console.log("scrollHeight: " + document.documentElement.scrollHeight)
+    console.log("clientHeight: " + document.documentElement.clientHeight)
+    console.log("height: " + height)
+
 
     if (scrolled > 0.3 && scrolled <= 0.6) {
       opacity = -((scrolled - 0.3) / 0.3) + 1
@@ -42,7 +53,7 @@ const MasculineSociety = class extends React.Component {
     if (scrolled > 0.6) {
       opacity = 0
     }
-    if (opacity == 0) {
+    if (opacity == 0 || height < 200) {
       visibility = "hidden";
     } else {
       visibility = "visible";
@@ -59,13 +70,16 @@ const MasculineSociety = class extends React.Component {
       <>
       <div className="tms-image-container">
         <img className="tms-image" src={Background}></img>
+        <div className="play-button"><img src={PlayIcon} className="play-image"></img></div>
       </div>
-      <Container style={{ paddingBottom: '60px' }}>
-        <br id="aboutTMS"></br>
-        <h1>The Masculine Society</h1>
-        <p>Video here</p>
-      </Container>
-      <ActionButton buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more</ActionButton>
+      <div style={{paddingBottom: '60px'}}>
+        <Container style={{padding: "50px 0px"}}>
+          <br id="aboutTMS"></br>
+          <h1>The Masculine Society</h1>
+          <p>Video here</p>
+        </Container>
+      </div>
+      <ActionButton buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more &darr;</ActionButton>
       </>
     );
   }
@@ -80,11 +94,11 @@ function ActionButton(props) {
       <Row>
         <Col
           id={'Col1'}
-          xs={{ span: 10, offset: 1 }}
-          sm={{ span: 10, offset: 1 }}
-          md={{ span: 4, offset: 1 }}
+          xs={{ span: 3, offset: 1 }}
+          sm={{ span: 3, offset: 1 }}
+          md={{ span: 3, offset: 1 }}
           lg={{ span: 3, offset: 1 }}
-          xl={{ span: 2, offset: 1 }}
+          xl={{ span: 3, offset: 1 }}
         >
           <Button className={'action-button'}
           onClick={() => scrollTo('#aboutTMS')}>
