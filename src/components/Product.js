@@ -62,7 +62,7 @@ const Product = class extends React.Component {
     const cus_subs = localStorage.getItem('customer_subscriptions');
     this.setState({ stripe, cus_subs });
   }
-
+  
   buttonText(nickname, buttonDisabled) {
     if (buttonDisabled) {
       return 'You are already subscriped to this product';

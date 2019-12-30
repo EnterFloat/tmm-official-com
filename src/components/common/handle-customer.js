@@ -47,12 +47,20 @@ export default function handleCustomer(purchase) {
             return;
           } else {
             if (result.subscriptions != undefined) {
+              console.log("getStripeCustomer result: " + result)
+              const util = require('util')
+              console.log(util.inspect(result, {showHidden: false, depth: null}))
+
               var customer_subscriptions = result.subscriptions;
               console.log(customer_subscriptions);
               // Save the subscriptions to localStorage to access on all pages
               localStorage.setItem(
                 'customer_subscriptions',
                 JSON.stringify(customer_subscriptions)
+              );
+              localStorage.setItem(
+                'customer',
+                JSON.stringify(result)
               );
               return customer_subscriptions;
             } else {
@@ -83,6 +91,7 @@ export default function handleCustomer(purchase) {
             console.log('Not authenticated. Login to buy a product');
             throw new Error('signed_out');
           } else {
+            console.log(result)
             auth0_id = result.sub;
             auth0_email = result.email;
             console.log(auth0_id + ', ' + auth0_email);

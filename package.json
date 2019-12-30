@@ -47,7 +47,7 @@
     "styled-components": "^4.4.1"
   },
   "scripts": {
-    "develop": "gatsby develop -o -H $HOSTNAME -p 8000",
+    "develop": "gatsby develop",
     "start": "run-p start:**",
     "start:app": "npm run develop",
     "start:lambda": "netlify-lambda serve functions",

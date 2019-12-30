@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import PageTop from '../components/PageTop';
 import {Container} from 'react-bootstrap';
 import '../assets/sass/_pagetop.scss';
+import handleCustomer from '../components/common/handle-customer.js';
 
 import { Link } from 'gatsby';
 
@@ -22,6 +23,7 @@ export default class IndexPage extends Component {
       <Layout paddingTop="0">
         <Header animation="animated-header" /> 
         <PageTop/>
+        {/* {handleCustomer()} */}
         <Container style={{ paddingBottom: '60px' }}>
         </Container>
         <Footer />
