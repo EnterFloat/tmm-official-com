@@ -42,19 +42,33 @@ export const login = () => {
 const setSession = (cb = () => {}) => (err, authResult) => {
   console.log("set session")
   if (err) {
+    console.log("Err: " + err)
     navigate('/');
     cb();
     return;
   }
+  console.log("Auth result: " + authResult)
 
   if (authResult && authResult.accessToken && authResult.idToken) {
+    console.log("If statement")
+
     let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+    console.log("expiresAt: " + expiresAt)
     tokens.accessToken = authResult.accessToken;
+    console.log("accessToken: " + tokens.accessToken)
     tokens.idToken = authResult.idToken;
+    console.log("idToken: " + tokens.idToken)
+
     tokens.expiresAt = expiresAt;
+    console.log("expiresAt: " + tokens.expiresAt)
+
     user = authResult.idTokenPayload;
+    console.log("user: " + tokens.user)
+
     localStorage.setItem('isLoggedIn', true);
+    console.log("Set item")
     handleCustomer();
+    console.log("handleCustomer")
     navigate('/');
     cb();
   }
