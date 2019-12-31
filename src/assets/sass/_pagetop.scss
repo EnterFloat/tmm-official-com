@@ -21,21 +21,22 @@
 .logo-text {
     width: 100%;
     height: auto;
-    animation: text-animation 2s 1;
-    -webkit-animation: text-animation 2s 1;
-    -moz-animation: text-animation 2s 1;
+    animation: text-animation 2.5s 1;
+    -webkit-animation: text-animation 2.5s 1;
+    -moz-animation: text-animation 2.5s 1;
     opacity: 1;
     display: inline-block;
 }
 
 .logo {
-    width: 0%;
+    width: 22%;
     height: auto;
-    animation: logo-animation 2s 1;
-    -webkit-animation: logo-animation 2s 1;
-    -moz-animation: logo-animation 2s 1;
-    opacity: 0;
+    animation: logo-animation 2.5s 1;
+    -webkit-animation: logo-animation 2.5s 1;
+    -moz-animation: logo-animation 2.5s 1;
     display: inline-block;
+    opacity: 1;
+    margin-bottom: 40px;
 }
 
 
@@ -70,6 +71,10 @@
         width: 100%;
         opacity: 1;
     }
+    85% {
+        width: 100%;
+        opacity: 1;
+    }
     100% {
         width: 100%;
         opacity: 1;
@@ -89,6 +94,10 @@
         opacity: 0;
     }
     75% {
+        width: 100%;
+        opacity: 1;
+    }
+    85% {
         width: 100%;
         opacity: 1;
     }
@@ -114,6 +123,10 @@
         width: 100%;
         opacity: 1;
     }
+    85% {
+        width: 100%;
+        opacity: 1;
+    }
     100% {
         width: 100%;
         opacity: 1;
@@ -124,77 +137,125 @@
     0% {
         width: 10%;
         opacity: 0;
+        margin-bottom: 0px;
     }
     10% {
         width: 30%;
         opacity: 1;
+        margin-bottom: 0px;
     }
     40% {
         width: 30%;
         opacity: 1;
+        margin-bottom: 0px;
     }
     50% {
         width: 30%;
         opacity: 0;
+        margin-bottom: 0px;
     }
     53% {
         width: 0%;
         opacity: 0;
+        margin-bottom: 0px;
     }
-    100% {
+    80% {
         width: 0%;
         opacity: 0;
+        margin-bottom: 0px;
+    }
+    90% {
+        width: 22%;
+        opacity: 0;
+        margin-bottom: 40px;
+    }
+    100% {
+        width: 22%;
+        opacity: 1;
+        margin-bottom: 40px;
     }
   }
   @-webkit-keyframes logo-animation {
     0% {
         width: 10%;
         opacity: 0;
+        margin-bottom: 0px;
     }
     10% {
         width: 30%;
         opacity: 1;
+        margin-bottom: 0px;
     }
     40% {
         width: 30%;
         opacity: 1;
+        margin-bottom: 0px;
     }
     50% {
         width: 30%;
         opacity: 0;
+        margin-bottom: 0px;
     }
     53% {
         width: 0%;
         opacity: 0;
+        margin-bottom: 0px;
     }
-    100% {
+    80% {
         width: 0%;
         opacity: 0;
+        margin-bottom: 0px;
+    }
+    90% {
+        width: 22%;
+        opacity: 0;
+        margin-bottom: 40px;
+    }
+    100% {
+        width: 22%;
+        opacity: 1;
+        margin-bottom: 40px;
     }
   }
   @-moz-keyframes logo-animation {
     0% {
         width: 10%;
         opacity: 0;
+        margin-bottom: 0px;
     }
     10% {
         width: 30%;
         opacity: 1;
+        margin-bottom: 0px;
     }
     40% {
         width: 30%;
         opacity: 1;
+        margin-bottom: 0px;
     }
     50% {
         width: 30%;
         opacity: 0;
+        margin-bottom: 0px;
     }
     53% {
         width: 0%;
         opacity: 0;
+        margin-bottom: 0px;
     }
-    100% {
+    80% {
         width: 0%;
         opacity: 0;
+        margin-bottom: 0px;
+    }
+    90% {
+        width: 22%;
+        opacity: 0;
+        margin-bottom: 40px;
+    }
+    100% {
+        width: 22%;
+        opacity: 1;
+        margin-bottom: 40px;
     }
   }
