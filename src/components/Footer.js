@@ -15,7 +15,7 @@ export default function Footer() {
     >
       <div className="container" style={{ height: '100%' }}>
         <br />
-        Copyright &copy; The Masculine Mentality 2019
+        Copyright &copy; The Masculine Mentality 2020
       </div>
     </div>
   );
