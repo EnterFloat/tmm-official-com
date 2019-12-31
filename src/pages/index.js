@@ -18,6 +18,7 @@ export default class IndexPage extends Component {
     super(props);
   }
 
+  
   render() {
     return (
       <Layout paddingTop="0">
