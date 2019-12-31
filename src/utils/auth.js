@@ -4,13 +4,13 @@ import getUser from '../components/common/get-faunadb-user.js';
 import handleCustomer from '../components/common/handle-customer.js';
 
 const isBrowser = typeof window !== 'undefined';
-
+console.log(process.env.GATSBY_AUTH0_CALLBACK)
 const auth = isBrowser
   ? new auth0.WebAuth({
       domain: process.env.GATSBY_AUTH0_DOMAIN,
       clientID: process.env.GATSBY_AUTH0_CLIENTID,
       redirectUri: process.env.GATSBY_AUTH0_CALLBACK,
-      responseType: 'token id_token',
+      responseType: 'code token id_token',
       scope: 'openid profile email',
     })
   : {};

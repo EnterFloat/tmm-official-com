@@ -110,10 +110,7 @@ const LoginLogout = () => {
   if (!isAuthenticated()) {
     return (
       <Link
-        to="/login"
-        partiallyActive={true}
         className={'navbar-right nav-text'}
-        activeClassName={'active'}
         onClick={e => {
           login();
         }}
@@ -124,10 +121,7 @@ const LoginLogout = () => {
   } else {
     return (
       <Link
-        to="/logout"
-        partiallyActive={true}
         className={'navbar-right nav-text'}
-        activeClassName={'active'}
         onClick={e => {
           logout();
           e.preventDefault();
@@ -151,3 +145,18 @@ function NavElement(props) {
     </Link>
   );
 }
+
+
+
+
+// <Link
+//         to="/login"
+//         partiallyActive={true}
+//         className={'navbar-right nav-text'}
+//         activeClassName={'active'}
+//         onClick={e => {
+//           login();
+//         }}
+//       >
+//         Login
+//       </Link>
