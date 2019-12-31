@@ -1,6 +1,4 @@
-import { StaticQuery, graphql } from 'gatsby';
 import React from 'react';
-import ReactDOM from 'react-dom'
 import ModalVideo from 'react-modal-video'
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
@@ -11,8 +9,6 @@ import createTmsPurchaseSession from './common/create-tms-purchase-session.js';
 
 import Background from '../assets/images/TMS.jpg';
 import PlayIcon from '../assets/images/play-icon.png';
-
-import {Link} from 'gatsby';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
 

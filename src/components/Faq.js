@@ -1,27 +1,15 @@
 import { StaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import {
-  Container as BootstrapContainer,
   Row,
   Col,
   Container,
   Card,
   Button,
 } from 'react-bootstrap';
-import Collapsible from 'react-collapsible';
 import styled from 'styled-components';
 import '../assets/sass/_faq.scss';
 
-var TriggerStyling = {
-  width: 'available',
-  backgroundColor: '#FFFFFF',
-  // 8F0000
-};
-
-var openedCollapsible = {
-  // width: "available",
-  backgroundColor: 'yellow',
-};
 const Faq = class extends React.Component {
   constructor(props) {
     super(props);

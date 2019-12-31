@@ -2,7 +2,6 @@ import { StaticQuery, graphql } from 'gatsby';
 import React from 'react';
 import { Container, Carousel, Row, Col, Jumbotron, Card } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
-import demoImage1 from '../assets/images/demo-image-01.jpg';
 import Img from 'gatsby-image';
 
 const About = class extends React.Component {

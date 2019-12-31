@@ -4,8 +4,6 @@ import { StaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import ProductCard from './ProductCard.js';
 import { Container, Row, Col } from 'react-bootstrap';
-import Img from 'gatsby-image';
-
 
 const Checkout = class extends React.Component {
   constructor(props) {

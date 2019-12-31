@@ -1,6 +1,5 @@
 import { StaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
-import ProductCard from './ProductCard.js';
 import handleCustomer from './common/handle-customer.js';
 import createStripeSession from './common/create-stripe-session.js';
 import {
@@ -13,7 +12,6 @@ import {
   Carousel,
 } from 'react-bootstrap';
 import Img from 'gatsby-image';
-import demoImage1 from '../assets/images/demo-image-01.jpg';
 import '../assets/sass/_product.scss';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
@@ -62,7 +60,7 @@ const Product = class extends React.Component {
     const cus_subs = localStorage.getItem('customer_subscriptions');
     this.setState({ stripe, cus_subs });
   }
-  
+
   buttonText(nickname, buttonDisabled) {
     if (buttonDisabled) {
       return 'You are already subscriped to this product';

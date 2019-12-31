@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import Scroll from './Scroll';
-import config from '../../config';
 import { Link } from 'gatsby';
-import { login, logout, isAuthenticated, getProfile } from '../utils/auth';
-// import { StaticRouter as Router, Route } from 'react-router-dom';
+import { login, logout, isAuthenticated } from '../utils/auth';
 import { StaticRouter as Router, Route } from 'react-router-dom';
 import logo from '../assets/images/TMM_logo_circle_512.png';
 
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import '../assets/sass/_header.scss';
 
 export default class Header extends Component {
@@ -93,7 +90,6 @@ export default class Header extends Component {
             />
             <Route path="/faq" exact component={Component.Faq} />
             <Route path="/about" exact component={Component.About} />
-            <Route path="/test" exact component={Component.Test} />
             <Route component={Component.ErrorPage} />
           </Router>
         </div>

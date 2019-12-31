@@ -1,30 +1,4 @@
-// import React from 'react';
-// import { Component } from 'react';
-// import Layout from '../components/Layout';
-// import Footer from '../components/Footer';
-// import Header from '../components/Header';
-// import { Container } from 'react-bootstrap';
-
-// export default class ErrorPage extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   render() {
-//     return (
-//       <Layout BGColor="#760000" paddingTop="100">
-//         <Header/>
-//         <br></br>
-//         <Container>
-//             <h1 style={{color: "white", textAlign: "center"}}>Looks like you hit a roadblock...</h1>
-//         </Container>
-//         <Footer />
-//     </Layout>
-//     );
-//   }
-// }
-
 import React from 'react';
-
 import Layout from '../components/Layout';
 import Header from '../components/Header';
 import { Link } from 'gatsby';

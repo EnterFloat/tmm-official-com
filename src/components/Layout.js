@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
-import CookieConsent, { Cookies } from 'react-cookie-consent';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import CookieConsent from 'react-cookie-consent';
 import '../assets/sass/_layout.scss';
 
 import '../assets/sass/grayscale.scss';
