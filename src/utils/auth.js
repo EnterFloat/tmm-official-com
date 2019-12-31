@@ -21,6 +21,7 @@ const tokens = {
   expiresAt: false,
 };
 
+
 let user = {};
 
 export const isAuthenticated = () => {
