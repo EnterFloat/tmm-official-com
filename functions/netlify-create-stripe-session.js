@@ -8,7 +8,7 @@ var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 exports.handler = (event, context, callback) => {
   const params = JSON.parse(event.body);
   const success_url = process.env.STRIPE_CALLBACK_SUCCESS + "?session_id={CHECKOUT_SESSION_ID}";
-  console.log("\n\n\n\n" + success_url)
+  console.log("\n\n\n" + success_url)
   const error_url = process.env.STRIPE_CALLBACK_ERROR;
 
   return stripe.checkout.sessions
