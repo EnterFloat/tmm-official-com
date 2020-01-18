@@ -2,6 +2,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import React from 'react';
 import { Container, Carousel, Row, Col, Jumbotron, Card } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
+import '../assets/sass/_about.scss';
 import Img from 'gatsby-image';
 
 const About = class extends React.Component {
@@ -15,21 +16,20 @@ const About = class extends React.Component {
     var carouselHeight = 225;
     return (
       <>
-        <Container className={'carousel-container'}>
-          <Carousel indicators={true} style={{ height: carouselHeight + 'px' }}>
+        <Container className={'carousel-container'} >
+          <Carousel className={'carousel'} indicators={true}>
           {data.sanityAbout.images.map(function(image, i) {
                   return (
                     <Carousel.Item>
-                      <Img style={{
-                        width: 'auto',
-                        height: 'auto',
-                        maxHeight: carouselHeight + 'px',
-                        objectFit: 'cover',
-                        }}
-                        key={i}
-                        fluid={image.asset.fluid}
-                        className="d-block w-100"
-                        />                    
+                      <div className="d-block w-100 h-100 carousel-item-container">
+                        
+                        <Img className="carousel-item"
+                          key={i}
+                          fluid={image.asset.fluid}
+                          
+                          className="d-block h-100"
+                          />                
+                        </div>
                     </Carousel.Item>                    
                   );
                 })}              
@@ -103,7 +103,7 @@ export default props => (
           about
           images {
             asset {
-              fluid(maxWidth: 900) {
+              fluid(maxWidth: 1200) {
                 ...GatsbySanityImageFluid
               }
             }

@@ -30,6 +30,7 @@ export default function handleCustomer(purchase) {
           } else {
             if (result.data.stripe_cus_id != undefined) {
               var stripe_cus_id = result.data.stripe_cus_id;
+              localStorage.setItem('ownsTMS', result.data.ownsTMS);
               // Use the Stripe customer id found in the FaunaDB to get the Stripe customer
               return getStripeCustomer(stripe_cus_id);
             } else {
@@ -72,6 +73,7 @@ export default function handleCustomer(purchase) {
         .then(result => {
           if (result === undefined) {
             localStorage.setItem('customer_subscriptions', 'none');
+            localStorage.setItem('ownsTMS', 'false');
           }
           resolve('updated_localstorage');
         })

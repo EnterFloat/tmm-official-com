@@ -2,17 +2,15 @@
 
 import axios from 'axios';
 
-export default function createFaunaDBUser(auth0_id, stripe_cus_id) {
-  console.log('createFaunaDBUser');
+export default function editFaunaDBUser(auth0_id) {
+  console.log('editFaunaDBUser');
   return new Promise((resolve, reject) => {
     axios
-      .post('/.netlify/functions/netlify-create-faunadb-user', {
+      .post('/.netlify/functions/netlify-edit-faunadb-user', {
         auth0_id: auth0_id,
-        stripe_cus_id: stripe_cus_id,
-        ownsTMS: "false",
       })
       .then(res => {
-        resolve(stripe_cus_id);
+        resolve(res);
       })
       .catch(error => {
         reject(error);

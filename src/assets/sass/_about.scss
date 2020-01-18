@@ -1,7 +1,101 @@
-.about-section {
-  padding-top: 10rem;
-  background: linear-gradient(to bottom, $black 0%,#{fade-out($black, .1)} 75%,#{fade-out($black, .2)} 100%);
-  p {
-    margin-bottom: 5rem;
-  }
+// .about-section {
+//   padding-top: 10rem;
+//   background: linear-gradient(to bottom, $black 0%,#{fade-out($black, .1)} 75%,#{fade-out($black, .2)} 100%);
+//   p {
+//     margin-bottom: 5rem;
+//   }
+// }
+
+.carousel-container {
+  height: -webkit-calc(80vh - 56px);
+  height:    -moz-calc(80vh - 56px);
+  height:         calc(80vh - 56px);
+  // width: 100%;
+  // margin-right: auto;
+  // margin-left: auto;
+  // // padding-bottom: 0px;
+  // position: relative;
+  // object-fit: scale-down;
 }
+.carousel {
+  width: inherit !important;
+  height: inherit !important;
+}
+.carousel-item-container {
+  text-align:center; 
+}
+.carousel-item {
+  // height: 100%;
+  max-width: 100%;
+  padding-left: auto;
+  padding-right: auto;
+  height: -webkit-calc(90vh - 56px);
+  height:    -moz-calc(90vh - 56px);
+  height:         calc(90vh - 56px);
+  width: 100%;
+
+  // margin-top: 0px;
+  // margin-bottom: 0px;
+  // margin-left: 20px;
+  // margin-right: 20px;
+  background-size: contain;
+  object-fit: scale-down;
+  // width: 200px;
+}
+
+// .carousel {
+//   overflow: hidden;
+//   height: inherit;
+//   object-fit: scale-down;  
+// }
+
+// .item-container {
+//   height: inherit;
+
+  
+//   // object-fit: contain;
+//   object-fit: scale-down;
+
+// }
+
+// .carousel-item {
+//   display: flex;
+//   // max-width:209px !important;
+//   // max-height:inherit !important;
+//   // display: block;
+//   // height: 100%;
+//   width: 100%;
+//   // padding-left: auto;
+//   // padding-right: auto;
+//   object-position: center;
+//   object-fit: scale-down;
+//   // width: auto;
+// }
+
+
+
+
+
+// .carousel {
+//   width: auto;
+//   height: 100%;
+//   // position: relative;
+//   // height: 100%;
+//   // width: 100%;
+//   // display: inline-block;
+//   overflow: hidden;
+//   object-fit: cover;
+//   // object-position: center;
+// }
+
+// .carousel-item {
+//   max-height: 100%;
+//   position: relative;
+//   display: block;
+//   margin-left: auto;
+//   margin-right: auto;
+//   // margin-top: 56px;
+//   object-fit: contain;
+//   // height: 100%;
+//   width: auto;
+// }

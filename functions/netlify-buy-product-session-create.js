@@ -7,9 +7,10 @@ require('dotenv').config({
   
   exports.handler = (event, context, callback) => {
     const params = JSON.parse(event.body);
-    const success_url = process.env.STRIPE_CALLBACK_SUCCESS;
+    const success_url = process.env.STRIPE_CALLBACK_SUCCESS + "?session_id={CHECKOUT_SESSION_ID}";
     const error_url = process.env.STRIPE_CALLBACK_ERROR;
-  
+    console.log("\n\n\n\n" + success_url)
+
     return stripe.checkout.sessions
       .create({
         customer: params.stripe_cus_id,

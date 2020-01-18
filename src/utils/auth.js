@@ -4,6 +4,7 @@ import getUser from '../components/common/get-faunadb-user.js';
 import handleCustomer from '../components/common/handle-customer.js';
 
 const isBrowser = typeof window !== 'undefined';
+var isAuth0Callback = "false"
 console.log(process.env.GATSBY_AUTH0_CALLBACK)
 const auth = isBrowser
   ? new auth0.WebAuth({
@@ -44,6 +45,7 @@ const setSession = (cb = () => {}) => (err, authResult) => {
   if (err) {
     console.log("Err: " + err)
     navigate('/');
+    console.log("Navigated to /")
     cb();
     return;
   }
@@ -51,6 +53,7 @@ const setSession = (cb = () => {}) => (err, authResult) => {
   if (authResult === null) {
     console.log("Could not set session")
     navigate('/')
+    console.log("Navigated to /")
   }
 
   if (authResult && authResult.accessToken && authResult.idToken) {
@@ -73,7 +76,12 @@ const setSession = (cb = () => {}) => (err, authResult) => {
     console.log("Set item")
     handleCustomer();
     console.log("handleCustomer")
-    navigate('/');
+    console.log("isAuth0Callback " + isAuth0Callback)
+    if (isAuth0Callback == "true") {
+      navigate('/');
+    }
+    isAuth0Callback = "false"
+
     cb();
   }
 };
@@ -83,7 +91,11 @@ export const silentAuth = callback => {
   auth.checkSession({}, setSession(callback));
 };
 
-export const handleAuthentication = () => {
+export const handleAuthentication = (isAuth0_callback) => {
+  console.log("\n\n\n\n\n")
+
+  console.log(isAuth0_callback)
+  isAuth0Callback = isAuth0_callback
   if (!isBrowser) {
     return;
   }
@@ -98,5 +110,6 @@ export const getProfile = () => {
 export const logout = () => {
   localStorage.setItem('isLoggedIn', false);
   localStorage.removeItem('customer_subscriptions');
+  localStorage.setItem('ownsTMS', false);
   auth.logout();
 };

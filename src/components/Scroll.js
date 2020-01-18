@@ -1,4 +1,4 @@
-import smoothscroll from 'smoothscroll-polyfill';
+// import smoothscroll from 'smoothscroll-polyfill';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -20,7 +20,7 @@ class Scroll extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    smoothscroll.polyfill();
+    // smoothscroll.polyfill();
   }
   handleClick(e) {
     e.preventDefault();

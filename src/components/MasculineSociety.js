@@ -42,7 +42,8 @@ const MasculineSociety = class extends React.Component {
             sessionId: result,
           })
           .then(function(result) {
-            console.log(result.error.message);
+            window.alert("Error: " + result.error.message)
+            console.log("redirectToCheckout then: " + result.error.message);
           });
       })
       .catch(err => {
@@ -123,10 +124,18 @@ const MasculineSociety = class extends React.Component {
     })
   }
 
+
   render() {
     const { data } = this.props;
 
     var videoID = data.sanitySiteSettings.masculineVideo.slice(-11)
+    
+    const ownsTMS = localStorage.getItem('ownsTMS');
+    console.log(ownsTMS)
+    var purchaseIsDisabled = false
+    if (ownsTMS == "true") {
+      var purchaseIsDisabled = true
+    }
     return (
       <>
       <div style={{zIndex: "10000000"}}>
@@ -140,8 +149,7 @@ const MasculineSociety = class extends React.Component {
         <Container style={{paddingTop: "50px", paddingBottom: "50px"}}>
           <br id="aboutTMS"></br>
           <h1>The Masculine Society</h1>
-          <p>Purchase button and info about TMS here</p>
-          <Button onClick={() => this.handlePurchase("sku_GSP3Jj23rZ7F5A")}>Buy TMS</Button>
+          <Button onClick={() => this.handlePurchase("sku_GSP3Jj23rZ7F5A")} disabled={purchaseIsDisabled}>{purchaseIsDisabled ? 'You are subscribed' : 'Buy TMS'}</Button>
         </Container>
       </div>
       <ActionButton className="tms-button" buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more &darr;</ActionButton>

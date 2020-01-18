@@ -360,7 +360,6 @@ const Product = class extends React.Component {
                             {plan.currency.toUpperCase()}
                           </span>
                         </h5>
-                        <h5>{plan.trial_period_days} day trial</h5>
                         <p></p>
                         <Button
                           style={buttonStylesCheckout}
@@ -431,7 +430,6 @@ export default props => (
             node {
               id
               product
-              trial_period_days
               amount
               nickname
               currency

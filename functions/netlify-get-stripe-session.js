@@ -1,32 +1,14 @@
-// Netlify function to create a new Stripe customer
+// Netlify function to get a Stripe Session by id
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
 exports.handler = (event, context, callback) => {
   const params = JSON.parse(event.body);
-  const success_url = process.env.STRIPE_CALLBACK_SUCCESS + "?session_id={CHECKOUT_SESSION_ID}";
-  console.log("\n\n\n\n" + success_url)
-  const error_url = process.env.STRIPE_CALLBACK_ERROR;
-
+  console.log(params.sessionId);
   return stripe.checkout.sessions
-    .create({
-      customer: params.stripe_cus_id,
-      mode: 'subscription',
-      subscription_data: {
-        items: [
-          {
-            plan: params.plan,
-            quantity: 1,
-          },
-        ],
-      },
-      success_url: success_url,
-      cancel_url: error_url,
-      payment_method_types: ['card'],
-    })
+    .retrieve(params.sessionId)
     .then(response => {
       console.log('success', response);
       return callback(null, {

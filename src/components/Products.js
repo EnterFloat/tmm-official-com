@@ -116,7 +116,6 @@ export default props => (
             node {
               id
               product
-              trial_period_days
               amount
               nickname
               currency
