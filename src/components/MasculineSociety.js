@@ -76,11 +76,12 @@ const MasculineSociety = class extends React.Component {
   }
   componentDidMount() {
     this.listenToScroll()
+    const ownsTMS = localStorage.getItem('ownsTMS');
     window.addEventListener('scroll', this.listenToScroll)
     window.addEventListener("resize", this.listenToScroll);
     const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLIC_KEY);
     const cus_subs = localStorage.getItem('customer_subscriptions'); // Should not be subs but whether TMS has been purchased
-    this.setState({ stripe, cus_subs });
+    this.setState({ stripe, cus_subs, ownsTMS });
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.listenToScroll)
@@ -129,9 +130,7 @@ const MasculineSociety = class extends React.Component {
     const { data } = this.props;
 
     var videoID = data.sanitySiteSettings.masculineVideo.slice(-11)
-    
-    const ownsTMS = localStorage.getItem('ownsTMS');
-    console.log(ownsTMS)
+    const ownsTMS = this.state.ownsTMS
     var purchaseIsDisabled = false
     if (ownsTMS == "true") {
       var purchaseIsDisabled = true
