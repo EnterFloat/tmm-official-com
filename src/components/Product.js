@@ -192,7 +192,7 @@ const Product = class extends React.Component {
     }
 
     console.log('\n\n\nSanity product ' + sanityProduct);
-    var carouselHeight = 350;
+    var carouselHeight = 600;
 
     return (
       <>
@@ -237,7 +237,7 @@ const Product = class extends React.Component {
             >
               <Carousel
                 indicators={true}
-                style={{ width: '100%', height: carouselHeight + 'px' }}
+                style={{ width: '100%', height: + 'auto', minHeight: "200 px" }}
               >
                 {sanityProduct.images.map(function(image, i) {
                   console.log(image);
@@ -245,7 +245,7 @@ const Product = class extends React.Component {
                     <Carousel.Item>
                       <Img style={{
                           width: 'auto',
-                          height: carouselHeight + "px",                          
+                          height: "auto",                          
                           objectFit: 'cover',
                         }}
                         key={i}
@@ -410,7 +410,7 @@ export default props => (
               }
               images {
                 asset {
-                  fluid(maxWidth: 900) {
+                  fluid(maxWidth: 1000) {
                     ...GatsbySanityImageFluid
                   }
                 }

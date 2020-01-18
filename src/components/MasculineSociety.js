@@ -1,5 +1,6 @@
 import React from 'react';
 import ModalVideo from 'react-modal-video'
+import { StaticQuery, graphql, Link } from 'gatsby';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
 import '../assets/sass/_tms.scss';
@@ -123,10 +124,13 @@ const MasculineSociety = class extends React.Component {
   }
 
   render() {
+    const { data } = this.props;
+
+    var videoID = data.sanitySiteSettings.masculineVideo.slice(-11)
     return (
       <>
       <div style={{zIndex: "10000000"}}>
-        <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId='G1wsCworwWk' onClose={() => this.setState({isOpen: false, buttonVisibility: this.state.oldButtonVisibility})} />
+        <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId={videoID} onClose={() => this.setState({isOpen: false, buttonVisibility: this.state.oldButtonVisibility})} />
       </div>
       <div className="tms-image-container">
         <img className="tms-image" src={Background}></img>
@@ -145,7 +149,18 @@ const MasculineSociety = class extends React.Component {
     );
   }
 };
-export default MasculineSociety;
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query TMSQuery {
+        sanitySiteSettings {
+          masculineVideo
+        }
+      }
+    `}
+    render={data => <MasculineSociety data={data} {...props} />}
+  />
+);
 
 
 function ActionButton(props) {
