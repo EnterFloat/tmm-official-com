@@ -9,7 +9,7 @@ export default class EmailPopup extends Component {
     this.toggleVisibility = this.toggleVisibility.bind(this);
     var popupStatus = "visible"
     if (typeof localStorage != "undefined") {
-      localPopupStatus = localStorage.getItem('popupStatus')
+      var localPopupStatus = localStorage.getItem('popupStatus')
       if (typeof localPopupStatus != null) {
         popupStatus = localStorage.getItem('popupStatus')
       }
