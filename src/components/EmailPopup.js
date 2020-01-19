@@ -16,7 +16,7 @@ export default function EmailPopup() {
           className="popup-col"
         >
         <p className="close-popup">&#10005;</p>
-          <Form className="form-container" name="Email subscription" method="POST" data-netlify="true">
+          <Form className="form-container" name="Email subscription" method="POST" data-netlify="true" action="/thank-you">
             <Form.Group controlId="formBasicEmail">
               {/* <Form.Label>Email address</Form.Label> */}
               <Form.Control
