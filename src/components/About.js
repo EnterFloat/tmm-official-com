@@ -16,35 +16,45 @@ const About = class extends React.Component {
     var carouselHeight = 225;
     return (
       <>
-        <Container className={'carousel-container'} >
-          <Carousel className={'carousel'} indicators={true}>
-          {data.sanityAbout.images.map(function(image, i) {
-                  return (
-                    <Carousel.Item>
-                      <div className="d-block w-100 h-100 carousel-item-container">
-                        
-                        <Img className="carousel-item"
-                          key={i}
-                          fluid={image.asset.fluid}
-                          
-                          className="d-block h-100"
-                          />                
-                        </div>
-                    </Carousel.Item>                    
-                  );
-                })}              
-          </Carousel>
-        </Container>
+        <Row className={"carousel-row"}>
+          <Col
+            xs={{ span: 12, offset: 0 }}
+            sm={{ span: 12, offset: 0 }}
+            md={{ span: 8, offset: 2 }}
+            lg={{ span: 6, offset: 3 }}
+            xl={{ span: 6, offset: 3 }}
+            style={{ marginBottom: '0px', padding: '0px' }}
+          >
+            <Container className={'carousel-container'} >
+              <Carousel className={'carousel'} indicators={true}>
+              {data.sanityAbout.images.map(function(image, i) {
+                      return (
+                        <Carousel.Item>
+                          <div className="d-block w-100 h-100 carousel-item-container">
+                            
+                            <Img className="carousel-item"
+                              key={i}
+                              fluid={image.asset.fluid}
+                              
+                              className="d-block h-100"
+                              />                
+                            </div>
+                        </Carousel.Item>                    
+                      );
+                    })}              
+              </Carousel>
+            </Container>
+          </Col>
+        </Row>
 
         <Container
           style={{ paddingTop: '30px', paddingBottom: '30px' }}
         >
           <br></br>
           <h2>What is the Masculine Mentality?</h2>
-          <p>{data.sanityAbout.whatIsTMM}</p>
-          <br></br>
-          <h2>About me</h2>
-          <p>{data.sanityAbout.about}</p>
+          <p style={{ whiteSpace: 'pre-wrap' }}>{data.sanityAbout.whatIsTMM}</p>
+          <h2>About Hans Winther</h2>
+          <p style={{ whiteSpace: 'pre-wrap' }}>{data.sanityAbout.about}</p>
         </Container>
         <div style={{paddingBottom: '60px', marginLeft: '0px', paddingLeft: '0px', marginRight: '0px', paddingRight: '0px', width: '100%'}}>
           <Jumbotron style={{ background: '#760000', borderRadius: '0px', marginLeft: '0px', marginRight: '0px', width: '100%' }}>

@@ -6,6 +6,7 @@ import CookieConsent from 'react-cookie-consent';
 import '../assets/sass/_layout.scss';
 
 import '../assets/sass/grayscale.scss';
+import EmailPopup from './EmailPopup';
 
 class Layout extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class Layout extends Component {
             >
               <html lang="da" />
             </Helmet>
+            <EmailPopup/>
             {/* <div style={{}}> */}
             {children}
             {/* </div> */}
@@ -64,6 +66,7 @@ class Layout extends Component {
               This bit of text is smaller :O
               </span> */}
             </CookieConsent>
+            
           </div>
         )}
       />

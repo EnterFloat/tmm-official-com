@@ -1,0 +1,39 @@
+.popup-container {
+    position:fixed;
+    bottom:100px;
+    width: 100%;
+    z-index: 1000002;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.popup-col {
+    background-color: white;
+    border-radius: 15px 0px 0px 15px;
+    padding: 14px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 3px;
+    padding-left: 8px;
+}
+
+.subscribe-button {
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    position: relative;
+}
+
+.form-container {
+    padding-left: 10px;
+}
+
+.close-popup {
+    cursor:pointer;
+    width: 15px;
+    height: 15px;
+    left: 10px;
+    margin-bottom: 0px;
+    
+    top: 0px;
+    display: inline-block;
+}
