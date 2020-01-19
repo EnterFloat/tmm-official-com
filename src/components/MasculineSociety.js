@@ -148,7 +148,7 @@ const MasculineSociety = class extends React.Component {
         <Container style={{paddingTop: "50px", paddingBottom: "50px"}}>
           <br id="aboutTMS"></br>
           <h1>The Masculine Society</h1>
-          <Button onClick={() => this.handlePurchase("sku_GSP3Jj23rZ7F5A")} disabled={purchaseIsDisabled}>{purchaseIsDisabled ? 'You are subscribed' : 'Buy TMS'}</Button>
+          <Button onClick={() => this.handlePurchase("sku_GZj8t0qHsiuqCr")} disabled={purchaseIsDisabled}>{purchaseIsDisabled ? 'You are subscribed' : 'Buy TMS'}</Button>
         </Container>
       </div>
       <ActionButton className="tms-button" buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more &darr;</ActionButton>
