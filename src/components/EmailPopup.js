@@ -7,15 +7,16 @@ export default class EmailPopup extends Component {
   constructor(props) {
     super(props);
     this.toggleVisibility = this.toggleVisibility.bind(this);
+    var popupStatus = ""
     if (typeof localStorage != "undefined") {
-      const popupStatus = localStorage.getItem('popupStatus')
+      var popupStatus = localStorage.getItem('popupStatus')
+      console.log("popupStatus from constructor " + popupStatus)
     }
-    console.log("popupStatus from constructor " + popupStatus)
     var popupVisibility = ""
     var right = ""
     var toggleText = ""
 
-    if (popupStatus !== undefined ){
+    if (popupStatus != "" ){
       if (popupStatus == "visible") {
         popupVisibility = "visible"
         right = "0px"
