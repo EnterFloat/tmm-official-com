@@ -129,7 +129,7 @@ export default class EmailPopup extends Component {
         onClick={() => this.toggleVisibility()}>{this.state.toggleText}
         </p>
           <div className="form-container">
-          <Form name="Email subscription" method="POST" data-netlify="true" action={'/thank-you'}>
+          <Form name="Email Subscription" method="POST" data-netlify="true" action={'/thank-you'}>
             <Form.Group controlId="formBasicEmail">
               <Form.Control
                 name="email"
@@ -137,6 +137,13 @@ export default class EmailPopup extends Component {
                 placeholder="Enter your email"
               />
             </Form.Group>
+            <Form.Group controlId="formBasicHidden">
+                <Form.Control
+                  type="hidden"
+                  name="form-name"
+                  value="Email Subscription"
+                />
+              </Form.Group>
 
             <Button className="subscribe-button" variant="primary" type="submit">
               Subscribe to newsletter
