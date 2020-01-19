@@ -108,6 +108,7 @@ export const getProfile = () => {
 };
 
 export const logout = () => {
+  isAuth0Callback = "true"
   localStorage.setItem('isLoggedIn', false);
   localStorage.removeItem('customer_subscriptions');
   localStorage.setItem('ownsTMS', false);
