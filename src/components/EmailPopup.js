@@ -10,7 +10,12 @@ export default class EmailPopup extends Component {
     var popupStatus = "visible"
     if (typeof localStorage != "undefined") {
       var localPopupStatus = localStorage.getItem('popupStatus')
-      if (typeof localPopupStatus != null) {
+      console.log(localPopupStatus)
+      console.log(typeof localPopupStatus)
+      console.log(popupStatus)
+
+      if (localPopupStatus !== null) {
+        console.log("not null")
         popupStatus = localStorage.getItem('popupStatus')
       }
       console.log("popupStatus from constructor " + popupStatus)
@@ -20,16 +25,14 @@ export default class EmailPopup extends Component {
     var toggleText = ""
     console.log(popupStatus)
 
-    if (popupStatus != "" ){
-      if (popupStatus == "visible") {
-        popupVisibility = "visible"
-        right = "0px"
-        toggleText = '\u276F'
-      } else if (popupStatus == "hidden") {
-        popupVisibility = "hidden"
-        right = "-220px"
-        toggleText = '\u276E'
-      }
+    if (popupStatus == "visible") {
+      popupVisibility = "visible"
+      right = "0px"
+      toggleText = '\u276F'
+    } else if (popupStatus == "hidden") {
+      popupVisibility = "hidden"
+      right = "-220px"
+      toggleText = '\u276E'
     }
     this.state = {
       popupVisibility: popupVisibility,
@@ -39,10 +42,10 @@ export default class EmailPopup extends Component {
   }
 
   componentDidMount() {
-    const popupStatus = localStorage.getItem('popupStatus')
-    console.log("loading popupStatus to " + popupStatus)
-    this.setState({popupVisibility: popupStatus})
-    this.toggleVisibility(popupStatus)
+    // const popupStatus = localStorage.getItem('popupStatus')
+    // console.log("loading popupStatus to " + popupStatus)
+    // this.setState({popupVisibility: popupStatus})
+    // this.toggleVisibility(popupStatus)
   }
   componentWillUnmount() {
     console.log("Set popupStatus to " + this.state.popupVisibility)
