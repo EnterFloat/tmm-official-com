@@ -93,7 +93,6 @@ export const silentAuth = callback => {
 
 export const handleAuthentication = (isAuth0_callback) => {
   console.log("\n\n\n\n\n")
-
   console.log(isAuth0_callback)
   isAuth0Callback = isAuth0_callback
   if (!isBrowser) {
