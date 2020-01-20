@@ -30,7 +30,7 @@ export default function isSuccessfulPurchase(sessionId) {
             var auth0_id = result.sub;
             console.log(auth0_id);
             // Get the FaunaDB user
-            return editFaunaDBUser(auth0_id);
+            return editFaunaDBUser(auth0_id, {ownsTMS: "true"});
           }
         })
         .then(status => {

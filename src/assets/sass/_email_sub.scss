@@ -39,9 +39,21 @@
 
 .close-popup {
     cursor:pointer;
-    width: 15px;
+    width: 22px;
     height: 15px;
-    left: 10px;
+    left: 20px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    
+    top: 0px;
+    display: inline-block;
+}
+
+.minimize-popup {
+    cursor:pointer;
+    width: 30px;
+    height: 15px;
+    left: 20px;
     margin-bottom: 0px;
     font-size: 20px;
     

@@ -11,15 +11,10 @@ export default class EmailPopup extends Component {
     var popupStatus = "hidden"
     if (typeof localStorage != "undefined") {
       var localPopupStatus = localStorage.getItem('popupStatus')
-      console.log(localPopupStatus)
-      console.log(typeof localPopupStatus)
-      console.log(popupStatus)
-
+      
       if (localPopupStatus !== null) {
-        console.log("not null")
-        popupStatus = localStorage.getItem('popupStatus')
+        popupStatus = localPopupStatus
       }
-      console.log("popupStatus from constructor " + popupStatus)
     }
     var popupVisibility = ""
     var right = ""
@@ -33,6 +28,10 @@ export default class EmailPopup extends Component {
     } else if (popupStatus == "hidden") {
       popupVisibility = "hidden"
       right = "-220px"
+      toggleText = '\u276E'
+    } else if (popupStatus == "closed") {
+      popupVisibility = "closed"
+      right = "-320px"
       toggleText = '\u276E'
     }
     this.state = {
@@ -79,6 +78,10 @@ export default class EmailPopup extends Component {
       popupVisibility = "hidden"
       right = "-220px"
       toggleText = '\u276E'
+    } else if (toggleTo == "closed") {
+      popupVisibility = "closed"
+      right = "-320px"
+      toggleText = this.state.toggleText
     }
     console.log(popupVisibility)
     this.setState({
@@ -88,46 +91,19 @@ export default class EmailPopup extends Component {
     })
     if (typeof localStorage != "undefined") {
       localStorage.setItem("popupStatus", toggleTo)
-    }
-
-    // console.log(this.state.popupVisibility)
-    // if (this.state.popupVisibility == "visible") {
-    //   this.setState({
-    //     popupVisibility: "hidden",
-    //     right: "-220px",
-    //     toggleText: '\u276E'
-    //   })
-    // }
-    // else {
-    //   this.setState({
-    //     popupVisibility: "visible",
-    //     right: "0px",
-    //     toggleText: '\u276F'
-    //   })
-    // }
-    
+    }    
   }
   
   render() {
-    // xs={{ span: 8, offset: 4 }}
-    //       sm={{ span: 7, offset: 5 }}
-    //       md={{ span: 6, offset: 6 }}
-    //       lg={{ span: 4, offset: 8 }}
-    //       xl={{ span: 4, offset: 8 }}
-
     return (
-      <div className={'popup-container'} style={{right: this.state.right}}>
-        {/* <div style={{transform: this.state.transform}}> */}
-      {/* <Row>
-        <Col
-          id={'Col1'}
-          
-          className="popup-col"
-        > */}
-        
+      <div className={'popup-container'} style={{right: this.state.right}}>        
+        <p className="minimize-popup"
+        onClick={() => this.toggleVisibility("closed")}>&#10005;
+        </p>
         <p className="close-popup"
         onClick={() => this.toggleVisibility()}>{this.state.toggleText}
         </p>
+        
           <div className="form-container">
           <Form name="Email Subscription" method="POST" data-netlify="true" action={'/thank-you'}>
             <Form.Group controlId="formBasicEmail">

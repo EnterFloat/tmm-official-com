@@ -13,7 +13,7 @@ exports.handler = (event, context, callback) => {
   const auth0_id = params.auth0_id;
     // .query(q.Update(q.Index(`user_by_auth0_id`, `${auth0_id}`), userItem))
   const userItem = {
-    data: {ownsTMS: "true"},
+    data: params.data,
   };
   return client
     .query(
