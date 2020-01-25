@@ -14,6 +14,8 @@ import {
 import Img from 'gatsby-image';
 import '../assets/sass/_product.scss';
 import scrollTo from 'gatsby-plugin-smoothscroll';
+import ModalVideo from 'react-modal-video'
+import PlayIcon from '../assets/images/play-icon.png';
 
 const buttonStyles = {
   fontSize: '13px',
@@ -48,11 +50,16 @@ const Product = class extends React.Component {
     this.handlePurchase = this.handlePurchase.bind(this);
     this.redirectToCheckout = this.redirectToCheckout.bind(this);
     this.buttonText = this.buttonText.bind(this);
-
+    this.openModal = this.openModal.bind(this);
     this.state = {
       stripe: null,
       cus_subs: null,
+      isOpen: false,
+      interval: 5000
     };
+  }
+  openModal () {
+    this.setState({isOpen: true, interval: 99999999})
   }
 
   componentDidMount() {
@@ -239,21 +246,42 @@ const Product = class extends React.Component {
                 indicators={true}
                 style={{ width: '100%', height: + 'auto', minHeight: "200 px" }}
               >
-                {sanityProduct.images.map(function(image, i) {
-                  console.log(image);
-                  return (
-                    <Carousel.Item>
-                      <Img style={{
-                          width: 'auto',
-                          height: "auto",                          
-                          objectFit: 'cover',
-                        }}
-                        key={i}
-                        fluid={image.asset.fluid}
-                        className="d-block w-100"
-                        />                    
-                    </Carousel.Item>                    
-                  );
+                {sanityProduct.media.map(function(media, i) {
+                  if (media.isImage) {
+                    return (
+                      <Carousel.Item>
+                        <Img style={{
+                            width: 'auto',
+                            height: "auto",                          
+                            objectFit: 'cover',
+                          }}
+                          key={i}
+                          fluid={media.image.asset.fluid}
+                          className="d-block w-100"
+                          />                    
+                      </Carousel.Item>                    
+                    );
+                  } else {
+                    var videoID = media.video.slice(-11)
+                    return (
+                      <Carousel.Item>
+                        <Img style={{
+                            width: 'auto',
+                            height: "auto",                          
+                            objectFit: 'cover',
+                          }}
+                          key={i}
+                          fluid={media.image.asset.fluid}
+                          className="d-block w-100"
+                          />       
+                          <div onClick={this.openModal} className="play-button-product"><img src={PlayIcon} className="play-image"></img></div>
+                          <div style={{zIndex: "10000000"}}>
+                              <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId={videoID} onClose={() => this.setState({isOpen: false, interval: 5000})} />
+                          </div>             
+                      </Carousel.Item>                    
+                    );
+                  }
+                  
                 })}                
               </Carousel>
             </Col>
@@ -407,12 +435,16 @@ export default props => (
                   }
                 }
               }
-              images {
-                asset {
-                  fluid(maxWidth: 1000) {
-                    ...GatsbySanityImageFluid
+              media {
+                isImage
+                image {
+                  asset {
+                    fluid(maxWidth: 700) {
+                      ...GatsbySanityImageFluid
+                    }
                   }
                 }
+                video
               }
               reviews {
                 title

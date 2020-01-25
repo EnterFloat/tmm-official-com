@@ -93,12 +93,16 @@ export default props => (
                   }
                 }
               }
-              images {
-                asset {
-                  fluid(maxWidth: 900) {
-                    ...GatsbySanityImageFluid
+              media {
+                isImage
+                image {
+                  asset {
+                    fluid(maxWidth: 700) {
+                      ...GatsbySanityImageFluid
+                    }
                   }
                 }
+                video
               }
               reviews {
                 title
