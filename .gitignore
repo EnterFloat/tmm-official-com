@@ -16,3 +16,6 @@ yarn.lock
 # Local Netlify folder
 .netlify
 /functions-build
+
+/src/assets/sass/_image-video-test.scss
+/src/pages/image-video-test.js

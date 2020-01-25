@@ -245,7 +245,8 @@ const Product = class extends React.Component {
             >
               <Carousel
                 indicators={true}
-                style={{ width: '100%', height: + 'auto', minHeight: "200 px", backgroundColor: "#e8e8e8" }}
+                interval={this.state.interval}
+                style={{ width: '100%', height: + 'auto', minHeight: "200 px", backgroundColor: "#d1d1d1" }}
               >
                 {sanityProduct.media.map(function(media, i) {
                   if (media.isImage) {
