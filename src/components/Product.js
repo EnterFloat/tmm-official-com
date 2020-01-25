@@ -280,8 +280,7 @@ const Product = class extends React.Component {
                           </div>             
                       </Carousel.Item>                    
                     );
-                  }
-                  
+                  }                  
                 })}                
               </Carousel>
             </Col>
