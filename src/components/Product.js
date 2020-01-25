@@ -50,17 +50,18 @@ const Product = class extends React.Component {
     this.handlePurchase = this.handlePurchase.bind(this);
     this.redirectToCheckout = this.redirectToCheckout.bind(this);
     this.buttonText = this.buttonText.bind(this);
-    this.openModal = this.openModal.bind(this);
     this.state = {
       stripe: null,
       cus_subs: null,
       isOpen: false,
       interval: 5000
     };
+    this.openModal = this.openModal.bind(this);
   }
   openModal () {
     this.setState({isOpen: true, interval: 99999999})
   }
+  
 
   componentDidMount() {
     const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLIC_KEY);
@@ -281,7 +282,7 @@ const Product = class extends React.Component {
                       </Carousel.Item>                    
                     );
                   }                  
-                })}                
+                }, this)}                
               </Carousel>
             </Col>
           </Row>
