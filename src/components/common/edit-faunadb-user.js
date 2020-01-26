@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 export default function editFaunaDBUser(auth0_id, data) {
-  console.log('editFaunaDBUser');
+  // console.log('editFaunaDBUser');
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-edit-faunadb-user', {

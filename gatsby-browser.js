@@ -1,4 +1,3 @@
-// ./gatsby-browser.js
 import React from 'react';
 import { silentAuth } from './src/utils/auth';
 

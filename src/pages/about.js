@@ -6,9 +6,6 @@ import Header from '../components/Header';
 import About from '../components/About';
 
 export default class AboutPage extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Layout paddingTop="56">

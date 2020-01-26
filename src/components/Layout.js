@@ -5,20 +5,13 @@ import { StaticQuery, graphql } from 'gatsby';
 import CookieConsent from 'react-cookie-consent';
 import '../assets/sass/_layout.scss';
 
-import '../assets/sass/grayscale.scss';
+import '../assets/sass/tmm.scss';
 import EmailPopup from './EmailPopup';
-import Dialog from './Dialog';
-
 
 class Layout extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     document.body.style.backgroundColor = this.props.BGColor;
-    // document.body.style.marginTop = this.props.marginTop + "px"
     document.body.style.height = '100%';
-    // document.body.style.marginBottom = "60px"
   }
   render() {
     const { children } = this.props;
@@ -50,10 +43,8 @@ class Layout extends Component {
             >
               <html lang="da" />
             </Helmet>
-            <EmailPopup/>
-            {/* <div style={{}}> */}
+            <EmailPopup />
             {children}
-            {/* </div> */}
             <CookieConsent
               location="bottom"
               buttonText="Accept"
@@ -63,12 +54,8 @@ class Layout extends Component {
               enableDeclineButton
               expires={150}
             >
-              This website uses cookies to enhance the user experience.{' '}
-              {/* <span style={{ fontSize: "10px" }}>
-              This bit of text is smaller :O
-              </span> */}
+              This website uses cookies to enhance the user experience.{' '}              
             </CookieConsent>
-            
           </div>
         )}
       />

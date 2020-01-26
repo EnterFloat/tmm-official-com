@@ -1,6 +1,6 @@
 import React from 'react';
-import ModalVideo from 'react-modal-video'
-import { StaticQuery, graphql, Link } from 'gatsby';
+import ModalVideo from 'react-modal-video';
+import { StaticQuery, graphql } from 'gatsby';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
 import '../assets/sass/_tms.scss';
@@ -12,7 +12,6 @@ import Background from '../assets/images/TMS.jpg';
 import PlayIcon from '../assets/images/play-icon.png';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import Dialog from './Dialog';
-
 
 const buttonStylesCheckout = {
   fontSize: '13px',
@@ -33,23 +32,20 @@ const MasculineSociety = class extends React.Component {
     super(props);
     this.state = {
       buttonOpacity: 1,
-      buttonVisibility: "visible",
+      buttonVisibility: 'visible',
       isOpen: false,
-      oldButtonVisibility: "visible",
-      dialogVisibility: "hidden",
-      dialogTitle: "",
-      dialogMessage: "",
-    }
+      oldButtonVisibility: 'visible',
+      dialogVisibility: 'hidden',
+      dialogTitle: '',
+      dialogMessage: '',
+    };
     this.openModal = this.openModal.bind(this);
     this.setDialog = this.setDialog.bind(this);
     this.handlePurchase = this.handlePurchase.bind(this);
     this.redirectToCheckout = this.redirectToCheckout.bind(this);
   }
 
-
-
   redirectToCheckout(stripe_cus_id, product_sku) {
-    console.log('redirectToCheckout with stripe_cus_id: ' + stripe_cus_id);
     createTmsPurchaseSession(stripe_cus_id, product_sku)
       .then(result => {
         return result;
@@ -59,23 +55,19 @@ const MasculineSociety = class extends React.Component {
           .redirectToCheckout({
             sessionId: result,
           })
-          .then(function(result) {
-            // window.alert("Error: " + result.error.message)
-            console.log("redirectToCheckout then: " + result.error.message);
+          .then(function(result) {            
           });
       })
-      .catch(err => {
-        console.log(err);
+      .catch(err => {        
       });
   }
 
   setDialog(visibility, title, message) {
-    console.log("setDialog")
     this.setState({
       dialogVisibility: visibility,
       dialogTitle: title,
       dialogMessage: message,
-    })
+    });
   }
 
   handlePurchase(product_id) {
@@ -83,142 +75,159 @@ const MasculineSociety = class extends React.Component {
     handleCustomer(true)
       .then(result => {
         var stripe_cus_id = result;
-        console.log(stripe_cus_id);
         // Redirect to checkout. Should create session first
         this.redirectToCheckout(stripe_cus_id, product_id);
       })
       .catch(err => {
-        if (err == 'signed_out') {
-          console.log('Sign in to continue');
+        if (err === 'signed_out') {
           // window.alert('Sign in to buy a product');
-          this.setDialog("visible", "Info", "You must sign in to buy a product")
-        } else {
-          console.log('Could not create user: ' + err);
+          this.setDialog(
+            'visible',
+            'Info',
+            'You must sign in to buy a product'
+          );
         }
       });
   }
 
-
-  openModal () {
-    this.setState({isOpen: true, oldButtonVisibility: this.state.buttonVisibility, buttonVisibility: "hidden"})
+  openModal() {
+    this.setState({
+      isOpen: true,
+      oldButtonVisibility: this.state.buttonVisibility,
+      buttonVisibility: 'hidden',
+    });
   }
   componentDidMount() {
-    this.listenToScroll()
+    this.listenToScroll();
     const ownsTMS = localStorage.getItem('ownsTMS');
-    window.addEventListener('scroll', this.listenToScroll)
-    window.addEventListener("resize", this.listenToScroll);
+    window.addEventListener('scroll', this.listenToScroll);
+    window.addEventListener('resize', this.listenToScroll);
     const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLIC_KEY);
     const cus_subs = localStorage.getItem('customer_subscriptions'); // Should not be subs but whether TMS has been purchased
     this.setState({ stripe, cus_subs, ownsTMS });
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.listenToScroll)
-    window.removeEventListener("resize", this.listenToScroll);
-
+    window.removeEventListener('scroll', this.listenToScroll);
+    window.removeEventListener('resize', this.listenToScroll);
   }
 
   listenToScroll = () => {
     const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop
-  
+      document.body.scrollTop || document.documentElement.scrollTop;
+
     const height =
       document.documentElement.scrollHeight -
-      document.documentElement.clientHeight
-  
-    const scrolled = winScroll / height
-    var opacity = 1
-    var visibility = "visible";
-    // console.log("scrollHeight: " + document.documentElement.scrollHeight)
-    // console.log("clientHeight: " + document.documentElement.clientHeight)
-    // console.log("height: " + height)
+      document.documentElement.clientHeight;
 
+    const scrolled = winScroll / height;
+    var opacity = 1;
+    var visibility = 'visible';
 
     if (scrolled > 0.3 && scrolled <= 0.6) {
-      opacity = -((scrolled - 0.3) / 0.3) + 1
+      opacity = -((scrolled - 0.3) / 0.3) + 1;
     }
 
     if (scrolled > 0.6) {
-      opacity = 0
+      opacity = 0;
     }
-    if (opacity == 0 || height < 200 || this.state.isOpen) {
-      visibility = "hidden";
+    if (opacity === 0 || height < 200 || this.state.isOpen) {
+      visibility = 'hidden';
     } else {
-      visibility = "visible";
+      visibility = 'visible';
     }
-  
+
     this.setState({
       buttonVisibility: visibility,
       oldButtonVisibility: visibility,
       buttonOpacity: opacity,
-    })
-  }
-
+    });
+  };
 
   render() {
     const { data } = this.props;
 
-    var videoID = data.sanitySiteSettings.masculineVideo.slice(-11)
-    const ownsTMS = this.state.ownsTMS
-    var purchaseIsDisabled = false
-    if (ownsTMS == "true") {
-      var purchaseIsDisabled = true
+    var videoID = data.sanitySiteSettings.masculineVideo.slice(-11);
+    const ownsTMS = this.state.ownsTMS;
+    var purchaseIsDisabled = false;
+    if (ownsTMS === 'true') {
+      var purchaseIsDisabled = true;
     }
     return (
       <>
-      <Dialog title={this.state.dialogTitle} message={this.state.dialogMessage} visibility={this.state.dialogVisibility} setState={p=>{this.setState(p)}} parentState={this.state}/>
-      <div style={{zIndex: "10000000"}}>
-        <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId={videoID} onClose={() => this.setState({isOpen: false, buttonVisibility: this.state.oldButtonVisibility})} />
-      </div>
-      <div className="tms-image-container">
-        <img className="tms-image" src={Background}></img>
-        <div onClick={this.openModal} className="play-button"><img src={PlayIcon} className="play-image"></img></div>
-      </div>
-      {/* <div style={{paddingBottom: '60px'}}>
-        <Container style={{paddingTop: "50px", paddingBottom: "50px"}}>
-          <br id="aboutTMS"></br>
-          <h1>The Masculine Society</h1>
-          <Button onClick={() => this.handlePurchase("sku_GZj8t0qHsiuqCr")} disabled={purchaseIsDisabled}>{purchaseIsDisabled ? 'You are subscribed' : 'Buy TMS'}</Button>
+        <Dialog
+          title={this.state.dialogTitle}
+          message={this.state.dialogMessage}
+          visibility={this.state.dialogVisibility}
+          setState={p => {
+            this.setState(p);
+          }}
+          parentState={this.state}
+        />
+        <div style={{ zIndex: '10000000' }}>
+          <ModalVideo
+            style={{ marginTop: '56px' }}
+            channel="youtube"
+            isOpen={this.state.isOpen}
+            videoId={videoID}
+            onClose={() =>
+              this.setState({
+                isOpen: false,
+                buttonVisibility: this.state.oldButtonVisibility,
+              })
+            }
+          />
+        </div>
+        <div className="tms-image-container">
+          <img className="tms-image" alt={"Background"} src={Background}></img>
+          <div onClick={this.openModal} className="play-button">
+            <img src={PlayIcon} className="play-image"></img>
+          </div>
+        </div>        
+        <ActionButton
+          className="tms-button"
+          buttonOpacity={this.state.buttonOpacity}
+          buttonVisibility={this.state.buttonVisibility}
+        >
+          Read more &darr;
+        </ActionButton>
+        <Container
+          id="aboutTMS"
+          className="plan-container"
+          style={{ paddingBottom: '60px', paddingTop: '30px' }}
+        >
+          <Row style={{ textAlign: 'center' }}>
+            <Col
+              xs={{ span: 12 }}
+              sm={{ span: 12 }}
+              md={{ span: 8 }}
+              lg={{ span: 6 }}
+              xl={{ span: 6 }}
+              style={{ marginBottom: '10px', padding: '10px 10px' }}
+              className="col-centered"
+            >
+              <Card>
+                <Card.Header>
+                  <h4 style={{ textAlign: 'center' }}>The Masculine Society</h4>
+                </Card.Header>
+                <Card.Body>
+                  <h5>
+                    {1000} <span style={{ color: 'grey' }}> {'USD'}</span>
+                  </h5>
+                  <h5>Access to all products</h5>
+                  <p></p>
+                  <Button
+                    style={buttonStylesCheckout}
+                    onClick={() => this.handlePurchase('sku_GZj8t0qHsiuqCr')}
+                    disabled={purchaseIsDisabled}
+                  >
+                    {purchaseIsDisabled ? 'You own TMS' : 'Buy TMS'}
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+            <br></br>
+          </Row>
         </Container>
-      </div> */}
-      <ActionButton className="tms-button" buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more &darr;</ActionButton>
-      <Container id="aboutTMS" className="plan-container" style={{paddingBottom: '60px', paddingTop: '30px'}}>
-            <Row style={{ textAlign: 'center' }}>
-              <Col
-                xs={{ span: 12 }}
-                sm={{ span: 12 }}
-                md={{ span: 8 }}
-                lg={{ span: 6 }}
-                xl={{ span: 6 }}
-                style={{ marginBottom: '10px', padding: '10px 10px' }}
-                className="col-centered"
-              >
-                <Card>
-                  <Card.Header>
-                    <h4 style={{ textAlign: 'center' }}>The Masculine Society</h4>
-                  </Card.Header>
-                  <Card.Body>
-                    <h5>
-                      {1000}{' '}
-                      <span style={{ color: 'grey' }}>
-                        {' '}
-                        {"USD"}
-                      </span>
-                    </h5>
-                    <h5>Access to all products</h5>
-                    <p></p>
-                    <Button
-                      style={buttonStylesCheckout}
-                      onClick={() => this.handlePurchase("sku_GZj8t0qHsiuqCr")} 
-                      disabled={purchaseIsDisabled}
-                    >
-                      {purchaseIsDisabled ? 'You own TMS' : 'Buy TMS'}
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <br></br>
-            </Row>
-          </Container>
       </>
     );
   }
@@ -236,11 +245,15 @@ export default props => (
   />
 );
 
-
 function ActionButton(props) {
   return (
-    <div className={'action-container'} style={ { opacity: `${ props.buttonOpacity * 100 }%`, visibility: `${ props.buttonVisibility }` } }
->
+    <div
+      className={'action-container'}
+      style={{
+        opacity: `${props.buttonOpacity * 100}%`,
+        visibility: `${props.buttonVisibility}`,
+      }}
+    >
       <Row>
         <Col
           id={'Col1'}
@@ -250,8 +263,10 @@ function ActionButton(props) {
           lg={{ span: 3, offset: 1 }}
           xl={{ span: 3, offset: 1 }}
         >
-          <Button className={'action-button'}
-          onClick={() => scrollTo('#aboutTMS')}>
+          <Button
+            className={'action-button'}
+            onClick={() => scrollTo('#aboutTMS')}
+          >
             {props.children}
           </Button>
         </Col>

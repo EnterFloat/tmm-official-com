@@ -1,4 +1,4 @@
-// Netlify function to create a new FaunaDB user saving auth0_id and Stripe customer id
+// Netlify function to edit a FaunaDB user
 
 import faunadb from 'faunadb';
 
@@ -11,23 +11,15 @@ exports.handler = (event, context, callback) => {
   const params = JSON.parse(event.body);
 
   const auth0_id = params.auth0_id;
-    // .query(q.Update(q.Index(`user_by_auth0_id`, `${auth0_id}`), userItem))
   const userItem = {
     data: params.data,
   };
   return client
-    .query(
-      // q.Update(
-        q.Get(q.Match(q.Index('user_by_auth0_id'), `${auth0_id}`))
-        // q.Ref(q.Get(q.Match(q.Index(`user_by_auth0_id`), `${auth0_id}`))), `${userItem}`
-      // )
-    )
+    .query(q.Get(q.Match(q.Index('user_by_auth0_id'), `${auth0_id}`)))
     .then(response => {
-      console.log(response)
-      console.log(response.ref)
-      return client.query(
-          q.Update(response.ref, userItem)
-      )
+      console.log(response);
+      console.log(response.ref);
+      return client.query(q.Update(response.ref, userItem));
     })
     .then(response => {
       console.log('success', response);

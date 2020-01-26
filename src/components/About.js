@@ -1,10 +1,17 @@
 import { StaticQuery, graphql } from 'gatsby';
 import React from 'react';
-import { Container, Carousel, Row, Col, Jumbotron, Card } from 'react-bootstrap';
+import {
+  Container,
+  Carousel,
+  Row,
+  Col,
+  Jumbotron,
+  Card,
+} from 'react-bootstrap';
 import '../assets/sass/_page.scss';
 import '../assets/sass/_about.scss';
 import Img from 'gatsby-image';
-import ModalVideo from 'react-modal-video'
+import ModalVideo from 'react-modal-video';
 import PlayIcon from '../assets/images/play-icon.png';
 
 const About = class extends React.Component {
@@ -12,22 +19,21 @@ const About = class extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      interval: 5000
+      interval: 5000,
     };
     this.openModal = this.openModal.bind(this);
   }
-  openModal () {
-    this.setState({isOpen: true, interval: 99999999})
+  openModal() {
+    this.setState({ isOpen: true, interval: 99999999 });
   }
-  
+
   componentDidMount() {}
 
   render() {
     const { data } = this.props;
-    var carouselHeight = 225;
     return (
       <>
-        <Row className={"carousel-row"}>
+        <Row className={'carousel-row'}>
           <Col
             xs={{ span: 12, offset: 0 }}
             sm={{ span: 12, offset: 0 }}
@@ -36,75 +42,76 @@ const About = class extends React.Component {
             xl={{ span: 6, offset: 3 }}
             style={{ marginBottom: '0px', padding: '0px' }}
           >
-            <Container className={'carousel-container'} >
-              <Carousel className={'carousel'} indicators={true} interval={this.state.interval}>
-                {console.log(data.sanityAbout)}
-              {data.sanityAbout.media.map(function(media, i) {
-                console.log(media)
+            <Container className={'carousel-container'}>
+              <Carousel
+                className={'carousel'}
+                indicators={true}
+                interval={this.state.interval}
+              >
+                {data.sanityAbout.media.map(function(media, i) {
                   if (media.isImage) {
-                    console.log(media.isImage)
                     return (
-                      <Carousel.Item
-                      >
-                        <Img
-                          
-                          key={i}
-                          fluid={media.image.asset.fluid}
-                          />                    
-                      </Carousel.Item>                    
+                      <Carousel.Item>
+                        <Img key={i} fluid={media.image.asset.fluid} />
+                      </Carousel.Item>
                     );
                   } else {
-                    var videoID = media.video.slice(-11)
-                    {/* className="d-block w-100 h-100 carousel-item-container" */}
-                    {/* className="carousel-item d-block h-100" */}
+                    var videoID = media.video.slice(-11);                    
                     return (
-                      <Carousel.Item
-                      
-                      >
-                        <Img
-                          
-                          key={i}
-                          fluid={media.image.asset.fluid}
-                          />       
-                          <div onClick={this.openModal} className="play-button-about"><img src={PlayIcon} className="play-image"></img></div>
-                          <div style={{zIndex: "10000000"}}>
-                              <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId={videoID} onClose={() => this.setState({isOpen: false, interval: 5000})} />
-                          </div>             
-                      </Carousel.Item>                    
+                      <Carousel.Item>
+                        <Img key={i} fluid={media.image.asset.fluid} />
+                        <div
+                          onClick={this.openModal}
+                          className="play-button-about"
+                        >
+                          <img src={PlayIcon} className="play-image"></img>
+                        </div>
+                        <div style={{ zIndex: '10000000' }}>
+                          <ModalVideo
+                            style={{ marginTop: '56px' }}
+                            channel="youtube"
+                            isOpen={this.state.isOpen}
+                            videoId={videoID}
+                            onClose={() =>
+                              this.setState({ isOpen: false, interval: 5000 })
+                            }
+                          />
+                        </div>
+                      </Carousel.Item>
                     );
-                  }                  
-                }, this)}
-              {/* {data.sanityAbout.media.map(function(media, i) {
-                
-                      return (
-                        <Carousel.Item>
-                          <div className="d-block w-100 h-100 carousel-item-container">
-                            
-                            <Img
-                              className="carousel-item d-block h-100"
-                          key={i}
-                          fluid={media.image.asset.fluid}
-                              />                
-                            </div>
-                        </Carousel.Item>                    
-                      );
-                    })}               */}
+                  }
+                }, this)}                
               </Carousel>
             </Container>
           </Col>
         </Row>
 
-        <Container
-          style={{ paddingTop: '30px', paddingBottom: '30px' }}
-        >
+        <Container style={{ paddingTop: '30px', paddingBottom: '30px' }}>
           <br></br>
           <h2>What is the Masculine Mentality?</h2>
           <p style={{ whiteSpace: 'pre-wrap' }}>{data.sanityAbout.whatIsTMM}</p>
           <h2>About Hans Winther</h2>
           <p style={{ whiteSpace: 'pre-wrap' }}>{data.sanityAbout.about}</p>
         </Container>
-        <div style={{paddingBottom: '60px', marginLeft: '0px', paddingLeft: '0px', marginRight: '0px', paddingRight: '0px', width: '100%'}}>
-          <Jumbotron style={{ background: '#760000', borderRadius: '0px', marginLeft: '0px', marginRight: '0px', width: '100%' }}>
+        <div
+          style={{
+            paddingBottom: '60px',
+            marginLeft: '0px',
+            paddingLeft: '0px',
+            marginRight: '0px',
+            paddingRight: '0px',
+            width: '100%',
+          }}
+        >
+          <Jumbotron
+            style={{
+              background: '#760000',
+              borderRadius: '0px',
+              marginLeft: '0px',
+              marginRight: '0px',
+              width: '100%',
+            }}
+          >
             <Row>
               <Col>
                 <h2
@@ -117,7 +124,10 @@ const About = class extends React.Component {
                   Recommendations
                 </h2>
                 <Row>
-                  {data.sanityAbout.recommendations.map(function(recommendation, i) {
+                  {data.sanityAbout.recommendations.map(function(
+                    recommendation,
+                    i
+                  ) {
                     return (
                       <Col
                         xs={{ span: 12 }}
@@ -133,7 +143,10 @@ const About = class extends React.Component {
                             {recommendation.details}
                             <br></br>
                             <p
-                              style={{ textAlign: 'right', marginBottom: '0px' }}
+                              style={{
+                                textAlign: 'right',
+                                marginBottom: '0px',
+                              }}
                             >
                               {recommendation.author}
                             </p>
@@ -173,7 +186,7 @@ export default props => (
             title
             details
             author
-          }  
+          }
         }
       }
     `}

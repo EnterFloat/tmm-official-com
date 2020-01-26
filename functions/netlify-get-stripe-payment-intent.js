@@ -1,4 +1,4 @@
-// Netlify function to get a Stripe Session by id
+// Netlify function to get a Stripe payment intent by piId
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,

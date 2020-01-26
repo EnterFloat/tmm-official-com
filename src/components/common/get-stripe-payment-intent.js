@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 export default function getStripePaymentIntent(piId) {
-  console.log('getStripeSession');
+  // console.log('getStripeSession');
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-get-stripe-payment-intent', {

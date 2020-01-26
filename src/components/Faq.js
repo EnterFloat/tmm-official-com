@@ -1,33 +1,16 @@
 import { StaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
-import {
-  Row,
-  Col,
-  Container,
-  Card,
-  Button,
-} from 'react-bootstrap';
-import styled from 'styled-components';
+import { Row, Col, Container, Card, Button } from 'react-bootstrap';
 import '../assets/sass/_faq.scss';
 
 const Faq = class extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {}
-
   render() {
     const { data } = this.props;
-
-    const CollapseContainer = styled.div`
-      background-color: red;
-      margin-bottom: 40px;
-    `;
 
     return (
       <div style={{ paddingBottom: '60px' }}>
         <Container>
-          <h2 style={{marginBottom: "20px"}}>FAQ</h2>
+          <h2 style={{ marginBottom: '20px' }}>FAQ</h2>
           {data.allSanityFaq.edges.map(({ node }) => (
             <>
               <Card className="shadow-box">

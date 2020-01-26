@@ -14,10 +14,9 @@ import {
 import Img from 'gatsby-image';
 import '../assets/sass/_product.scss';
 import scrollTo from 'gatsby-plugin-smoothscroll';
-import ModalVideo from 'react-modal-video'
+import ModalVideo from 'react-modal-video';
 import PlayIcon from '../assets/images/play-icon.png';
 import Dialog from './Dialog';
-
 
 const buttonStyles = {
   fontSize: '13px',
@@ -57,17 +56,16 @@ const Product = class extends React.Component {
       cus_subs: null,
       isOpen: false,
       interval: 5000,
-      dialogVisibility: "hidden",
-      dialogTitle: "",
-      dialogMessage: "",
+      dialogVisibility: 'hidden',
+      dialogTitle: '',
+      dialogMessage: '',
     };
     this.openModal = this.openModal.bind(this);
-    this.setDialog = this.setDialog.bind(this)
+    this.setDialog = this.setDialog.bind(this);
   }
-  openModal () {
-    this.setState({isOpen: true, interval: 99999999})
+  openModal() {
+    this.setState({ isOpen: true, interval: 99999999 });
   }
-  
 
   componentDidMount() {
     const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLIC_KEY);
@@ -83,7 +81,6 @@ const Product = class extends React.Component {
   }
 
   redirectToCheckout(stripe_cus_id, stripe_plan_id) {
-    console.log('redirectToCheckout with stripe_cus_id: ' + stripe_cus_id);
     createStripeSession(stripe_cus_id, stripe_plan_id)
       .then(result => {
         return result;
@@ -94,20 +91,17 @@ const Product = class extends React.Component {
             sessionId: result,
           })
           .then(function(result) {
-            console.log(result.error.message);
           });
       })
       .catch(err => {
-        console.log(err);
       });
   }
   setDialog(visibility, title, message) {
-    console.log("setDialog")
     this.setState({
       dialogVisibility: visibility,
       dialogTitle: title,
       dialogMessage: message,
-    })
+    });
   }
 
   handlePurchase(stripe_plan_id) {
@@ -115,17 +109,16 @@ const Product = class extends React.Component {
     handleCustomer(true)
       .then(result => {
         var stripe_cus_id = result;
-        console.log(stripe_cus_id);
         // Redirect to checkout. Should create session first
         this.redirectToCheckout(stripe_cus_id, stripe_plan_id);
       })
       .catch(err => {
-        if (err == 'signed_out') {
-          console.log('Sign in to continue');
-          this.setDialog("visible", "Info", "You must sign in to buy a product")
-          // window.alert('Sign in to buy a product');
-        } else {
-          console.log('Could not create user: ' + err);
+        if (err === 'signed_out') {
+          this.setDialog(
+            'visible',
+            'Info',
+            'You must sign in to buy a product'
+          );
         }
       });
   }
@@ -142,46 +135,37 @@ const Product = class extends React.Component {
       );
     }
     var cus_subs = this.state.cus_subs;
-    console.log('cus_subs ' + cus_subs);
-
     var plans_subbed = [];
     if (cus_subs !== null && cus_subs !== undefined && cus_subs !== 'none') {
       cus_subs = JSON.parse(cus_subs).data;
       for (const i in cus_subs) {
-        console.log(cus_subs[i].plan.id);
         plans_subbed.push(cus_subs[i].plan.id);
       }
     }
-    console.log('Plans subbed ' + plans_subbed);
-
     var products = {};
     for (const i in data.allStripeProduct.edges) {
       var node = data.allStripeProduct.edges[i].node;
       products[node.id] = node;
     }
     var product = products[productId];
-    console.log('Product ' + product);
 
     var associatedPlans = [];
     for (const i in data.allStripePlan.edges) {
       var node = data.allStripePlan.edges[i].node;
-      if (node.product == productId) {
+      if (node.product === productId) {
         associatedPlans.push(node);
       }
     }
 
     var cus_subs = this.state.cus_subs;
-    console.log('cus_subs ' + cus_subs);
     var plans_subbed = [];
 
     if (cus_subs !== null && cus_subs !== undefined && cus_subs !== 'none') {
       cus_subs = JSON.parse(cus_subs).data;
       for (const i in cus_subs) {
-        console.log(cus_subs[i].plan.id);
         plans_subbed.push(cus_subs[i].plan.id);
       }
     }
-    console.log('Plans subbed ' + plans_subbed);
 
     var isDisabled = false;
     for (const i in associatedPlans) {
@@ -193,8 +177,7 @@ const Product = class extends React.Component {
     var sanityProducts = data.allSanityProduct;
     var sanityProduct = null;
     for (const i in sanityProducts.edges) {
-      console.log([sanityProducts.edges[i].node.stripeId, productId]);
-      if (sanityProducts.edges[i].node.stripeId == productId) {
+      if (sanityProducts.edges[i].node.stripeId === productId) {
         sanityProduct = sanityProducts.edges[i].node;
       }
     }
@@ -213,16 +196,20 @@ const Product = class extends React.Component {
         </Container>
       );
     }
-
-    console.log('\n\n\nSanity product ' + sanityProduct);
-    var carouselHeight = 600;
-
     return (
       <>
-      <Dialog title={this.state.dialogTitle} message={this.state.dialogMessage} visibility={this.state.dialogVisibility} setState={p=>{this.setState(p)}} parentState={this.state}/>
+        <Dialog
+          title={this.state.dialogTitle}
+          message={this.state.dialogMessage}
+          visibility={this.state.dialogVisibility}
+          setState={p => {
+            this.setState(p);
+          }}
+          parentState={this.state}
+        />
         <Jumbotron
           style={{
-            padding: "0px"
+            padding: '0px',
           }}
         >
           <Row>
@@ -232,23 +219,19 @@ const Product = class extends React.Component {
               md={{ span: 12 }}
               lg={{ span: 5 }}
               xl={{ span: 4 }}
-              className="title-col"            
+              className="title-col"
             >
               <Container className={'title-box'} style={{ textAlign: 'right' }}>
                 <h1>{product.name}</h1>
                 <p>{sanityProduct.description}</p>
                 <p>
-                  {/* <Link
-                    to={'marketplace/' + product.id.toLowerCase() + '/#plans'}
-                  > */}
-                    <Button style={buttonStyles}
+                  <Button
+                    style={buttonStyles}
                     disabled={isDisabled}
                     onClick={() => scrollTo('#plans')}
-                        >
-                          {isDisabled ? 'You are subscribed' : 'Purchase now'}
-                    </Button>
-                  {/* </Link> */}
-                  {/* 'marketplace/' + product.id.toLowerCase() + '/ */}
+                  >
+                    {isDisabled ? 'You are subscribed' : 'Purchase now'}
+                  </Button>
                 </p>
               </Container>
             </Col>
@@ -258,49 +241,69 @@ const Product = class extends React.Component {
               md={{ span: 12 }}
               lg={{ span: 7 }}
               xl={{ span: 8 }}
-              style={{padding: "0px"}}
+              style={{ padding: '0px' }}
             >
               <Carousel
                 indicators={true}
                 interval={this.state.interval}
-                style={{ width: '100%', height: + 'auto', minHeight: "200 px", backgroundColor: "#d1d1d1" }}
+                style={{
+                  width: '100%',
+                  height: +'auto',
+                  minHeight: '200 px',
+                  backgroundColor: '#d1d1d1',
+                }}
               >
                 {sanityProduct.media.map(function(media, i) {
                   if (media.isImage) {
                     return (
                       <Carousel.Item>
-                        <Img style={{
+                        <Img
+                          style={{
                             width: 'auto',
-                            height: "auto",                          
+                            height: 'auto',
                             objectFit: 'cover',
                           }}
                           key={i}
                           fluid={media.image.asset.fluid}
                           className="d-block w-100"
-                          />                    
-                      </Carousel.Item>                    
+                        />
+                      </Carousel.Item>
                     );
                   } else {
-                    var videoID = media.video.slice(-11)
+                    var videoID = media.video.slice(-11);
                     return (
                       <Carousel.Item>
-                        <Img style={{
+                        <Img
+                          style={{
                             width: 'auto',
-                            height: "auto",                          
+                            height: 'auto',
                             objectFit: 'cover',
                           }}
                           key={i}
                           fluid={media.image.asset.fluid}
                           className="d-block w-100"
-                          />       
-                          <div onClick={this.openModal} className="play-button-product"><img src={PlayIcon} className="play-image"></img></div>
-                          <div style={{zIndex: "10000000"}}>
-                              <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId={videoID} onClose={() => this.setState({isOpen: false, interval: 5000})} />
-                          </div>             
-                      </Carousel.Item>                    
+                        />
+                        <div
+                          onClick={this.openModal}
+                          className="play-button-product"
+                        >
+                          <img src={PlayIcon} className="play-image"></img>
+                        </div>
+                        <div style={{ zIndex: '10000000' }}>
+                          <ModalVideo
+                            style={{ marginTop: '56px' }}
+                            channel="youtube"
+                            isOpen={this.state.isOpen}
+                            videoId={videoID}
+                            onClose={() =>
+                              this.setState({ isOpen: false, interval: 5000 })
+                            }
+                          />
+                        </div>
+                      </Carousel.Item>
                     );
-                  }                  
-                }, this)}                
+                  }
+                }, this)}
               </Carousel>
             </Col>
           </Row>
@@ -314,7 +317,7 @@ const Product = class extends React.Component {
               &larr; Back
             </Button>
           </Link>
-          <Row style={{margin: "40px 0px"}}>
+          <Row style={{ margin: '40px 0px' }}>
             <Col>
               <h2>Details</h2>
               <p style={{ whiteSpace: 'pre-wrap' }}>{sanityProduct.details}</p>
@@ -335,7 +338,6 @@ const Product = class extends React.Component {
               </h2>
               <Row>
                 {sanityProduct.reviews.map(function(review, i) {
-                  console.log(review);
                   return (
                     <Col
                       xs={{ span: 12 }}
@@ -365,7 +367,7 @@ const Product = class extends React.Component {
           </Row>
         </Jumbotron>
         <Container style={{ paddingBottom: '60px' }}>
-          <Row style={{marginTop: "40px"}}>
+          <Row style={{ marginTop: '40px' }}>
             <Col>
               <h2>Advantages</h2>
               <p style={{ whiteSpace: 'pre-wrap' }}>
@@ -376,7 +378,6 @@ const Product = class extends React.Component {
 
           <Row id="plans">
             <Col>
-              {/* <h2>Available plans</h2> */}
               <br></br>
               <br></br>
             </Col>
@@ -413,7 +414,6 @@ const Product = class extends React.Component {
                           disabled={isDisabled}
                         >
                           {isDisabled ? 'You are subscribed' : 'Go to checkout'}
-                          {/* {this.buttonText(plan.nickname, isDisabled)} */}
                         </Button>
                       </Card.Body>
                     </Card>
@@ -424,9 +424,8 @@ const Product = class extends React.Component {
             </Row>
           </Container>
           <br></br>
-          <br></br>                  
+          <br></br>
         </Container>
-        
       </>
     );
   }

@@ -1,9 +1,9 @@
-// Create Stripe session
+// Create Stripe purchase session
 
 import axios from 'axios';
 
 export default function createTmsPurchaseSession(stripe_cus_id, product_sku) {
-  console.log('createStripeSession');
+  // console.log('createStripeSession');
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-buy-product-session-create', {

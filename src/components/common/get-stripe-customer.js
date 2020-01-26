@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 export default function getStripeCustomer(stripe_id) {
-  console.log('getStripeCustomer');
+  // console.log('getStripeCustomer');
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-get-stripe-customer', {
@@ -13,7 +13,7 @@ export default function getStripeCustomer(stripe_id) {
         resolve(res.data);
       })
       .catch(error => {
-        if (error.response.data.requestResult.statusCode == '500') {
+        if (error.response.data.requestResult.statusCode === '500') {
           resolve('not_stripe_customer');
         }
         reject('getStripeCustomer error. Netlify function error: ' + error);

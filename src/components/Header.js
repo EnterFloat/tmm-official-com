@@ -38,13 +38,15 @@ export default class Header extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  render() {
-    const { openMenu, visibilityClass } = this.state;
-    const { data } = this.props;
-
+  render() {    
     return (
       <div>
-        <Navbar key="Navbar" expand="lg" fixed="top" className={`${this.props.animation} navbar-style`}>
+        <Navbar
+          key="Navbar"
+          expand="lg"
+          fixed="top"
+          className={`${this.props.animation} navbar-style`}
+        >
           <div
             className="container-fluid"
             style={{ padding: '0px', margin: '0px' }}
@@ -90,10 +92,12 @@ export default class Header extends Component {
             />
             <Route path="/faq" exact component={Component.Faq} />
             <Route path="/about" exact component={Component.About} />
-            <Route path="/stripe-callback-success" component={Component.StripeSuccess} />
+            <Route
+              path="/stripe-callback-success"
+              component={Component.StripeSuccess}
+            />
             <Route path="/thank-you" component={Component.ThankYouPage} />
 
-            
             <Route component={Component.ErrorPage} />
           </Router>
         </div>
@@ -145,18 +149,3 @@ function NavElement(props) {
     </Link>
   );
 }
-
-
-
-
-// <Link
-//         to="/login"
-//         partiallyActive={true}
-//         className={'navbar-right nav-text'}
-//         activeClassName={'active'}
-//         onClick={e => {
-//           login();
-//         }}
-//       >
-//         Login
-//       </Link>

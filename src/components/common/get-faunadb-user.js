@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 export default function getFaunaDBUser(auth0_id) {
-  console.log('getFaunaDBUser');
+  // console.log('getFaunaDBUser');
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-get-faunadb-user', {
@@ -13,7 +13,7 @@ export default function getFaunaDBUser(auth0_id) {
         resolve(res.data);
       })
       .catch(error => {
-        if (error.response.data.requestResult.statusCode == '404') {
+        if (error.response.data.requestResult.statusCode === '404') {
           resolve('no_faunadb_user');
         }
         reject('getFaunaDBUser error. Netlify function error: ' + error);

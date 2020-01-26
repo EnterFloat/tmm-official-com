@@ -6,9 +6,6 @@ import Header from '../components/Header';
 import MasculineSociety from '../components/MasculineSociety';
 
 export default class MasculineSocietyPage extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Layout paddingTop="0">

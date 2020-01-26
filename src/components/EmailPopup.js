@@ -1,111 +1,104 @@
 import React, { Component } from 'react';
-import { Form, Button, Col, Row } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import '../assets/sass/_email_sub.scss';
 import { StaticRouter as Router, Route } from 'react-router-dom';
-
 
 export default class EmailPopup extends Component {
   constructor(props) {
     super(props);
     this.toggleVisibility = this.toggleVisibility.bind(this);
-    var popupStatus = "hidden"
-    if (typeof localStorage != "undefined") {
-      var localPopupStatus = localStorage.getItem('popupStatus')
-      
+    var popupStatus = 'hidden';
+    if (typeof localStorage != 'undefined') {
+      var localPopupStatus = localStorage.getItem('popupStatus');
+
       if (localPopupStatus !== null) {
-        popupStatus = localPopupStatus
+        popupStatus = localPopupStatus;
       }
     }
-    var popupVisibility = ""
-    var right = ""
-    var toggleText = ""
-    console.log(popupStatus)
+    var popupVisibility = '';
+    var right = '';
+    var toggleText = '';
 
-    if (popupStatus == "visible") {
-      popupVisibility = "visible"
-      right = "0px"
-      toggleText = '\u276F'
-    } else if (popupStatus == "hidden") {
-      popupVisibility = "hidden"
-      right = "-220px"
-      toggleText = '\u276E'
-    } else if (popupStatus == "closed") {
-      popupVisibility = "closed"
-      right = "-320px"
-      toggleText = '\u276E'
+    if (popupStatus === 'visible') {
+      popupVisibility = 'visible';
+      right = '0px';
+      toggleText = '\u276F';
+    } else if (popupStatus === 'hidden') {
+      popupVisibility = 'hidden';
+      right = '-220px';
+      toggleText = '\u276E';
+    } else if (popupStatus === 'closed') {
+      popupVisibility = 'closed';
+      right = '-320px';
+      toggleText = '\u276E';
     }
     this.state = {
       popupVisibility: popupVisibility,
       right: right,
-      toggleText: toggleText
-    }
-  }
-
-  componentDidMount() {
-    // const popupStatus = localStorage.getItem('popupStatus')
-    // console.log("loading popupStatus to " + popupStatus)
-    // this.setState({popupVisibility: popupStatus})
-    // this.toggleVisibility(popupStatus)
-  }
-  componentWillUnmount() {
-    console.log("Set popupStatus to " + this.state.popupVisibility)
-    
+      toggleText: toggleText,
+    };
   }
 
   toggleVisibility(popupStatus) {
-    var toggleTo = ""
+    var toggleTo = '';
     if (popupStatus !== undefined) {
-      toggleTo = popupStatus
+      toggleTo = popupStatus;
     }
-    var current = this.state.popupVisibility
-    var right = ""
-    var toggleText = ""
-    var popupVisibility = ""
-    if (toggleTo == "") {
-      if (current == "visible") {
-        toggleTo = "hidden"
-      } else if (current == "hidden") {
-        toggleTo = "visible"
+    var current = this.state.popupVisibility;
+    var right = '';
+    var toggleText = '';
+    var popupVisibility = '';
+    if (toggleTo === '') {
+      if (current === 'visible') {
+        toggleTo = 'hidden';
+      } else if (current === 'hidden') {
+        toggleTo = 'visible';
       }
     }
-    console.log("toggleTo " + toggleTo)
 
-    if (toggleTo == "visible") {
-      popupVisibility = "visible"
-      right = "0px"
-      toggleText = '\u276F'
-    } else if (toggleTo == "hidden") {
-      popupVisibility = "hidden"
-      right = "-220px"
-      toggleText = '\u276E'
-    } else if (toggleTo == "closed") {
-      popupVisibility = "closed"
-      right = "-320px"
-      toggleText = this.state.toggleText
+    if (toggleTo === 'visible') {
+      popupVisibility = 'visible';
+      right = '0px';
+      toggleText = '\u276F';
+    } else if (toggleTo === 'hidden') {
+      popupVisibility = 'hidden';
+      right = '-220px';
+      toggleText = '\u276E';
+    } else if (toggleTo === 'closed') {
+      popupVisibility = 'closed';
+      right = '-320px';
+      toggleText = this.state.toggleText;
     }
-    console.log(popupVisibility)
     this.setState({
       popupVisibility: popupVisibility,
       right: right,
-      toggleText: toggleText
-    })
-    if (typeof localStorage != "undefined") {
-      localStorage.setItem("popupStatus", toggleTo)
-    }    
+      toggleText: toggleText,
+    });
+    if (typeof localStorage != 'undefined') {
+      localStorage.setItem('popupStatus', toggleTo);
+    }
   }
-  
+
   render() {
     return (
-      <div className={'popup-container'} style={{right: this.state.right}}>        
-        <p className="minimize-popup"
-        onClick={() => this.toggleVisibility("closed")}>&#10005;
+      <div className={'popup-container'} style={{ right: this.state.right }}>
+        <p
+          className="minimize-popup"
+          onClick={() => this.toggleVisibility('closed')}
+        >
+          &#10005;
         </p>
-        <p className="close-popup"
-        onClick={() => this.toggleVisibility()}>{this.state.toggleText}
+        <p className="close-popup" onClick={() => this.toggleVisibility()}>
+          {this.state.toggleText}
         </p>
-        
-          <div className="form-container">
-          <Form name="Email Subscription" method="POST" data-netlify="true" action={'/thank-you'}>
+
+        <div className="form-container">
+          <Form
+            name="Email Subscription"
+            method="POST"
+            data-netlify="true"
+            action={'/thank-you'}
+          >
             <Form.Group controlId="formBasicEmail">
               <Form.Control
                 name="email"
@@ -114,26 +107,26 @@ export default class EmailPopup extends Component {
               />
             </Form.Group>
             <Form.Group controlId="formBasicHidden">
-                <Form.Control
-                  type="hidden"
-                  name="form-name"
-                  value="Email Subscription"
-                />
-              </Form.Group>
+              <Form.Control
+                type="hidden"
+                name="form-name"
+                value="Email Subscription"
+              />
+            </Form.Group>
 
-            <Button className="subscribe-button" variant="primary" type="submit">
+            <Button
+              className="subscribe-button"
+              variant="primary"
+              type="submit"
+            >
               Subscribe to newsletter
             </Button>
-            </Form>
-            <Router>
+          </Form>
+          <Router>
             <Route path="/thank-you" exact component={Component.ThankYouPage} />
-            </Router>
-            </div>
-            
-        {/* </Col>
-      </Row> */}
-      {/* </div> */}
-    </div>
+          </Router>
+        </div>
+      </div>
     );
   }
 }

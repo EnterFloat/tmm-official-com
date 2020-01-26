@@ -30,8 +30,6 @@ const Checkout = class extends React.Component {
       products[node.id] = node;
     }
 
-
-    console.log(products);
     var cus_subs = this.state.cus_subs;
     var plans_subbed = [];
 
@@ -40,35 +38,31 @@ const Checkout = class extends React.Component {
       for (const i in cus_subs) {
         plans_subbed.push(cus_subs[i].plan.id);
       }
-      console.log(plans_subbed);
     }
 
     const stripeProducts = []
       .concat(data.allStripeProduct.edges)
       .sort((a, b) => a.name > b.name);
 
-    console.log(data.allSanityProduct.edges[0].node.stripeId)
-
-    var sanityProducts = {}
+    var sanityProducts = {};
     for (const i in data.allSanityProduct.edges) {
       var node = data.allSanityProduct.edges[i].node;
-      sanityProducts[node.stripeId] = node
+      sanityProducts[node.stripeId] = node;
     }
- 
 
     return (
       <Container style={{ paddingBottom: '60px' }}>
         <Row>
           {stripeProducts.map(({ node }) => (
-            <>            
-            <Product
-              sanityProducts={sanityProducts}
-              key={node.id}
-              product={node}
-              products={products}
-              stripe={this.state.stripe}
-              prevPurchases={plans_subbed}
-            />
+            <>
+              <Product
+                sanityProducts={sanityProducts}
+                key={node.id}
+                product={node}
+                products={products}
+                stripe={this.state.stripe}
+                prevPurchases={plans_subbed}
+              />
             </>
           ))}
         </Row>
@@ -147,35 +141,32 @@ export default props => (
 );
 
 function Product(props) {
-  console.log(props.product);
-  if (props.product.type == 'service') {
-    console.log(props.sanityProducts[props.product.id])
+  if (props.product.type === 'service') {
     if (props.sanityProducts[props.product.id] === undefined) {
-      return null
+      return null;
     }
     return (
-        <Col
-          xs={{ span: 10, offset: 1 }}
-          sm={{ span: 10, offset: 1 }}
-          md={{ span: 6, offset: 0 }}
-          lg={{ span: 4, offset: 0 }}
-          xl={{ span: 4, offset: 0 }}
-          style={{ marginBottom: 30 }}
-        >
+      <Col
+        xs={{ span: 10, offset: 1 }}
+        sm={{ span: 10, offset: 1 }}
+        md={{ span: 6, offset: 0 }}
+        lg={{ span: 4, offset: 0 }}
+        xl={{ span: 4, offset: 0 }}
+        style={{ marginBottom: 30 }}
+      >
         <Link to={'/marketplace/' + props.product.fields.slug}>
-
-          {/* <Img style={{height: "200px"}} fluid={props.sanityProducts[props.product.id].banner.asset.fluid}></Img> */}
           <ProductCard
             key={props.key}
             product={props.product}
             products={props.products}
             stripe={props.stripe}
             prevPurchases={props.prevPurchases}
-            imageFluid={props.sanityProducts[props.product.id].banner.asset.fluid}
+            imageFluid={
+              props.sanityProducts[props.product.id].banner.asset.fluid
+            }
           ></ProductCard>
-          </Link>
-        </Col>
-
+        </Link>
+      </Col>
     );
   }
   return null;

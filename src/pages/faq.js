@@ -6,9 +6,6 @@ import Header from '../components/Header';
 import Faq from '../components/Faq';
 
 export default class FaqPage extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Layout>

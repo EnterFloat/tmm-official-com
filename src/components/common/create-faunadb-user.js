@@ -3,13 +3,13 @@
 import axios from 'axios';
 
 export default function createFaunaDBUser(auth0_id, stripe_cus_id) {
-  console.log('createFaunaDBUser');
+  // console.log('createFaunaDBUser');
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-create-faunadb-user', {
         auth0_id: auth0_id,
         stripe_cus_id: stripe_cus_id,
-        ownsTMS: "false",
+        ownsTMS: 'false',
       })
       .then(res => {
         resolve(stripe_cus_id);
