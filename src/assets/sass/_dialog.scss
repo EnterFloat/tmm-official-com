@@ -1,15 +1,16 @@
 .fullscreen-shade {
     position: fixed;
-    z-index: 100000000;
+    z-index: 1000000000;
     width: 100%;
     height: 100%;
     background-color: black;
     opacity: 0.6;
+    top: 0px;
 }
 
 .dialog-container {
     position: fixed;
-    z-index: 1000000000;
+    z-index: 10000000008;
     // margin-top: 28px;
     // position: absolute;
     top: 50%;
@@ -22,7 +23,7 @@
 
 .close-dialog {
     position: absolute;
-    z-index: 1000000001;
+    z-index: 1000000009;
     top: 10px;
     right: 7px;
     width: 20px;
