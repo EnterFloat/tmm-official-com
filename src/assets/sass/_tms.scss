@@ -16,13 +16,14 @@
 
 .play-button {
     margin-top: 28px;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   height: 100px;
-   width: 100px;
-   visibility: "visible";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 100px;
+    visibility: "visible";
+    cursor:pointer;
 }
 
 .play-image {
@@ -31,6 +32,17 @@
 }
 .tms-button {
     visibility: "visible";
+}
+
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.plan-container {
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import ModalVideo from 'react-modal-video'
 import { StaticQuery, graphql, Link } from 'gatsby';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import '../assets/sass/_page.scss';
 import '../assets/sass/_tms.scss';
 import '../../node_modules/react-modal-video/scss/modal-video.scss';
@@ -11,8 +11,22 @@ import createTmsPurchaseSession from './common/create-tms-purchase-session.js';
 import Background from '../assets/images/TMS.jpg';
 import PlayIcon from '../assets/images/play-icon.png';
 import scrollTo from 'gatsby-plugin-smoothscroll';
+import Dialog from './Dialog';
 
 
+const buttonStylesCheckout = {
+  fontSize: '13px',
+  textAlign: 'center',
+  color: '#fff',
+  outline: 'none',
+  padding: '12px 60px',
+  boxShadow: '2px 5px 10px rgba(0,0,0,.1)',
+  backgroundColor: '#760000',
+  borderRadius: '6px',
+  borderColor: '#A40000',
+  letterSpacing: '1.5px',
+  width: '100%',
+};
 
 const MasculineSociety = class extends React.Component {
   constructor(props) {
@@ -22,8 +36,12 @@ const MasculineSociety = class extends React.Component {
       buttonVisibility: "visible",
       isOpen: false,
       oldButtonVisibility: "visible",
+      dialogVisibility: "hidden",
+      dialogTitle: "",
+      dialogMessage: "",
     }
-    this.openModal = this.openModal.bind(this)
+    this.openModal = this.openModal.bind(this);
+    this.setDialog = this.setDialog.bind(this);
     this.handlePurchase = this.handlePurchase.bind(this);
     this.redirectToCheckout = this.redirectToCheckout.bind(this);
   }
@@ -42,13 +60,22 @@ const MasculineSociety = class extends React.Component {
             sessionId: result,
           })
           .then(function(result) {
-            window.alert("Error: " + result.error.message)
+            // window.alert("Error: " + result.error.message)
             console.log("redirectToCheckout then: " + result.error.message);
           });
       })
       .catch(err => {
         console.log(err);
       });
+  }
+
+  setDialog(visibility, title, message) {
+    console.log("setDialog")
+    this.setState({
+      dialogVisibility: visibility,
+      dialogTitle: title,
+      dialogMessage: message,
+    })
   }
 
   handlePurchase(product_id) {
@@ -63,7 +90,8 @@ const MasculineSociety = class extends React.Component {
       .catch(err => {
         if (err == 'signed_out') {
           console.log('Sign in to continue');
-          window.alert('Sign in to buy a product');
+          // window.alert('Sign in to buy a product');
+          this.setDialog("visible", "Info", "You must sign in to buy a product")
         } else {
           console.log('Could not create user: ' + err);
         }
@@ -137,6 +165,7 @@ const MasculineSociety = class extends React.Component {
     }
     return (
       <>
+      <Dialog title={this.state.dialogTitle} message={this.state.dialogMessage} visibility={this.state.dialogVisibility} setState={p=>{this.setState(p)}} parentState={this.state}/>
       <div style={{zIndex: "10000000"}}>
         <ModalVideo style={{marginTop: "56px"}} channel='youtube' isOpen={this.state.isOpen} videoId={videoID} onClose={() => this.setState({isOpen: false, buttonVisibility: this.state.oldButtonVisibility})} />
       </div>
@@ -144,14 +173,52 @@ const MasculineSociety = class extends React.Component {
         <img className="tms-image" src={Background}></img>
         <div onClick={this.openModal} className="play-button"><img src={PlayIcon} className="play-image"></img></div>
       </div>
-      <div style={{paddingBottom: '60px'}}>
+      {/* <div style={{paddingBottom: '60px'}}>
         <Container style={{paddingTop: "50px", paddingBottom: "50px"}}>
           <br id="aboutTMS"></br>
           <h1>The Masculine Society</h1>
           <Button onClick={() => this.handlePurchase("sku_GZj8t0qHsiuqCr")} disabled={purchaseIsDisabled}>{purchaseIsDisabled ? 'You are subscribed' : 'Buy TMS'}</Button>
         </Container>
-      </div>
+      </div> */}
       <ActionButton className="tms-button" buttonOpacity={this.state.buttonOpacity} buttonVisibility={this.state.buttonVisibility}>Read more &darr;</ActionButton>
+      <Container id="aboutTMS" className="plan-container" style={{paddingBottom: '60px', paddingTop: '30px'}}>
+            <Row style={{ textAlign: 'center' }}>
+              <Col
+                xs={{ span: 12 }}
+                sm={{ span: 12 }}
+                md={{ span: 8 }}
+                lg={{ span: 6 }}
+                xl={{ span: 6 }}
+                style={{ marginBottom: '10px', padding: '10px 10px' }}
+                className="col-centered"
+              >
+                <Card>
+                  <Card.Header>
+                    <h4 style={{ textAlign: 'center' }}>The Masculine Society</h4>
+                  </Card.Header>
+                  <Card.Body>
+                    <h5>
+                      {1000}{' '}
+                      <span style={{ color: 'grey' }}>
+                        {' '}
+                        {"USD"}
+                      </span>
+                    </h5>
+                    <h5>Access to all products</h5>
+                    <p></p>
+                    <Button
+                      style={buttonStylesCheckout}
+                      onClick={() => this.handlePurchase("sku_GZj8t0qHsiuqCr")} 
+                      disabled={purchaseIsDisabled}
+                    >
+                      {purchaseIsDisabled ? 'You own TMS' : 'Buy TMS'}
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <br></br>
+            </Row>
+          </Container>
       </>
     );
   }

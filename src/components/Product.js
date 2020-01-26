@@ -16,6 +16,8 @@ import '../assets/sass/_product.scss';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import ModalVideo from 'react-modal-video'
 import PlayIcon from '../assets/images/play-icon.png';
+import Dialog from './Dialog';
+
 
 const buttonStyles = {
   fontSize: '13px',
@@ -54,9 +56,13 @@ const Product = class extends React.Component {
       stripe: null,
       cus_subs: null,
       isOpen: false,
-      interval: 5000
+      interval: 5000,
+      dialogVisibility: "hidden",
+      dialogTitle: "",
+      dialogMessage: "",
     };
     this.openModal = this.openModal.bind(this);
+    this.setDialog = this.setDialog.bind(this)
   }
   openModal () {
     this.setState({isOpen: true, interval: 99999999})
@@ -95,6 +101,14 @@ const Product = class extends React.Component {
         console.log(err);
       });
   }
+  setDialog(visibility, title, message) {
+    console.log("setDialog")
+    this.setState({
+      dialogVisibility: visibility,
+      dialogTitle: title,
+      dialogMessage: message,
+    })
+  }
 
   handlePurchase(stripe_plan_id) {
     // Get Stripe customer id
@@ -108,7 +122,8 @@ const Product = class extends React.Component {
       .catch(err => {
         if (err == 'signed_out') {
           console.log('Sign in to continue');
-          window.alert('Sign in to buy a product');
+          this.setDialog("visible", "Info", "You must sign in to buy a product")
+          // window.alert('Sign in to buy a product');
         } else {
           console.log('Could not create user: ' + err);
         }
@@ -204,6 +219,7 @@ const Product = class extends React.Component {
 
     return (
       <>
+      <Dialog title={this.state.dialogTitle} message={this.state.dialogMessage} visibility={this.state.dialogVisibility} setState={p=>{this.setState(p)}} parentState={this.state}/>
         <Jumbotron
           style={{
             padding: "0px"
@@ -242,6 +258,7 @@ const Product = class extends React.Component {
               md={{ span: 12 }}
               lg={{ span: 7 }}
               xl={{ span: 8 }}
+              style={{padding: "0px"}}
             >
               <Carousel
                 indicators={true}

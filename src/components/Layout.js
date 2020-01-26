@@ -7,6 +7,8 @@ import '../assets/sass/_layout.scss';
 
 import '../assets/sass/grayscale.scss';
 import EmailPopup from './EmailPopup';
+import Dialog from './Dialog';
+
 
 class Layout extends Component {
   constructor(props) {
