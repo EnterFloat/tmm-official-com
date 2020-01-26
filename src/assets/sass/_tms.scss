@@ -34,7 +34,6 @@
     visibility: "visible";
 }
 
-
 .col-centered {
     float: none;
     margin: 0 auto;
@@ -45,7 +44,6 @@
   padding-right: 100px;
 }
 
-
 @media only screen and (max-width: 991px){
     .tms-image-container {
         max-height: 400px;
@@ -53,4 +51,4 @@
     .tms-button {
         visibility: "hidden";
     }
-    }
+}

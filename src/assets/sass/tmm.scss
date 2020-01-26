@@ -1,18 +1,15 @@
 @import './bootstrap/bootstrap.min.css';
 @import 'variables.scss';
-@import 'mixins.scss';
 @import 'navbar.scss';
 @import 'masthead.scss';
 @import 'buttons.scss';
 @import 'about.scss';
-@import 'projects.scss';
-@import 'contact.scss';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
-
   letter-spacing: 0.0625em;
 }
 

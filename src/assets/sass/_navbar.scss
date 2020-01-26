@@ -39,38 +39,11 @@
       padding: .5rem 0;
       color: fade-out($white, .5);
     }
-    // .nav-link {
-    //   transition: none;
-    //   padding: 2rem 1.5rem;
-    //   color: fade-out($white, .5);
-    //   &:hover {
-    //     color: fade-out($white, .25);
-    //   }
-    //   &:active {
-    //     color: white;
-    //   }
-    // }
     &.navbar-shrink {
       background-color: $white;
       .navbar-brand {
         color: $black;
       }
-      // .nav-link {
-      //   color: $black;
-      //   padding: 1.5rem 1.5rem 1.25rem;
-      //   border-bottom: 0.25rem solid transparent;
-      //   &:hover {
-      //     color: $primary;
-      //   }
-      //   &:active {
-      //     color: darken($primary, 15%);
-      //   }
-      //   &.active {
-      //     color: $primary;
-      //     outline: none;
-      //     // border-bottom: 0.25rem solid $primary;
-      //   }
-      // }
     }
   }
 }
