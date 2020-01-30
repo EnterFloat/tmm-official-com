@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 export default function createStripeCustomer(auth0_id, auth0_email) {
-  // console.log('createStripeCustomer');
+  console.log('createStripeCustomer');
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-create-stripe-customer', {

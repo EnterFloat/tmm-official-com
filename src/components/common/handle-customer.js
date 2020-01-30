@@ -63,6 +63,7 @@ export default function handleCustomer(purchase) {
         })
         .catch(err => {
           // If an error occured along the way it will end up here
+          console.log("catch", err)
           reject('error');
         });
     } else {
@@ -83,6 +84,7 @@ export default function handleCustomer(purchase) {
         })
         .then(result => {
           if (result === 'no_faunadb_user') {
+            console.log("no fauna user")
             return createCustomer(auth0_id, auth0_email);
           } else {
             if (result.data.stripe_cus_id !== undefined) {

@@ -75,6 +75,9 @@ const MasculineSociety = class extends React.Component {
     handleCustomer(true)
       .then(result => {
         var stripe_cus_id = result;
+        console.log("MasculineSociety ", stripe_cus_id)
+        console.log("MasculineSociety ", product_id)
+
         // Redirect to checkout. Should create session first
         this.redirectToCheckout(stripe_cus_id, product_id);
       })
@@ -85,6 +88,13 @@ const MasculineSociety = class extends React.Component {
             'visible',
             'Info',
             'You must sign in to buy a product'
+          );
+        } else if (err === 'error') {
+          // window.alert('Sign in to buy a product');
+          this.setDialog(
+            'visible',
+            'Error',
+            'An error occured...'
           );
         }
       });

@@ -10,6 +10,7 @@ const client = new faunadb.Client({
 exports.handler = (event, context, callback) => {
   const params = JSON.parse(event.body);
   const auth0_id = params.auth0_id;
+  console.log(auth0_id)
   return client
     .query(q.Get(q.Match(q.Index(`user_by_auth0_id`), `${auth0_id}`)))
     .then(response => {

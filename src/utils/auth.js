@@ -55,7 +55,12 @@ const setSession = (cb = () => {}) => (err, authResult) => {
     tokens.expiresAt = expiresAt;
     user = authResult.idTokenPayload;
     localStorage.setItem('isLoggedIn', true);
-    handleCustomer();
+    handleCustomer().then(result => {
+      console.log("Auth " + result)
+    })
+    .catch(err => {
+      console.log("Auth " + err)
+    });
     if (isAuth0Callback === 'true') {
       navigate('/');
     }
