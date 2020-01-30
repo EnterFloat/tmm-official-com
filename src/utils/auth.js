@@ -92,5 +92,6 @@ export const logout = () => {
   localStorage.setItem('isLoggedIn', false);
   localStorage.removeItem('customer_subscriptions');
   localStorage.setItem('ownsTMS', false);
+  localStorage.removeItem('customer');
   auth.logout();
 };

@@ -8,6 +8,7 @@ export default function handleCustomer(purchase) {
   return new Promise((resolve, reject) => {
     // Determine if the user wants to buy something or is just loading previous purchases.
     if (purchase === undefined) {
+      console.log("handle-customer: not purchasing")
       // User not buying
       // Get the Auth0 ID
       getAuth0User()
@@ -16,6 +17,7 @@ export default function handleCustomer(purchase) {
             return;
           } else {
             var auth0_id = result.sub;
+            console.log("handle-customer " + auth0_id)
             // Get the FaunaDB user
             return getFaunaDBUser(auth0_id);
           }
@@ -67,7 +69,10 @@ export default function handleCustomer(purchase) {
           reject('error');
         });
     } else {
+      console.log("handle-customer: purchasing")
+
       //User buying
+      console.log("handle-customer: User buying")
       // Get the Auth0 ID
       var auth0_id = '';
       var auth0_email = '';
@@ -79,12 +84,13 @@ export default function handleCustomer(purchase) {
             auth0_id = result.sub;
             auth0_email = result.email;
             // Get the FaunaDB user
+            console.log("handle-customer: ", auth0_id, " ", auth0_email)
             return getFaunaDBUser(auth0_id, auth0_email);
           }
         })
         .then(result => {
           if (result === 'no_faunadb_user') {
-            console.log("no fauna user")
+            console.log("handle-customer: no fauna user")
             return createCustomer(auth0_id, auth0_email);
           } else {
             if (result.data.stripe_cus_id !== undefined) {
@@ -104,6 +110,7 @@ export default function handleCustomer(purchase) {
           }
         })
         .then(result => {
+          console.log("handle-customer: ", result)
           resolve(result);
         })
         .catch(err => {

@@ -38,6 +38,9 @@ const MasculineSociety = class extends React.Component {
       dialogVisibility: 'hidden',
       dialogTitle: '',
       dialogMessage: '',
+      stripe: '',
+      ownsTMS: '',
+      cus_subs: '',
     };
     this.openModal = this.openModal.bind(this);
     this.setDialog = this.setDialog.bind(this);
@@ -46,17 +49,25 @@ const MasculineSociety = class extends React.Component {
   }
 
   redirectToCheckout(stripe_cus_id, product_sku) {
+    console.log("redirectToCheckout ", stripe_cus_id)
+    console.log("redirectToCheckout ", product_sku)
     createTmsPurchaseSession(stripe_cus_id, product_sku)
       .then(result => {
+        console.log("createTmsPurchaseSession ", result)
         return result;
       })
       .then(result => {
+        console.log("redirectToCheckout res1: ", result)     
+        console.log("redirectToCheckout state.stripe: ", this.state.stripe)     
         this.state.stripe
           .redirectToCheckout({
             sessionId: result,
           })
-          .then(function(result) {            
-          });
+          .then(function(result) {    
+            console.log("redirectToCheckout res2: ", result)        
+          }).catch(err => {     
+            console.log("redirectToCheckout err: ", err)        
+          });          
       })
       .catch(err => {        
       });
@@ -70,16 +81,16 @@ const MasculineSociety = class extends React.Component {
     });
   }
 
-  handlePurchase(product_id) {
+  handlePurchase(product_sku) {
     // Get Stripe customer id
     handleCustomer(true)
       .then(result => {
         var stripe_cus_id = result;
         console.log("MasculineSociety ", stripe_cus_id)
-        console.log("MasculineSociety ", product_id)
+        console.log("MasculineSociety ", product_sku)
 
         // Redirect to checkout. Should create session first
-        this.redirectToCheckout(stripe_cus_id, product_id);
+        this.redirectToCheckout(stripe_cus_id, product_sku);
       })
       .catch(err => {
         if (err === 'signed_out') {
@@ -114,7 +125,7 @@ const MasculineSociety = class extends React.Component {
     window.addEventListener('resize', this.listenToScroll);
     const stripe = window.Stripe(process.env.GATSBY_STRIPE_PUBLIC_KEY);
     const cus_subs = localStorage.getItem('customer_subscriptions'); // Should not be subs but whether TMS has been purchased
-    this.setState({ stripe, cus_subs, ownsTMS });
+    this.setState({ stripe: stripe, cus_subs: cus_subs, ownsTMS: ownsTMS });
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.listenToScroll);

@@ -13,6 +13,7 @@ export default function getStripeCustomer(stripe_id) {
         resolve(res.data);
       })
       .catch(error => {
+        console.log("getStripeCustomer ",error)
         if (error.response.data.requestResult.statusCode === '500') {
           resolve('not_stripe_customer');
         }
