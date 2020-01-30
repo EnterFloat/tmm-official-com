@@ -51,4 +51,12 @@
     .tms-button {
         visibility: "hidden";
     }
+
+}
+
+@media only screen and (max-width: 450px){
+    .plan-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
