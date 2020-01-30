@@ -10,9 +10,11 @@ export default function createCustomer(auth0_id, auth0_email) {
         return createFaunaDBUser(auth0_id, stripe_cus_id);
       })
       .then(result => {
+        console.log("createCustomer ", result)
         resolve(result);
       })
       .catch(err => {
+        console.log("createCustomer ", err)
         reject(err);
       });
   });

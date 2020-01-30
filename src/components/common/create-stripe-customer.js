@@ -14,6 +14,10 @@ export default function createStripeCustomer(auth0_id, auth0_email) {
         resolve(res.data.id);
       })
       .catch(error => {
+        console.log("createStripeCustomer ",error)
+        console.log("createStripeCustomer ",error.response.data.requestResult.statusCode)
+        console.log("createStripeCustomer ",error.response.data.requestResult.body)
+
         reject(error);
       });
   });
