@@ -14,6 +14,7 @@ export default function createTmsPurchaseSession(stripe_cus_id, product_sku) {
         resolve(res.data.id);
       })
       .catch(error => {
+        console.log("createTmsPurchaseSession ", error)
         reject(error);
       });
   });
