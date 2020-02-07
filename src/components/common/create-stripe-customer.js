@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export default function createStripeCustomer(auth0_id, auth0_email) {
   console.log('createStripeCustomer');
+  console.log("auth0_id: " + auth0_id + " email: " + auth0_email)
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-create-stripe-customer', {
@@ -15,8 +16,8 @@ export default function createStripeCustomer(auth0_id, auth0_email) {
       })
       .catch(error => {
         console.log("createStripeCustomer ",error)
-        console.log("createStripeCustomer ",error.response.data.requestResult.statusCode)
-        console.log("createStripeCustomer ",error.response.data.requestResult.body)
+        // console.log("createStripeCustomer ",error.response.data.requestResult.body)
+        // console.log("createStripeCustomer ",error.response.data.requestResult.statusCode)
 
         reject(error);
       });

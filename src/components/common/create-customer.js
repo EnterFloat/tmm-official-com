@@ -2,7 +2,9 @@ import createStripeCustomer from './create-stripe-customer';
 import createFaunaDBUser from './create-faunadb-user';
 
 export default function createCustomer(auth0_id, auth0_email) {
-  // console.log('createCustomer');
+  console.log('createCustomer');
+  console.log("auth0_id: " + auth0_id + " email: " + auth0_email)
+
   return new Promise((resolve, reject) => {
     createStripeCustomer(auth0_id, auth0_email)
       .then(result => {
