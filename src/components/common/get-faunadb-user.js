@@ -17,10 +17,12 @@ export default function getFaunaDBUser(auth0_id, email) {
       .catch(error => {
         console.log("getFaunaDBUser error")
         console.log("getFaunaDBUser error: " + error)
+        console.log("Error")
         console.log(error.response.data.requestResult.statusCode)
         if (error.response.data.requestResult.statusCode === 404 || error.response.data.requestResult.statusCode === 400) {
           console.log("no_faunadb_user")
           resolve('no_faunadb_user');
+          return
         }
         console.log("Other reject")
         reject('getFaunaDBUser error. Netlify function error: ' + error);
