@@ -3,7 +3,9 @@
 import axios from 'axios';
 
 export default function createStripeSession(stripe_cus_id, plan) {
-  // console.log('createStripeSession');
+  console.log('createStripeSession');
+  console.log('createStripeSession ' + stripe_cus_id + " plan: " + plan);
+
   return new Promise((resolve, reject) => {
     axios
       .post('/.netlify/functions/netlify-create-stripe-session', {
@@ -14,6 +16,7 @@ export default function createStripeSession(stripe_cus_id, plan) {
         resolve(res.data.id);
       })
       .catch(error => {
+        console.log('createStripeSession ' + error);
         reject(error);
       });
   });
