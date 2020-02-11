@@ -77,7 +77,7 @@ const MasculineSociety = class extends React.Component {
         console.log("err: " + err)
         if (retries < 2) {
           retries += 1;
-          redirectToCheckout(stripe_cus_id, product_sku)
+          this.redirectToCheckout(stripe_cus_id, product_sku)
         } else {
           console.log("Max retries exceeded")
         }
