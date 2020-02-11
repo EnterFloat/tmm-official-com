@@ -18,8 +18,8 @@ export default function createStripeCustomer(auth0_id, auth0_email) {
         console.log("createStripeCustomer ",error)
         // console.log("createStripeCustomer ",error.response.data.requestResult.body)
         // console.log("createStripeCustomer ",error.response.data.requestResult.statusCode)
-
-        reject(error);
+        resolve("not_stripe_customer")
+        // reject(error);
       });
   });
 }

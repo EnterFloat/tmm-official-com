@@ -49,6 +49,7 @@ const MasculineSociety = class extends React.Component {
   }
 
   redirectToCheckout(stripe_cus_id, product_sku) {
+    var retries = 0;
     console.log("redirectToCheckout ", stripe_cus_id)
     console.log("redirectToCheckout ", product_sku)
     createTmsPurchaseSession(stripe_cus_id, product_sku)
@@ -64,12 +65,23 @@ const MasculineSociety = class extends React.Component {
             sessionId: result,
           })
           .then(function(result) {    
-            console.log("redirectToCheckout res2: ", result)        
+            console.log("redirectToCheckout res2: ", result) 
+            return "Success"       
           }).catch(err => {     
-            console.log("redirectToCheckout err: ", err)        
+            console.log("redirectToCheckout err: ", err)       
+            return "Error during redirectToCheckout"       
           });          
       })
-      .catch(err => {        
+      .catch(err => { 
+        console.log("Retries: " + retries);
+        console.log("err: " + err)
+        if (retries < 2) {
+          retries += 1;
+          createTmsPurchaseSession(stripe_cus_id, product_sku)
+        } else {
+          console.log("Max retries exceeded")
+        }
+              
       });
   }
 
